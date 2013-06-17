@@ -18,6 +18,12 @@ handlers:
 - url: /
   script: login.app
 
+- url: /about_us
+  script: login.app
+
+- url: /contact_us
+  script: login.app
+
 - url: /.*
   script: home.app
   login: required

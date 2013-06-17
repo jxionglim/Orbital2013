@@ -1,30 +1,111 @@
-import urllib
 import webapp2
 import jinja2
 import os
-import datetime
+import models
 
-from google.appengine.ext import db
 from google.appengine.api import users
+from google.appengine.ext import db
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
 
-# This part for the front page
 
 class MainPage(webapp2.RequestHandler):
-  """ Front page for those logged in """
-  def get(self):
-    user = users.get_current_user()
-    if user:  # signed in already
-      template_values = {
-        'user_mail': users.get_current_user().email(),
-        'logout': users.create_logout_url(self.request.host_url),
-        } 
-      template = jinja_environment.get_template('home.html')
-      self.response.out.write(template.render(template_values))
-    else:
-      self.redirect(self.request.host_url)
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+            if currUser:
+                profile_completed = currUser.prof_complete
+                if currUser.first_name is not None or currUser.last_name is not None or currUser.institute is not None or currUser.faculty is not None or currUser.course is not None or currUser.hp_num is not None:
+                    template_values = {
+                        'reminder': profile_completed,
+                        'email': user.email(),
+                        'logout': users.create_logout_url(self.request.host_url),
+                        }
+                    template = jinja_environment.get_template('main.html')
+                    self.response.out.write(template.render(template_values))
+                else:
+                    self.redirect('/profile')
+            else:
+                newUser = models.User(key_name=user.email())
+                newUser.put()
+                self.redirect('/profile')
+        else:
+            self.redirect(self.request.host_url)
 
-app = webapp2.WSGIApplication([('/home', MainPage)],
+
+class ProfilePage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template_values = {
+            'reminder': 'yay',
+            'email': user.email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            }
+        template = jinja_environment.get_template('profile.html')
+        self.response.out.write(template.render(template_values))
+
+class AboutPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template_values = {
+            'reminder': 'yay',
+            'email': user.email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            }
+        template = jinja_environment.get_template('about.html')
+        self.response.out.write(template.render(template_values))
+
+class ContactPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template_values = {
+            'reminder': 'yay',
+            'email': user.email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            }
+        template = jinja_environment.get_template('contact.html')
+        self.response.out.write(template.render(template_values))
+
+class BuyPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template_values = {
+            'reminder': 'yay',
+            'email': user.email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            }
+        template = jinja_environment.get_template('buy.html')
+        self.response.out.write(template.render(template_values))
+
+class SellPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template_values = {
+            'reminder': 'yay',
+            'email': user.email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            }
+        template = jinja_environment.get_template('sell.html')
+        self.response.out.write(template.render(template_values))
+
+class AdvanceSearchPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template_values = {
+            'reminder': 'yay',
+            'email': user.email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            }
+        template = jinja_environment.get_template('adv_search.html')
+        self.response.out.write(template.render(template_values))
+
+app = webapp2.WSGIApplication([('/main', MainPage),
+                               ('/profile', ProfilePage),
+                               ('/about', AboutPage),
+                               ('/contact', ContactPage),
+                               ('/buy', BuyPage),
+                               ('/sell', SellPage),
+                               ('/adv_search', AdvanceSearchPage)],
                               debug=True)
