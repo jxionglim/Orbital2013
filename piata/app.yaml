@@ -1,0 +1,27 @@
+application: piata-v1
+version: 2
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /css
+  static_dir: css
+
+- url: /images
+  static_dir: images
+
+- url: /bootstrap
+  static_dir: bootstrap
+
+- url: /
+  script: login.app
+
+- url: /.*
+  script: home.app
+  login: required
+
+libraries:
+- name: jinja2
+  version: latest
