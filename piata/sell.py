@@ -20,5 +20,44 @@ class SellPage(webapp2.RequestHandler):
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
-app = webapp2.WSGIApplication([('/sell', SellPage)],
+class Submit(webapp2.RequestHandler):
+    def post(self):
+        module = self.request.get('module').rstrip()
+        title = self.request.get('title').rstrip()
+        author = self.request.get('author').rstrip()
+        publisher = self.request.get('publisher').rstrip()
+        edition = self.request.get('edition').rstrip()
+        cost = self.request.get('cost').rstrip()
+        comments = self.request.get('comments').rstrip()
+        zxc = self.request.get('asd', allow_multiple=True)
+
+        for a in zxc:
+            if a == 'not_used_once':
+                condition = 7
+            else:
+                condition = 3
+
+
+
+        user = users.get_current_user()
+        template_values = {
+            'module' : module,
+            'title' : title,
+            'author' : author,
+            'publisher' : publisher,
+            'edition' : edition,
+            'cost' : cost,
+            'comments' : comments,
+            'condition' : condition,
+            'email' : user.email(),
+            'logout' : users.create_logout_url(self.request.host_url),
+            'asd' : zxc,
+            }
+        template = jinja_environment.get_template('submit.html')
+        self.response.out.write(template.render(template_values))
+
+
+
+app = webapp2.WSGIApplication([('/sell', SellPage),
+                               ('/sell/submit' , Submit)],
                               debug=True)

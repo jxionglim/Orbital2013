@@ -48,66 +48,124 @@
 </div>
 
 <div class="container">
-
+    <h1>Request Book</h1>
     <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
-        <h1>Hello, world!</h1>
-        Module Code <input>
-        Title <input>
-        Author <input>
-        Publisher <input>
-        Edition <input>
-        Cost <input>
-        Condition <input>
-        Comment <textarea></textarea>
-        <a href='#' class='btn btn-primary btn-large'>Submit</a>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-    </div>
+        <form class="form-horizontal" action="/sell/submit" method="post">
+            <div class="control-group">
+                <label class="control-label">Module Code</label>
+                <div class="controls">
+                    <input type="text" id="inputModule" name="module">
+                </div>
+            </div>
 
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>asdasdasdasd </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-    </div>
+            <div class="control-group">
+                <label class="control-label">Title</label>
+                <div class="controls">
+                    <input type="text" id="inputTitle" name="title">
+                </div>
+            </div>
 
-    <hr>
+            <div class="control-group">
+                <label class="control-label">Author</label>
+                <div class="controls">
+                    <input type="text" id="inputAuthor" name="author">
+                </div>
+            </div>
 
-    <footer>
-        <p>&copy; Piata</p>
-    </footer>
+            <div class="control-group">
+                <label class="control-label">Publisher</label>
+                <div class="controls">
+                    <input type="text" id="inputPublisher" name="publisher">
+                </div>
+            </div>
 
-</div> <!-- /container -->
+            <div class="control-group">
+                <label class="control-label">Edition</label>
+                <div class="controls">
+                    <input type="text" id="inputEdition" name="edition">
+                </div>
+            </div>
 
-<!-- Le javascript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="../bootstrap/js/jquery.js"></script>
-<script src="../bootstrap/js/bootstrap-transition.js"></script>
-<script src="../bootstrap/js/bootstrap-alert.js"></script>
-<script src="../bootstrap/js/bootstrap-modal.js"></script>
-<script src="../bootstrap/js/bootstrap-dropdown.js"></script>
-<script src="../bootstrap/js/bootstrap-scrollspy.js"></script>
-<script src="../bootstrap/js/bootstrap-tab.js"></script>
-<script src="../bootstrap/js/bootstrap-tooltip.js"></script>
-<script src="../bootstrap/js/bootstrap-popover.js"></script>
-<script src="../bootstrap/js/bootstrap-button.js"></script>
-<script src="../bootstrap/js/bootstrap-collapse.js"></script>
-<script src="../bootstrap/js/bootstrap-carousel.js"></script>
-<script src="../bootstrap/js/bootstrap-typeahead.js"></script>
+            <div class="control-group">
+                <label class="control-label">Cost</label>
+                <div class="controls">
+                    <input type="text" id="inputCost" name="cost">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Condition</label>
+
+                <div class="controls">
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="highlights" value="highlights" name="asd"> Highlights
+                    </label>
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="stains" value="stains" name="asd"> Stains
+                    </label>
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="writings" value="writings" name="asd"> Writings
+                    </label>
+                </div>
+
+                <div class="controls">
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="dog_eared" value="dog_eared" name="asd"> Dog Eared
+                    </label>
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="slight_torn" value="slight_torn" name="asd"> Slight Torn
+                    </label>
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="not_used_once" value="not_used_once" name="asd"> Not Used Once
+                    </label>
+                </div>
+
+                <div class="controls">
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="sever_torn" value="sever_torn"> Sever Torn
+                    </label>
+                    <label class="checkbox inline">
+                        <input type="checkbox" id="wrapped" value="wrapped"> Wrapped
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Comments</label>
+                <div class="controls">
+                    <textarea style="overflow: auto;resize: none" id="inputComment" name="comments"></textarea>
+                </div>
+            </div>
+
+            <div class="span4 offset3">
+                <button type="submit" class="btn">Sign in</button>
+            </div>
+        </form>
+
+        <br><br>
+        <footer>
+            <p>&copy; Piata</p>
+        </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../bootstrap/js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap-transition.js"></script>
+    <script src="../bootstrap/js/bootstrap-alert.js"></script>
+    <script src="../bootstrap/js/bootstrap-modal.js"></script>
+    <script src="../bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="../bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="../bootstrap/js/bootstrap-tab.js"></script>
+    <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="../bootstrap/js/bootstrap-popover.js"></script>
+    <script src="../bootstrap/js/bootstrap-button.js"></script>
+    <script src="../bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="../bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="../bootstrap/js/bootstrap-typeahead.js"></script>
 
 </body>
 </html>
