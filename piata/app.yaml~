@@ -1,5 +1,13 @@
 application: piata-v1
+<<<<<<< HEAD
 version: 3
+=======
+<<<<<<< HEAD
+version: 5
+=======
+version: 4
+>>>>>>> a84f4d90fe759ff507fb95eb41c8da5f1f22cf75
+>>>>>>> 083f1aa6f7b3e392094280c78df0ae76ec1925e3
 runtime: python27
 api_version: 1
 threadsafe: true
