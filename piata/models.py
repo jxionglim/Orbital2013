@@ -17,3 +17,13 @@ class User(db.Model):
     rating = db.IntegerProperty(default=0)
     prof_complete = db.BooleanProperty(default=False)
     last_active = db.DateTimeProperty(default=datetime.datetime.now())
+
+class Book(db.Model):
+    module_code = db.StringProperty()
+    title = db.StringProperty()
+    author = db.StringProperty()
+    publisher = db.StringProperty()
+    edition = db.IntegerProperty()
+    condition = db.IntegerProperty()
+    comment = db.StringProperty()
+    cost = db.IntegerProperty()
