@@ -28,6 +28,10 @@ handlers:
   script: profile.app
   login: required
 
+- url: /sell/?(.*?)
+  script: sell.app
+  login: required
+
 - url: /.*
   script: home.app
   login: required
