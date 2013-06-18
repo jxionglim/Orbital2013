@@ -24,6 +24,10 @@ handlers:
 - url: /contact_us
   script: login.app
 
+- url: /profile/?(.*?)
+  script: profile.app
+  login: required
+
 - url: /.*
   script: home.app
   login: required

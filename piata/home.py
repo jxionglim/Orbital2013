@@ -34,18 +34,6 @@ class MainPage(webapp2.RequestHandler):
         else:
             self.redirect(self.request.host_url)
 
-
-class ProfilePage(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-        template_values = {
-            'reminder': 'yay',
-            'email': user.email(),
-            'logout': users.create_logout_url(self.request.host_url),
-            }
-        template = jinja_environment.get_template('profile.html')
-        self.response.out.write(template.render(template_values))
-
 class AboutPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -79,17 +67,6 @@ class BuyPage(webapp2.RequestHandler):
         template = jinja_environment.get_template('buy.html')
         self.response.out.write(template.render(template_values))
 
-class SellPage(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-        template_values = {
-            'reminder': 'yay',
-            'email': user.email(),
-            'logout': users.create_logout_url(self.request.host_url),
-            }
-        template = jinja_environment.get_template('sell.html')
-        self.response.out.write(template.render(template_values))
-
 class AdvanceSearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -102,10 +79,8 @@ class AdvanceSearchPage(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([('/main', MainPage),
-                               ('/profile', ProfilePage),
                                ('/about', AboutPage),
                                ('/contact', ContactPage),
                                ('/buy', BuyPage),
-                               ('/sell', SellPage),
                                ('/adv_search', AdvanceSearchPage)],
                               debug=True)
