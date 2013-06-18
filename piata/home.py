@@ -17,7 +17,7 @@ class MainPage(webapp2.RequestHandler):
             currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
             if currUser:
                 profile_completed = currUser.prof_complete
-                if currUser.first_name is not None or currUser.last_name is not None or currUser.institute is not None or currUser.faculty is not None or currUser.course is not None or currUser.hp_num is not None:
+                if currUser.first_name != "" or currUser.last_name != "" or currUser.institute != "" or currUser.faculty != "" or currUser.course != "" or currUser.hp_num != "":
                     template_values = {
                         'reminder': profile_completed,
                         'email': user.email(),
@@ -26,11 +26,11 @@ class MainPage(webapp2.RequestHandler):
                     template = jinja_environment.get_template('main.html')
                     self.response.out.write(template.render(template_values))
                 else:
-                    self.redirect('/profile')
+                    self.redirect('/profile/edit')
             else:
                 newUser = models.User(key_name=user.email())
                 newUser.put()
-                self.redirect('/profile')
+                self.redirect('/profile/edit')
         else:
             self.redirect(self.request.host_url)
 

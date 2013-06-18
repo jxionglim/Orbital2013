@@ -24,7 +24,7 @@ handlers:
 - url: /contact_us
   script: login.app
 
-- url: /profile/?(.*?)
+- url: /profile/?(.*?)/?(.*?)
   script: profile.app
   login: required
 
