@@ -10,14 +10,14 @@ jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
 
 
-class MainPage(webapp2.RequestHandler):
+class ProcessLogin(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
             currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
             if currUser:
                 profile_completed = currUser.prof_complete
-                if currUser.first_name != "" or currUser.last_name != "" or currUser.institute != "" or currUser.faculty != "" or currUser.course != "" or currUser.hp_num != "":
+                if currUser.first_name != "" and currUser.last_name != "" and currUser.institute != "" and currUser.faculty != "" and currUser.course != "" and currUser.hp_num != "":
                     template_values = {
                         'reminder': profile_completed,
                         'email': user.email(),
@@ -34,7 +34,8 @@ class MainPage(webapp2.RequestHandler):
         else:
             self.redirect(self.request.host_url)
 
-class AboutPage(webapp2.RequestHandler):
+
+class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template_values = {
@@ -42,19 +43,9 @@ class AboutPage(webapp2.RequestHandler):
             'email': user.email(),
             'logout': users.create_logout_url(self.request.host_url),
             }
-        template = jinja_environment.get_template('about.html')
+        template = jinja_environment.get_template('main.html')
         self.response.out.write(template.render(template_values))
 
-class ContactPage(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-        template_values = {
-            'reminder': 'yay',
-            'email': user.email(),
-            'logout': users.create_logout_url(self.request.host_url),
-            }
-        template = jinja_environment.get_template('contact.html')
-        self.response.out.write(template.render(template_values))
 
 class BuyPage(webapp2.RequestHandler):
     def get(self):
@@ -67,6 +58,7 @@ class BuyPage(webapp2.RequestHandler):
         template = jinja_environment.get_template('buy.html')
         self.response.out.write(template.render(template_values))
 
+
 class AdvanceSearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -78,9 +70,34 @@ class AdvanceSearchPage(webapp2.RequestHandler):
         template = jinja_environment.get_template('adv_search.html')
         self.response.out.write(template.render(template_values))
 
-app = webapp2.WSGIApplication([('/main', MainPage),
-                               ('/about', AboutPage),
-                               ('/contact', ContactPage),
+
+class AboutPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template_values = {
+            'reminder': 'yay',
+            'email': user.email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            }
+        template = jinja_environment.get_template('about.html')
+        self.response.out.write(template.render(template_values))
+
+
+class ContactPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template_values = {
+            'reminder': 'yay',
+            'email': user.email(),
+            'logout': users.create_logout_url(self.request.host_url),
+            }
+        template = jinja_environment.get_template('contact.html')
+        self.response.out.write(template.render(template_values))
+
+app = webapp2.WSGIApplication([('/login', ProcessLogin),
+                               ('/main', MainPage),
                                ('/buy', BuyPage),
-                               ('/adv_search', AdvanceSearchPage)],
+                               ('/adv_search', AdvanceSearchPage),
+                               ('/about', AboutPage),
+                               ('/contact', ContactPage)],
                               debug=True)

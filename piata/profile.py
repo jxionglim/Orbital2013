@@ -16,6 +16,7 @@ class ProfileEdit(webapp2.RequestHandler):
         template_values = {
             'currUser': currUser,
             'email': user.email(),
+            'user_form': models.UserForm(),
             'logout': users.create_logout_url(self.request.host_url),
             }
         template = jinja_environment.get_template('edit_profile.html')
@@ -34,9 +35,9 @@ class ProfileUpdate(webapp2.RequestHandler):
         currUser.faculty = self.request.get('faculty').rstrip()
         currUser.course = self.request.get('course').rstrip()
         currUser.hp_num = self.request.get('hp_num').rstrip()
-        currUser.hp_num_vis = True if self.request.get('hp_num_vis').rstrip() != "" else False
+        currUser.hp_num_hide = True if self.request.get('hp_num_hide').rstrip() != "" else False
         currUser.home_num = self.request.get('home_num').rstrip()
-        currUser.home_num_vis = True if self.request.get('home_num_vis').rstrip() != "" else False
+        currUser.home_num_hide = True if self.request.get('home_num_hide').rstrip() != "" else False
         currUser.put()
         self.redirect('/profile')
 

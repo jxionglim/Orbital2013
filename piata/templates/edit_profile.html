@@ -53,10 +53,18 @@
     <div class="hero-unit">
         <form class="form-horizontal" action="/profile/update" method="post">
             <legend>Personal Information</legend>
+            {% for fields in user_form %}
+                <div class="control-group">
+                <label class="control-label">{{ fields.label }} {{ fields.field.help_text }}</label>
+                <div class="controls">
+                    {{ fields }}
+                </div>
+            </div>
+            {% endfor %}
             <div class="control-group">
                 <label class="control-label">First Name:</label>
                 <div class="controls">
-                    <input type="text" name="first_name" value={{ currUser.first_name|e }}>
+                    <input type="number" name="first_name" required value={{ currUser.first_name|e }}>
                 </div>
             </div>
             <div class="control-group">
@@ -75,14 +83,14 @@
                 <label class="control-label">Contact Number (HP):</label>
                 <div class="controls">
                     <input class="input-medium" type="text" name="hp_num" value={{ currUser.hp_num|e }}>
-                    <span class="help-inline"><input type="checkbox" name="hp_num_vis" {% if currUser.hp_num_vis == True %} checked {% endif %}><small>&nbspHide</small></span>
+                    <span class="help-inline"><input type="checkbox" name="hp_num_hide" {% if currUser.hp_num_hide == True %} checked {% endif %}><small>&nbspHide</small></span>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">(H):</label>
                 <div class="controls">
                     <input class="input-medium" type="text" name="home_num" value={{ currUser.home_num|e }}>
-                    <span class="help-inline"><input type="checkbox" name="home_num_vis"  {% if currUser.home_num_vis == True %} checked {% endif %}><small>&nbspHide</small></span>
+                    <span class="help-inline"><input type="checkbox" name="home_num_hide"  {% if currUser.home_num_hide == True %} checked {% endif %}><small>&nbspHide</small></span>
                 </div>
             </div>
             <div class="control-group">
