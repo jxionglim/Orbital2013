@@ -1,9 +1,8 @@
 import datetime
 from google.appengine.ext import db
-from google.appengine.ext.webapp import template
-from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext.db import djangoforms
+import djangoforms
 from django import forms
+
 
 class User(db.Model):
     first_name = db.StringProperty(default="")
