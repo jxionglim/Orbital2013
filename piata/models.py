@@ -1,8 +1,6 @@
 import datetime
 from google.appengine.ext import db
-import djangoforms
-from django import forms
-
+from wtforms import Form, TextField, validators
 
 class User(db.Model):
     first_name = db.StringProperty(default="")
@@ -20,8 +18,8 @@ class User(db.Model):
     prof_complete = db.BooleanProperty(default=False)
     last_active = db.DateTimeProperty(default=datetime.datetime.now())
 
-class UserForm(djangoforms.ModelForm):
-    first_name = forms.CharField(label="First Name:",help_text="testing")
+class UserForm(Form):
+    first_name = TextField('First Name', [validators.Length(min=4, max=25)])
 
 class Book(db.Model):
     module_code = db.StringProperty()

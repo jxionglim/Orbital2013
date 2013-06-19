@@ -25,7 +25,12 @@ class ProfileEdit(webapp2.RequestHandler):
 
 class ProfileUpdate(webapp2.RequestHandler):
     def post(self):
-        user = users.get_current_user()
+        myForm = models.UserForm(self.request.params)
+        if myForm.validate():
+            self.response.out.write('<html>valid</html>')
+        else:
+            self.response.out.write('<html>invalid</html>')
+        """user = users.get_current_user()
         currUser = db.get(db.Key.from_path('User', user.email()))
         currUser.first_name = self.request.get('first_name').rstrip()
         currUser.last_name = self.request.get('last_name').rstrip()
@@ -39,7 +44,7 @@ class ProfileUpdate(webapp2.RequestHandler):
         currUser.home_num = self.request.get('home_num').rstrip()
         currUser.home_num_hide = True if self.request.get('home_num_hide').rstrip() != "" else False
         currUser.put()
-        self.redirect('/profile')
+        self.redirect('/profile')"""
 
 
 class ViewProfile(webapp2.RequestHandler):
