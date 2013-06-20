@@ -49,77 +49,55 @@
 
 <div class="container">
 
-    <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
-        <form class="form-horizontal" action="/profile/update" method="post">
-            <legend>Personal Information</legend>
-            <div class="control-group">
-                <label class="control-label">First Name:</label>
-                <div class="controls">
-                    <input type="text" name="first_name" value={{ currUser.first_name|e }}>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Last Name:</label>
-                <div class="controls">
-                    <input type="text" name="last_name" value={{ currUser.last_name|e }}>
-                </div>
-            </div>
-             <div class="control-group">
-                <label class="control-label">Email:</label>
-                <div class="controls">
-                    <span class="uneditable-input">{{ email|e }}</span>
-                </div>
-            </div>
-           <div class="control-group">
-                <label class="control-label">Contact Number (HP):</label>
-                <div class="controls">
-                    <input class="input-medium" type="text" name="hp_num" value={{ currUser.hp_num|e }}>
-                    <span class="help-inline"><input type="checkbox" name="hp_num_vis" {% if currUser.hp_num_vis == True %} checked {% endif %}><small>&nbspHide</small></span>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">(H):</label>
-                <div class="controls">
-                    <input class="input-medium" type="text" name="home_num" value={{ currUser.home_num|e }}>
-                    <span class="help-inline"><input type="checkbox" name="home_num_vis"  {% if currUser.home_num_vis == True %} checked {% endif %}><small>&nbspHide</small></span>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Address:</label>
-                <div class="controls">
-                    <textarea style="overflow:auto;resize:none" name="address" value={{ currUser.address|e }}></textarea>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Postal Code:</label>
-                <div class="controls">
-                    <input class="input-mini" type="text" name="postal_code" value={{ currUser.postal_code|e }}>
-                </div>
-            </div>
-            <legend>Institute Information</legend>
-            <div class="control-group">
-                <label class="control-label">Institute:</label>
-                <div class="controls">
-                    <input type="text" name="institute" value={{ currUser.institute|e }}>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Faculty:</label>
-                <div class="controls">
-                    <input type="text" name="faculty" value={{ currUser.faculty|e }}>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Course:</label>
-                <div class="controls">
-                    <input type="text" name="course" value={{ currUser.course|e }}>
-                </div>
-            </div>
-            <div class="span1 offset3"><button class="btn btn-small btn-info" type="submit">Submit</button></div>
-        </form>
+        <legend><strong>Personal Information</strong>&nbsp&nbsp&nbsp<a href="/profile/edit" class="btn btn-small btn-info">Edit</a></legend>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Email</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ email|e }}</small></div>
+        </div>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>First&nbspName</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.first_name|e }}</small></div>
+        </div>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Last&nbspName</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.last_name|e }}</small></div>
+        </div>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Address</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.address|e }}</small></div>
+        </div>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Postal&nbspCode</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.postal_code|e }}</small></div>
+        </div>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Contact&nbspNumber</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.contact_num|e }}</small></div>
+        </div>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Contact&nbspVisbility</strong></small></div>
+            <div class="span3"><small>:&nbsp{% if currUser.contact_num_hide == True %}Hidden from other users{% else %}Viewable by other users{% endif %}</small></div>
+        </div>
+        <!--<div class="row">
+            <div class="span2 offset1"><small><strong>Picture</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.profile_pic }}</small></div>
+        </div>-->
+        <br>
+        <legend><strong>Institute Information</strong></legend>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Institute</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.institute|e }}</small></div>
+        </div>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Faculty</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.faculty|e }}</small></div>
+        </div>
+        <div class="row">
+            <div class="span2 offset1"><small><strong>Course</strong></small></div>
+            <div class="span3"><small>:&nbsp{{ currUser.course|e }}</small></div>
+        </div>
     </div>
-
     <hr>
 
     <footer>

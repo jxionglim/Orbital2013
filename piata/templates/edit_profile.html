@@ -36,7 +36,7 @@
                 </ul>
                 <form class="navbar-form pull-right">
                     <ul class="nav">
-                        <li class="active"><a href="#">Profile</a></li>
+                        <li class="active"><a href="/profile">Profile</a></li>
                         <li><a href="/about">About Us</a></li>
                         <li><a href="/contact">Contact Us</a></li>
                         <a class="brand" href="{{ logout }}">Logout</a>
@@ -48,21 +48,42 @@
 </div>
 
 <div class="container">
-
-    <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
-        <form class="form-horizontal" action="/profile/update" method="post">
-            <legend>Personal Information</legend>
-            {% for fields in user_form %}
-                {{ fields.errors }}
-                <div class="control-group">
-                <label class="control-label">{{ fields.label }}</label>
+        <form class="form-horizontal" action="/profile/update" method="post" enctype="multipart/form-data">
+            <legend><strong>Personal Information</strong></legend>
+            <div class="control-group">
+                <label class="control-label">Email:</label>
                 <div class="controls">
-                    {{ fields }}
+                    <span class="uneditable-input">{{ email|e }}</span>
                 </div>
             </div>
+            {% for fields in userform %}
+                <div class="control-group">
+                    <label class="control-label">{{ fields.label }}</label>
+                    <div class="controls">
+                        {% if fields.id == 'address' %}
+                            <textarea style="overflow:auto;resize:none" id={{ fields.id }} name={{ fields.id }}>{{ fields.data }}</textarea>
+                        {% elif fields.id == 'profile_pic' %}
+                            testtest
+                        {% else %}
+                            {{ fields }} {% for error in fields.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
             {% endfor %}
-            <div class="span1 offset3"><button class="btn btn-small btn-info" type="submit">Submit</button></div>
+            <legend><strong>Institute Information</strong></legend>
+            {% for fields in insform %}
+                <div class="control-group">
+                    <label class="control-label">{{ fields.label }}</label>
+                    <div class="controls">
+                        {{ fields }} {% for error in fields.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="span1 offset2"><button class="btn btn-small btn-info" type="submit">Update</button></div>
+                <div class="span2"><a href="/profile" class="btn btn-small btn-info">&nbsp&nbspBack&nbsp&nbsp</a></div>
+            </div>
         </form>
     </div>
 

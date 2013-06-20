@@ -17,7 +17,7 @@ class ProcessLogin(webapp2.RequestHandler):
             currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
             if currUser:
                 profile_completed = currUser.prof_complete
-                if currUser.first_name != "" and currUser.last_name != "" and currUser.institute != "" and currUser.faculty != "" and currUser.course != "" and currUser.hp_num != "":
+                if currUser.first_name != "" and currUser.last_name != "" and currUser.institute != "" and currUser.faculty != "" and currUser.course != "" and currUser.contact_num != "":
                     template_values = {
                         'reminder': profile_completed,
                         'email': user.email(),
