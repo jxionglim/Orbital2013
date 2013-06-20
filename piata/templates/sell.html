@@ -53,11 +53,11 @@
         <form class="form-horizontal" action="/sell/submit" method="post">
             <legend>Book Information</legend>
             {% for fields in book_form %}
-                {% if fields.type != 'BooleanField' or fields.id != "Comments" %}
+                {% if fields.type != 'BooleanField' and fields.id != "comment" %}
                     <div class="control-group">
                         <label class="control-label">{{ fields.label }}</label>
                         <div class="controls">
-                            {{ fields }}
+                            {{ fields }} {% for error in fields.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %}
                         </div>
                     </div>
                 {% endif %}

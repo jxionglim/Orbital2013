@@ -46,23 +46,23 @@ class InstituteInfoForm(Form):
 
 
 class Book(db.Model):
-    module_code = db.StringProperty()
-    title = db.StringProperty()
-    author = db.StringProperty()
-    publisher = db.StringProperty()
-    edition = db.IntegerProperty()
-    condition = db.IntegerProperty()
-    comment = db.StringProperty()
-    cost = db.IntegerProperty()
+    module_code = db.StringProperty(default="")
+    title = db.StringProperty(default="")
+    author = db.StringProperty(default="")
+    publisher = db.StringProperty(default="")
+    edition = db.IntegerProperty(default=0)
+    condition = db.IntegerProperty(default=0)
+    comment = db.StringProperty(default="")
+    cost = db.IntegerProperty(default=0)
 
 
 class BookForm(Form):
-    module_code = TextField('Module Code', [validators.Length(min=-1, max=10)])
-    title = TextField('Title', [validators.Length(min=-1, max=20)])
-    author = TextField('Author', [validators.length(min=-1, max=20)])
-    publisher = TextField('Publisher', [validators.length(min=-1, max=20)])
-    edition = IntegerField('Edition', [validators.number_range(min=1, max=None)])
-    cost = IntegerField('Cost', [validators.number_range(min=1, max=None)])
+    module_code = TextField('Module Code', [validators.Length(min=-1, max=10), validators.Required()])
+    title = TextField('Title', [validators.Length(min=-1, max=20), validators.Required()])
+    author = TextField('Author', [validators.length(min=-1, max=20), validators.Required()])
+    publisher = TextField('Publisher', [validators.length(min=-1, max=20), validators.Required()])
+    edition = IntegerField('Edition', [validators.number_range(min=1, max=None), validators.Required()])
+    cost = IntegerField('Cost', [validators.number_range(min=1, max=None), validators.Required()])
     condition_highlights = BooleanField()
     condition_stains = BooleanField()
     condition_writings = BooleanField()
@@ -70,4 +70,4 @@ class BookForm(Form):
     condition_torn = BooleanField()
     condition_wrapped = BooleanField()
     condition_not_used_once = BooleanField()
-    comment = TextAreaField('Comments')
+    comment = TextAreaField()
