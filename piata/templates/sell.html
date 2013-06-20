@@ -48,86 +48,73 @@
 </div>
 
 <div class="container">
-    <h1>Request Book</h1>
     <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
         <form class="form-horizontal" action="/sell/submit" method="post">
-            <div class="control-group">
-                <label class="control-label">Module Code</label>
-                <div class="controls">
-                    <input type="text" id="inputModule" name="module">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Title</label>
-                <div class="controls">
-                    <input type="text" id="inputTitle" name="title">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Author</label>
-                <div class="controls">
-                    <input type="text" id="inputAuthor" name="author">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Publisher</label>
-                <div class="controls">
-                    <input type="text" id="inputPublisher" name="publisher">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Edition</label>
-                <div class="controls">
-                    <input type="text" id="inputEdition" name="edition">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Cost</label>
-                <div class="controls">
-                    <input type="text" id="inputCost" name="cost">
-                </div>
-            </div>
+            <legend>Book Information</legend>
+            {% for fields in book_form %}
+                {% if fields.type != 'BooleanField' or fields.id != "Comments" %}
+                    <div class="control-group">
+                        <label class="control-label">{{ fields.label }}</label>
+                        <div class="controls">
+                            {{ fields }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
 
             <div class="control-group">
                 <label class="control-label">Condition</label>
-
                 <div class="controls">
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="highlights" value="highlights" name="asd"> Highlights
-                    </label>
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="stains" value="stains" name="asd"> Stains
-                    </label>
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="writings" value="writings" name="asd"> Writings
-                    </label>
+
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <label class="checkbox inline">
+                                <input type="checkbox" id='condition_stains' value= 'stains' name="conditions"> Stains
+                            </label>
+                        </div>
+                        <div class="span2">
+                            <label class="checkbox inline">
+                                <input type="checkbox" id='condition_writings' value= 'writings' name="conditions"> Writings
+                            </label>
+                        </div>
+                        <div class="span2">
+                            <label class="checkbox inline">
+                                <input type="checkbox" id='condition_highlights' value= 'highlights' name="conditions"> Highlights
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="controls">
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="dog_eared" value="dog_eared" name="asd"> Dog Eared
-                    </label>
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="slight_torn" value="slight_torn" name="asd"> Slight Torn
-                    </label>
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="not_used_once" value="not_used_once" name="asd"> Not Used Once
-                    </label>
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <label class="checkbox inline">
+                                <input type="checkbox" id='condition_dog_eared' value= 'dog_eared' name="conditions"> Dog-Eared
+                            </label>
+                        </div>
+                        <div class="span2">
+                            <label class="checkbox inline">
+                                <input type="checkbox" id='condition_torn' value= 'torn' name="conditions"> Torn
+                            </label>
+                        </div>
+                        <div class="span2">
+                            <label class="checkbox inline">
+                                <input type="checkbox" id='condition_wrapped' value= 'wrapped' name="conditions"> Wrapped
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="controls">
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="sever_torn" value="sever_torn"> Sever Torn
-                    </label>
-                    <label class="checkbox inline">
-                        <input type="checkbox" id="wrapped" value="wrapped"> Wrapped
-                    </label>
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <label class="checkbox inline">
+                                <input type="checkbox" id='condition_not_used_once' value= 'not_used_once' name="conditions"> Not Used Once
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
