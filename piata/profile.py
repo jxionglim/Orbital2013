@@ -69,7 +69,17 @@ class ViewProfile(webapp2.RequestHandler):
         template = jinja_environment.get_template('profile.html')
         self.response.out.write(template.render(template_values))
 
+
+class ServeImage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        currUser = db.get(db.Key.from_path('User', user.email()))
+        if currUser.profile_pic:
+            self.response.headers['Content-Type'] = 'image/jpeg'
+            self.response.out.write(currUser.profile_pic)
+
 app = webapp2.WSGIApplication([('/profile', ViewProfile),
                                ('/profile/update', ProfileUpdate),
-                               ('/profile/edit', ProfileEdit)],
+                               ('/profile/edit', ProfileEdit),
+                               ('/profile/image',ServeImage)],
                               debug=True)

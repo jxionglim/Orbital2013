@@ -63,8 +63,6 @@
                     <div class="controls">
                         {% if fields.id == 'address' %}
                             <textarea style="overflow:auto;resize:none" id={{ fields.id }} name={{ fields.id }}>{{ fields.data }}</textarea>
-                        {% elif fields.id == 'profile_pic' %}
-                            testtest
                         {% else %}
                             {{ fields }} {% for error in fields.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %}
                         {% endif %}
