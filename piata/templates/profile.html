@@ -46,73 +46,77 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
-<br>
-    <div class="row-fluid">
-        <div class="span3">
-            <div class="hero-unit">
-                <legend><strong>Profile Picture</strong></legend>
-                <div class="row">
-                <img class="img-polaroid" src='/profile/image'>
-                 <div class="row">
-                     <br>
-                    <p class="text-center"><strong><small>Rating:&nbsp5/5</small></strong></p>
+
+<div class="container">
+    <div class="hero-unit">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span8">
+                    <div class="hero-unit">
+                        <legend><strong>Personal Information</strong>&nbsp&nbsp&nbsp<a href="/profile/edit" class="btn btn-small btn-info">Edit</a></legend>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Email</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{{ email|e }}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>First&nbspName</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{{ currUser.first_name|e }}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Last&nbspName</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{{ currUser.last_name|e }}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Address</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{{ currUser.address|e }}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Postal&nbspCode</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{{ currUser.postal_code|e }}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Contact&nbspNumber</strong></small></div>
+                            <div class="span3 offset1"><small>:&nbsp{{ currUser.contact_num|e }}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Contact&nbspVisbility</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{% if currUser.contact_num_hide == True %}Hidden from other users{% else %}Viewable by other users{% endif %}</small></div>
+                        </div>
+                        <br>
+                        <legend><strong>Institute Information</strong></legend>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Institute</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{{ currUser.institute|e }}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Faculty</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{{ currUser.faculty|e }}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Course</strong></small></div>
+                            <div class="span5 offset1"><small>:&nbsp{{ currUser.course|e }}</small></div>
+                        </div>
+                    </div>
                 </div>
-                <br><br><br><br>
-                </div>
-            </div>
-        </div>
-        <div class="span9">
-            <div class="hero-unit">
-                <legend><strong>Personal Information</strong>&nbsp&nbsp&nbsp<a href="/profile/edit" class="btn btn-small btn-info">Edit</a></legend>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Email</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ email|e }}</small></div>
-                </div>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>First&nbspName</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ currUser.first_name|e }}</small></div>
-                </div>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Last&nbspName</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ currUser.last_name|e }}</small></div>
-                </div>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Address</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ currUser.address|e }}</small></div>
-                </div>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Postal&nbspCode</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ currUser.postal_code|e }}</small></div>
-                </div>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Contact&nbspNumber</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ currUser.contact_num|e }}</small></div>
-                </div>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Contact&nbspVisbility</strong></small></div>
-                    <div class="span3"><small>:&nbsp{% if currUser.contact_num_hide == True %}Hidden from other users{% else %}Viewable by other users{% endif %}</small></div>
-                </div>
-                <br>
-                <legend><strong>Institute Information</strong></legend>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Institute</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ currUser.institute|e }}</small></div>
-                </div>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Faculty</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ currUser.faculty|e }}</small></div>
-                </div>
-                <div class="row">
-                    <div class="span2 offset1"><small><strong>Course</strong></small></div>
-                    <div class="span3"><small>:&nbsp{{ currUser.course|e }}</small></div>
+                <div class="span4">
+                    <div class="hero-unit">
+                        <legend><strong>Profile Picture</strong></legend>
+                        <div class="row">
+                            {% if currUser.profile_pic == None %}
+                                <img class="img-polaroid" src="../images/nopic.png">
+                            {% else %}
+                                <img class="img-polaroid" src='/profile/image'>
+                            {% endif %}
+                            <div class="row">
+                                <br>
+                                <p class="text-center"><strong><small>Rating:&nbsp5/5</small></strong></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-
 
     <hr>
 

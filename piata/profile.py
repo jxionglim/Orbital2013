@@ -5,6 +5,8 @@ import models
 
 from google.appengine.api import users
 from google.appengine.ext import db
+from google.appengine.api import images
+
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -43,7 +45,10 @@ class ProfileUpdate(webapp2.RequestHandler):
             currUser.institute = self.request.get('institute').rstrip()
             currUser.faculty = self.request.get('faculty').rstrip()
             currUser.course = self.request.get('course').rstrip()
-            currUser.profile_pic = db.Blob(self.request.get('profile_pic'))
+            currUser.profile_pic = db.Blob(images.resize(self.request.get('profile_pic'), width=200))
+            if currUser.address != "" and currUser.postal_code != "" and currUser.profile_pic is not None:
+                currUser.prof_completed = True
+                currUser.rating = 3
             currUser.put()
             self.redirect('/profile')
         else:
@@ -75,7 +80,7 @@ class ServeImage(webapp2.RequestHandler):
         user = users.get_current_user()
         currUser = db.get(db.Key.from_path('User', user.email()))
         if currUser.profile_pic:
-            self.response.headers['Content-Type'] = 'image/jpeg'
+            self.response.headers['Content-Type'] = 'image/zxc'
             self.response.out.write(currUser.profile_pic)
 
 app = webapp2.WSGIApplication([('/profile', ViewProfile),

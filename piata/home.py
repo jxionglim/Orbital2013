@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 import models
+import datetime
 
 from google.appengine.api import users
 from google.appengine.ext import db
@@ -16,10 +17,10 @@ class ProcessLogin(webapp2.RequestHandler):
         if user:
             currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
             if currUser:
-                profile_completed = currUser.prof_complete
+                currUser.last_active = datetime.datetime.now()
                 if currUser.first_name != "" and currUser.last_name != "" and currUser.institute != "" and currUser.faculty != "" and currUser.course != "" and currUser.contact_num != "":
                     template_values = {
-                        'reminder': profile_completed,
+                        'reminder': currUser.prof_complete,
                         'email': user.email(),
                         'logout': users.create_logout_url(self.request.host_url),
                         }

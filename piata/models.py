@@ -1,7 +1,8 @@
 import datetime
 from google.appengine.ext import db
-from wtforms import Form, BooleanField, TextField, PasswordField, validators, ValidationError, IntegerField, SelectField, TextAreaField, FileField
-
+from wtforms import Form, BooleanField, TextField, validators, ValidationError, IntegerField, SelectField, TextAreaField, FileField
+from google.appengine.api import images
+from google.appengine.api.images import BadImageError, LargeImageError ,NotImageError
 
 class User(db.Model):
     first_name = db.StringProperty(default="")
@@ -33,11 +34,18 @@ class UserInfoForm(Form):
             if field.data < 0:
                 raise ValidationError('Enter a valid postal code')
 
-    def validate_hp_num(form, field):
+    def validate_contact_num(form, field):
         if isinstance(field.data, int):
             if field.data < 0:
                 raise ValidationError('Enter a valid number')
 
+    def validate_profile_pic(form, field):
+        try:
+            images.resize(field.data,width=200)
+        except (BadImageError, NotImageError):
+            raise ValidationError('Upload a good image')
+        except LargeImageError:
+            raise ValidationError('Upload a smaller image')
 
 class InstituteInfoForm(Form):
     institute = TextField('Institute:', [validators.required()])
@@ -51,23 +59,23 @@ class Book(db.Model):
     author = db.StringProperty(default="")
     publisher = db.StringProperty(default="")
     edition = db.IntegerProperty(default=0)
-    condition = db.IntegerProperty(default=0)
-    comment = db.StringProperty(default="")
+    condition = db.ListProperty(str)
+    comment = db.StringProperty(multiline='True')
     cost = db.IntegerProperty(default=0)
 
 
 class BookForm(Form):
-    module_code = TextField('Module Code', [validators.Length(min=-1, max=10), validators.Required()])
-    title = TextField('Title', [validators.Length(min=-1, max=20), validators.Required()])
-    author = TextField('Author', [validators.length(min=-1, max=20), validators.Required()])
-    publisher = TextField('Publisher', [validators.length(min=-1, max=20), validators.Required()])
-    edition = IntegerField('Edition', [validators.number_range(min=1, max=None), validators.Required()])
-    cost = IntegerField('Cost', [validators.number_range(min=1, max=None), validators.Required()])
-    condition_highlights = BooleanField()
-    condition_stains = BooleanField()
-    condition_writings = BooleanField()
-    condition_dog_eared = BooleanField()
-    condition_torn = BooleanField()
-    condition_wrapped = BooleanField()
-    condition_not_used_once = BooleanField()
-    comment = TextAreaField()
+    module_code = TextField('Module Code', [validators.Required()])
+    title = TextField('Title', [validators.Required()])
+    author = TextField('Author', [validators.Required()])
+    publisher = TextField('Publisher', [validators.Required()])
+    edition = IntegerField('Edition', [validators.number_range(min=1, max=None)])
+    cost = IntegerField('Cost', [validators.number_range(min=1, max=None)])
+    condition_highlights = BooleanField([validators.optional()])
+    condition_stains = BooleanField([validators.optional()])
+    condition_writings = BooleanField([validators.optional()])
+    condition_dog_eared = BooleanField([validators.optional()])
+    condition_torn = BooleanField([validators.optional()])
+    condition_wrapped = BooleanField([validators.optional()])
+    condition_not_used_once = BooleanField([validators.optional()])
+    comment = TextAreaField("Comment", [validators.optional()])
