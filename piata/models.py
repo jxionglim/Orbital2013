@@ -1,8 +1,6 @@
 import datetime
 from google.appengine.ext import db
 from wtforms import Form, BooleanField, TextField, validators, ValidationError, IntegerField, SelectField, TextAreaField, FileField
-from google.appengine.api import images
-from google.appengine.api.images import BadImageError, LargeImageError ,NotImageError
 
 class User(db.Model):
     first_name = db.StringProperty(default="")
@@ -17,6 +15,7 @@ class User(db.Model):
     rating = db.IntegerProperty(default=0)
     profile_pic = db.BlobProperty()
     prof_complete = db.BooleanProperty(default=False)
+    required_complete = db.BooleanProperty(default=False)
     last_active = db.DateTimeProperty(default=datetime.datetime.now())
 
 
@@ -27,7 +26,7 @@ class UserInfoForm(Form):
     postal_code = IntegerField('Postal Code:', [validators.optional()])
     contact_num = IntegerField('Contact Number:', [validators.required()])
     contact_num_hide = SelectField('Contact Visibility:', choices=[('n', 'Viewable by other users'), ('y', 'Hidden from other users')])
-    profile_pic = FileField('Upload Profile Picture:')
+    profile_pic = FileField('Upload Profile Picture:', [validators.optional()])
 
     def validate_postal_code(form, field):
         if isinstance(field.data, int):
@@ -38,14 +37,6 @@ class UserInfoForm(Form):
         if isinstance(field.data, int):
             if field.data < 0:
                 raise ValidationError('Enter a valid number')
-
-    def validate_profile_pic(form, field):
-        try:
-            images.resize(field.data,width=200)
-        except (BadImageError, NotImageError):
-            raise ValidationError('Upload a good image')
-        except LargeImageError:
-            raise ValidationError('Upload a smaller image')
 
 class InstituteInfoForm(Form):
     institute = TextField('Institute:', [validators.required()])

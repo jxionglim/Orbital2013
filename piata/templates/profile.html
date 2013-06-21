@@ -56,45 +56,47 @@
                         <legend><strong>Personal Information</strong>&nbsp&nbsp&nbsp<a href="/profile/edit" class="btn btn-small btn-info">Edit</a></legend>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Email</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{{ email|e }}</small></div>
+                            <div class="span5 offset1"><small>{{ email|e }}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>First&nbspName</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{{ currUser.first_name|e }}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.first_name != "" %}{{ currUser.first_name|e }}{% else %}NIL{% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Last&nbspName</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{{ currUser.last_name|e }}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.last_name != "" %}{{ currUser.last_name|e }}{% else %}NIL{% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Address</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{{ currUser.address|e }}</small></div>
+                            <div class="span3 offset1"><small>{% if currUser.address != "" %}{{ currUser.address|e }}{% else %}NIL{% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Postal&nbspCode</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{{ currUser.postal_code|e }}</small></div>
+                            <div class="span3 offset1"><small>{% if currUser.postal_code != "" %}{{ currUser.postal_code|e }}{% else %}NIL{% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Contact&nbspNumber</strong></small></div>
-                            <div class="span3 offset1"><small>:&nbsp{{ currUser.contact_num|e }}</small></div>
+                            <div class="span3 offset1"><small>{% if currUser.contact_num != "" %}{{ currUser.contact_num|e }}{% else %}NIL{% endif %}</small></div>
                         </div>
-                        <div class="row">
-                            <div class="span2 offset1"><small><strong>Contact&nbspVisbility</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{% if currUser.contact_num_hide == True %}Hidden from other users{% else %}Viewable by other users{% endif %}</small></div>
-                        </div>
+                        {% if currUser.contact_num != "" %}
+                            <div class="row">
+                                <div class="span2 offset1"><small><strong>Contact&nbspVisbility</strong></small></div>
+                                <div class="span5 offset1"><small>{% if currUser.contact_num_hide == True %}Hidden from other users{% else %}Viewable by other users{% endif %}</small></div>
+                            </div>
+                        {% endif %}
                         <br>
                         <legend><strong>Institute Information</strong></legend>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Institute</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{{ currUser.institute|e }}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.institute != "" %}{{ currUser.institute|e }}{% else %}NIL{% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Faculty</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{{ currUser.faculty|e }}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.faculty != "" %}{{ currUser.faculty|e }}{% else %}NIL{% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Course</strong></small></div>
-                            <div class="span5 offset1"><small>:&nbsp{{ currUser.course|e }}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.course != "" %}{{ currUser.course|e }}{% else %}NIL{% endif %}</small></div>
                         </div>
                     </div>
                 </div>
@@ -109,7 +111,8 @@
                             {% endif %}
                             <div class="row">
                                 <br>
-                                <p class="text-center"><strong><small>Rating:&nbsp5/5</small></strong></p>
+                                <div class="span2 offset1"><small><strong>Rating</strong></small></div>
+                                <span class="offset1 help-inline"><img src='/images/{{ currUser.rating|e }}stars.png' width="150px"></span>
                             </div>
                         </div>
                     </div>

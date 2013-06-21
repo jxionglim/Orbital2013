@@ -46,8 +46,14 @@
         </div>
     </div>
 </div>
+
 <form class="form-horizontal" action="/profile/update" method="post" enctype="multipart/form-data">
     <div class="container">
+        {% if initial == True %}
+            <div class="alert alert-warning">
+                <strong>Fill up the information below to allow us to serve you better!</strong>
+            </div>
+        {% endif %}
         <div class="hero-unit">
             <div class="container-fluid">
                 <div class="row-fluid">
@@ -103,9 +109,11 @@
                                 <div class="row">
                                     <br>
                                     <p><small>Upload Picture:</small></p>
-                                    <input id="profile_pic" name="profile_pic" type="file"> {% for error in userform.profile_pic.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %}
-                                    <br><br>
-                                    <p class="text-center"><strong><small>Rating:&nbsp5/5</small></strong></p>
+                                    <input id="profile_pic" name="profile_pic" type="file"><span class="help-inline"><small><p class="text-error">{{ image_error }}</p></small></span>
+                                    <div class="row">
+                                        <div class="span2 offset1"><small>Rating:</small></div>
+                                        <span class="offset1 help-inline"><img src='/images/{{ currUser.rating|e }}stars.png' width="150px"></span>
+                                    </div>
                                 </div>
                                 <br><br><br><br>
                             </div>

@@ -6,7 +6,7 @@ import models
 from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.api import images
-
+from google.appengine.api.images import BadImageError, LargeImageError, NotImageError
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -16,7 +16,11 @@ class ProfileEdit(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         currUser = db.get(db.Key.from_path('User', user.email()))
+        initial = False
+        if not currUser.required_complete:
+            initial = True
         template_values = {
+            'initial': initial,
             'currUser': currUser,
             'email': user.email(),
             'userform': models.UserInfoForm(obj=currUser),
@@ -45,12 +49,34 @@ class ProfileUpdate(webapp2.RequestHandler):
             currUser.institute = self.request.get('institute').rstrip()
             currUser.faculty = self.request.get('faculty').rstrip()
             currUser.course = self.request.get('course').rstrip()
-            currUser.profile_pic = db.Blob(images.resize(self.request.get('profile_pic'), width=200))
+            trigger = False
+            if self.request.get('profile_pic') != "":
+                try:
+                    currUser.profile_pic = db.Blob(images.resize(self.request.get('profile_pic'), width=200))
+                except LargeImageError:
+                    trigger = True
+                    msg = "Upload a smaller image"
+                except (BadImageError, NotImageError):
+                    trigger = True
+                    msg = "Upload a proper image"
+            currUser.required_complete = True
+            currUser.put()
             if currUser.address != "" and currUser.postal_code != "" and currUser.profile_pic is not None:
-                currUser.prof_completed = True
+                currUser.prof_complete = True
                 currUser.rating = 3
             currUser.put()
-            self.redirect('/profile')
+            if not trigger:
+                self.redirect('/profile')
+            else:
+                template_values = {
+                    'image_error': msg,
+                    'currUser': currUser,
+                    'email': user.email(),
+                    'userform': user_form,
+                    'insform': ins_form,
+                    'logout': users.create_logout_url(self.request.host_url)}
+                template = jinja_environment.get_template('edit_profile.html')
+                self.response.out.write(template.render(template_values))
         else:
             ins_form.validate()
         template_values = {
@@ -66,6 +92,9 @@ class ProfileUpdate(webapp2.RequestHandler):
 class ViewProfile(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+        if not currUser.required_complete:
+            self.redirect('/profile/edit')
         currUser = db.get(db.Key.from_path('User', user.email()))
         template_values = {
             'currUser': currUser,
