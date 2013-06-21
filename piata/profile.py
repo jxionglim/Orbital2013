@@ -92,7 +92,7 @@ class ProfileUpdate(webapp2.RequestHandler):
 class ViewProfile(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+        currUser = db.get(db.Key.from_path('User', user.email()))
         if not currUser.required_complete:
             self.redirect('/profile/edit')
         currUser = db.get(db.Key.from_path('User', user.email()))

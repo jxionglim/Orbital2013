@@ -4,6 +4,7 @@ import os
 import models
 
 from google.appengine.api import users
+from google.appengine.ext import db
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -12,6 +13,9 @@ jinja_environment = jinja2.Environment(
 class SellPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        currUser = db.get(db.Key.from_path('User', user.email()))
+        if not currUser.required_complete:
+            self.redirect('/profile/edit')
         template_values = {
             'email': user.email(),
             'book_form': models.BookForm(),

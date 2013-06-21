@@ -15,7 +15,7 @@ class ProcessLogin(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+            currUser = db.get(db.Key.from_path('User', user.email()))
             if currUser:
                 currUser.last_active = datetime.datetime.now()
                 if currUser.required_complete:
@@ -39,7 +39,7 @@ class ProcessLogin(webapp2.RequestHandler):
 class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+        currUser = db.get(db.Key.from_path('User', user.email()))
         if not currUser.required_complete:
             self.redirect('/profile/edit')
         template_values = {
@@ -54,7 +54,7 @@ class MainPage(webapp2.RequestHandler):
 class BuyPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+        currUser = db.get(db.Key.from_path('User', user.email()))
         if not currUser.required_complete:
             self.redirect('/profile/edit')
         template_values = {
@@ -69,7 +69,7 @@ class BuyPage(webapp2.RequestHandler):
 class AdvanceSearchPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+        currUser = db.get(db.Key.from_path('User', user.email()))
         if not currUser.required_complete:
             self.redirect('/profile/edit')
         template_values = {
@@ -84,7 +84,7 @@ class AdvanceSearchPage(webapp2.RequestHandler):
 class AboutPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+        currUser = db.get(db.Key.from_path('User', user.email()))
         if not currUser.required_complete:
             self.redirect('/profile/edit')
         template_values = {
@@ -99,7 +99,7 @@ class AboutPage(webapp2.RequestHandler):
 class ContactPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        currUser = db.get(db.Key.from_path('User', users.get_current_user().email()))
+        currUser = db.get(db.Key.from_path('User', user.email()))
         if not currUser.required_complete:
             self.redirect('/profile/edit')
         template_values = {
