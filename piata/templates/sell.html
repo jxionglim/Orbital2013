@@ -52,17 +52,23 @@
     <div class="hero-unit">
         <form class="form-horizontal" action="/sell/submit" method="post">
             <legend>Book Information</legend>
-            {% for fields in book_form %}
-                {% if fields.type != 'BooleanField' and fields.id != "comment" %}
-                    <div class="control-group">
-                        <label class="control-label">{{ fields.label }}</label>
-                        <div class="controls">
-                            {{ fields }} {% for error in fields.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %}
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-
+            <div class="row">
+                <div class="span4">
+                    {% for fields in book_form %}
+                        {% if fields.type != 'BooleanField' and fields.id != "comment" %}
+                            <div class="control-group">
+                                <label class="control-label">{{ fields.label }}</label>
+                                <div class="controls">
+                                    {{ fields }} {% for error in fields.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="span1 offset3">
+                    <textarea style="overflow: auto;resize: none" id="inputComment" name="comments"></textarea>
+                </div>
+            </div>
             <div class="control-group">
                 <label class="control-label">Condition</label>
                 <div class="controls">
@@ -128,6 +134,8 @@
             <div class="span4 offset3">
                 <button type="submit" class="btn">Sign in</button>
             </div>
+
+
         </form>
 
         <br><br>
