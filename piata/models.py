@@ -1,6 +1,6 @@
 import datetime
 from google.appengine.ext import db
-from wtforms import Form, BooleanField, TextField, validators, ValidationError, IntegerField, SelectField, TextAreaField, FileField
+from wtforms import Form, BooleanField, TextField, validators, ValidationError, IntegerField, SelectField, TextAreaField, FileField, HiddenField
 
 class User(db.Model):
     first_name = db.StringProperty(default="")
@@ -53,6 +53,8 @@ class Book(db.Model):
     condition = db.ListProperty(str)
     comment = db.StringProperty(multiline='True')
     cost = db.IntegerProperty(default=0)
+    book_pic = db.BlobProperty()
+    user = db.ReferenceProperty(User, collection_name="books_onSale")
 
 
 class BookForm(Form):
@@ -70,3 +72,4 @@ class BookForm(Form):
     condition_wrapped = BooleanField([validators.optional()])
     condition_not_used_once = BooleanField([validators.optional()])
     comment = TextAreaField("Comment", [validators.optional()])
+    book_pic = HiddenField(FileField)

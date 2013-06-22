@@ -49,13 +49,13 @@
 
 <div class="container">
     <!-- Main hero unit for a primary marketing message or call to action -->
-    <form class="form-horizontal" action="/sell/submit" method="post">
+    <form class="form-horizontal" action="/sell/submit" method="post" enctype="multipart/form-data">
         <div class="hero-unit">
             <legend><strong>Book Information</strong></legend>
             <div class="row-fluid">
                 <div class="span9">
                     {% for fields in book_form %}
-                        {% if fields.type != 'BooleanField' and fields.id != "comment" %}
+                        {% if fields.type != 'BooleanField' and fields.id != "comment" and fields.type != 'HiddenField'%}
                             <div class="control-group">
                                 <label class="control-label">{{ fields.label }}</label>
                                 <div class="controls">
@@ -97,10 +97,10 @@
                     </span>
                     <script>
                         $("img").click(function(){
-                            $("input[name=upload]").trigger('click');
+                            $("input[name=book_pic]").trigger('click');
                         });
                     </script>
-                    <input name="upload" type='file' onchange="readURL(this);" style="visibility: hidden"/><br/>
+                    <input name="book_pic" type='file' onchange="readURL(this);" style="visibility: hidden"/><br/>
                 </div>
             </div>
             <div class="control-group">
