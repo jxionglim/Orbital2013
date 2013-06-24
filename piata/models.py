@@ -48,7 +48,7 @@ class InstituteInfoForm(Form):
 
 
 class SearchForm(Form):
-    search_type = SelectField('Search Category', choices=[('module_code', 'Module Code'),
+    search_cat = SelectField('Search Category', choices=[('module_code', 'Module Code'),
                                                           ('title', 'Title'),
                                                           ('author', 'Author'),
                                                           ('publisher', 'Publisher')])

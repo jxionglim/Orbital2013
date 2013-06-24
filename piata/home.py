@@ -43,6 +43,7 @@ class MainPage(webapp2.RequestHandler):
         currUser = db.get(db.Key.from_path('User', user.email()))
         if not currUser.required_complete:
             self.redirect('/profile/edit')
+
         template_values = {
             'searchform': models.SearchForm(),
             'email': user.email(),
@@ -51,6 +52,40 @@ class MainPage(webapp2.RequestHandler):
         template = jinja_environment.get_template('main.html')
         self.response.out.write(template.render(template_values))
 
+    def post(self):
+        user = users.get_current_user()
+        currUser = db.get(db.Key.from_path('User', user.email()))
+        if not currUser.required_complete:
+            self.redirect('/profile/edit')
+
+        search_form = models.SearchForm(self.request.POST)
+        if self.request.method == 'POST' and search_form.validate():
+            search_cat = self.request.get('search_cat').rstrip()
+            search_field = self.request.get('search_field').rstrip()
+
+            results = models.Book.all().filter('%s' % search_cat, search_field)
+            emptyResult = True
+            for test in results:
+                emptyResult = False
+                break
+
+            template_values = {
+                'searchform': search_form,
+                'searchResult': results,
+                'emptyResult': emptyResult,
+                'email': user.email(),
+                'logout': users.create_logout_url(self.request.host_url),
+                }
+            template = jinja_environment.get_template('main.html')
+            self.response.out.write(template.render(template_values))
+        else:
+            template_values = {
+                'searchform': search_form,
+                'email': user.email(),
+                'logout': users.create_logout_url(self.request.host_url),
+                }
+            template = jinja_environment.get_template('main.html')
+            self.response.out.write(template.render(template_values))
 
 class BuyPage(webapp2.RequestHandler):
     def get(self):
