@@ -1,0 +1,35 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.image {
+    height: 22px;
+    width: auto;
+}
+
+.navbar .brand {
+    color:#ffffff;
+}
+
+.hero-unitplain {
+  padding: 40px;
+  line-height: 30px;
+  color: inherit;
+  background-color: #ffffff;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.hero-unitplain h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+}
+
+.hero-unitplain li {
+  line-height: 30px;
+}

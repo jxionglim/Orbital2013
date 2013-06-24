@@ -8,11 +8,11 @@
     <!-- Le styles -->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="../css/public_main.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
+      <script src="../bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 </head>
 
@@ -60,23 +60,23 @@
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>First&nbspName</strong></small></div>
-                            <div class="span5 offset1"><small>{% if currUser.first_name != "" %}{{ currUser.first_name|e }}{% else %}NIL{% endif %}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.first_name != "" %}{{ currUser.first_name|e }}{% else %} - {% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Last&nbspName</strong></small></div>
-                            <div class="span5 offset1"><small>{% if currUser.last_name != "" %}{{ currUser.last_name|e }}{% else %}NIL{% endif %}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.last_name != "" %}{{ currUser.last_name|e }}{% else %} - {% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Address</strong></small></div>
-                            <div class="span3 offset1"><small>{% if currUser.address != "" %}{{ currUser.address|e }}{% else %}NIL{% endif %}</small></div>
+                            <div class="span3 offset1"><small>{% if currUser.address != "" %}{{ currUser.address|e }}{% else %} - {% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Postal&nbspCode</strong></small></div>
-                            <div class="span3 offset1"><small>{% if currUser.postal_code != "" %}{{ currUser.postal_code|e }}{% else %}NIL{% endif %}</small></div>
+                            <div class="span3 offset1"><small>{% if currUser.postal_code != "" %}{{ currUser.postal_code|e }}{% else %} - {% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Contact&nbspNumber</strong></small></div>
-                            <div class="span3 offset1"><small>{% if currUser.contact_num != "" %}{{ currUser.contact_num|e }}{% else %}NIL{% endif %}</small></div>
+                            <div class="span3 offset1"><small>{% if currUser.contact_num != "" %}{{ currUser.contact_num|e }}{% else %} - {% endif %}</small></div>
                         </div>
                         {% if currUser.contact_num != "" %}
                             <div class="row">
@@ -88,15 +88,15 @@
                         <legend><strong>Institute Information</strong></legend>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Institute</strong></small></div>
-                            <div class="span5 offset1"><small>{% if currUser.institute != "" %}{{ currUser.institute|e }}{% else %}NIL{% endif %}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.institute != "" %}{{ currUser.institute|e }}{% else %} - {% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Faculty</strong></small></div>
-                            <div class="span5 offset1"><small>{% if currUser.faculty != "" %}{{ currUser.faculty|e }}{% else %}NIL{% endif %}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.faculty != "" %}{{ currUser.faculty|e }}{% else %} - {% endif %}</small></div>
                         </div>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Course</strong></small></div>
-                            <div class="span5 offset1"><small>{% if currUser.course != "" %}{{ currUser.course|e }}{% else %}NIL{% endif %}</small></div>
+                            <div class="span5 offset1"><small>{% if currUser.course != "" %}{{ currUser.course|e }}{% else %} - {% endif %}</small></div>
                         </div>
                     </div>
                 </div>

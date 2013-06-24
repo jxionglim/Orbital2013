@@ -11,10 +11,12 @@ class MainPage(webapp2.RequestHandler):
         template = jinja_environment.get_template('public_main.html')
         self.response.out.write(template.render())
 
+
 class AboutPage(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('public_about.html')
         self.response.out.write(template.render())
+
 
 class ContactPage(webapp2.RequestHandler):
     def get(self):

@@ -8,11 +8,11 @@
     <!-- Le styles -->
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="../css/public_main.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
+      <script src="../bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 </head>
 
@@ -42,41 +42,74 @@
                         <a class="brand" href="{{ logout }}">Logout</a>
                     </ul>
                 </form>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container">
-    {% if reminder == False %}
-        <div class="alert alert-info">
-            We have detected that you yet to update your profile completedly. Doing so will attract more buyers! <strong>Click <a href="/profile/edit">here</a> to update</strong>
+    <form class="form-search form-horizontal" action="/profile/update" method="post" enctype="multipart/form-data">
+        {% if reminder == False %}
+            <div class="alert alert-info">
+                We have detected that you yet to update your profile completely. Doing so will attract more buyers! <strong>Click <a href="/profile/edit">here</a> to update</strong>
+            </div>
+        {% endif %}
+        <div class="hero-unit">
+            <legend><strong>Search Books</strong></legend>
+            {% for fields in searchform %}
+                <div class="control-group input-append">
+                    <label class="control-label">{{ fields.label }}: </label>
+                    <div class="controls">
+                        {% if fields.id == 'search_field' %}
+                            <input id="search_field" name="search_field" type="text" class="span5 search-query" placeholder="Enter search term">
+                            <button type="submit" class="btn">Search</button>
+                        {% else %}
+                            {{ fields }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+    {% if searchResult == True %}
+        <div class="hero-unitplain">
+            <legend><strong>Search Results</strong></legend>
+            {% if searchResult.len == 0 %}
+                asd
+            {% else %}
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% endif %}
         </div>
     {% endif %}
-    <div class="hero-unit">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-    </div>
-
-    <div class="row">
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-    </div>
-
     <hr>
 
     <footer>
@@ -101,6 +134,8 @@
 <script src="../bootstrap/js/bootstrap-collapse.js"></script>
 <script src="../bootstrap/js/bootstrap-carousel.js"></script>
 <script src="../bootstrap/js/bootstrap-typeahead.js"></script>
+
+<script src="../bootstrap/js/holder/holder.js"></script>
 
 </body>
 </html>

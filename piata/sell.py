@@ -21,7 +21,7 @@ class SellPage(webapp2.RequestHandler):
             'email': user.email(),
             'book_form': models.BookForm(),
             'logout': users.create_logout_url(self.request.host_url),
-        }
+            }
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
@@ -53,7 +53,7 @@ class Submit(webapp2.RequestHandler):
             'email': user.email(),
             'book_form': book_form,
             'logout': users.create_logout_url(self.request.host_url),
-        }
+            }
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
@@ -72,7 +72,18 @@ class DisplaySell(webapp2.RedirectHandler):
         self.response.out.write(template.render(template_values))
 
 
+class ServeImage(webapp2.RequestHandler):
+    def get(self):
+        url = self.request.url
+        currBook = models.Book.get_by_id(int(url.split('/')[-1]))
+        if currBook:
+            if currBook.book_pic:
+                self.response.headers['Content-Type'] = 'image/zxc'
+                self.response.out.write(currBook.book_pic)
+
+
 app = webapp2.WSGIApplication([('/sell', SellPage),
                                ('/sell/submit' , Submit),
-                               ("/sell/currSale", DisplaySell)],
+                               ('/sell/currSale', DisplaySell),
+                               ('/sell/image/.*?', ServeImage)],
                               debug=True)

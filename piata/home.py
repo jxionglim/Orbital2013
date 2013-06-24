@@ -21,6 +21,7 @@ class ProcessLogin(webapp2.RequestHandler):
                 if currUser.required_complete:
                     template_values = {
                         'reminder': currUser.prof_complete,
+                        'searchform': models.SearchForm(),
                         'email': user.email(),
                         'logout': users.create_logout_url(self.request.host_url),
                         }
@@ -43,7 +44,7 @@ class MainPage(webapp2.RequestHandler):
         if not currUser.required_complete:
             self.redirect('/profile/edit')
         template_values = {
-            'reminder': 'yay',
+            'searchform': models.SearchForm(),
             'email': user.email(),
             'logout': users.create_logout_url(self.request.host_url),
             }

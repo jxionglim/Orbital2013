@@ -2,6 +2,7 @@ import datetime
 from google.appengine.ext import db
 from wtforms import Form, BooleanField, TextField, validators, ValidationError, IntegerField, SelectField, TextAreaField, FileField, HiddenField
 
+
 class User(db.Model):
     first_name = db.StringProperty(default="")
     last_name = db.StringProperty(default="")
@@ -25,7 +26,8 @@ class UserInfoForm(Form):
     address = TextAreaField('Address:', [validators.optional()])
     postal_code = IntegerField('Postal Code:', [validators.optional()])
     contact_num = IntegerField('Contact Number:', [validators.required()])
-    contact_num_hide = SelectField('Contact Visibility:', choices=[('n', 'Viewable by other users'), ('y', 'Hidden from other users')])
+    contact_num_hide = SelectField('Contact Visibility:', choices=[('n', 'Viewable by other users'),
+                                                                   ('y', 'Hidden from other users')])
     profile_pic = FileField('Upload Profile Picture:', [validators.optional()])
 
     def validate_postal_code(form, field):
@@ -38,10 +40,19 @@ class UserInfoForm(Form):
             if field.data < 0:
                 raise ValidationError('Enter a valid number')
 
+
 class InstituteInfoForm(Form):
     institute = TextField('Institute:', [validators.required()])
     faculty = TextField('Faculty:', [validators.required()])
     course = TextField('Course:', [validators.required()])
+
+
+class SearchForm(Form):
+    search_type = SelectField('Search Category', choices=[('module_code', 'Module Code'),
+                                                          ('title', 'Title'),
+                                                          ('author', 'Author'),
+                                                          ('publisher', 'Publisher')])
+    search_field = TextField('Keyword', [validators.optional()])
 
 
 class Book(db.Model):
