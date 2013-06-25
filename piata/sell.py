@@ -15,13 +15,24 @@ class SellPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         currUser = db.get(db.Key.from_path('User', user.email()))
+        url = self.request.url
+        if "edit" in url:
+            currBook = models.Book.get_by_id(int(url.split('/')[-1]))
+            template_values = {
+                'email': user.email(),
+                'book_form': models.BookForm(obj=currBook),
+                'currBook': currBook,
+                'logout': users.create_logout_url(self.request.host_url),
+            }
+            self.redirect("/sell")
+        else:
+            template_values = {
+                'email': user.email(),
+                'book_form': models.BookForm(),
+                'logout': users.create_logout_url(self.request.host_url),
+            }
         if not currUser.required_complete:
             self.redirect('/profile/edit')
-        template_values = {
-            'email': user.email(),
-            'book_form': models.BookForm(),
-            'logout': users.create_logout_url(self.request.host_url),
-            }
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
@@ -42,18 +53,22 @@ class Submit(webapp2.RequestHandler):
             myBook.edition = int(self.request.get('edition').rstrip())
             myBook.cost = int(self.request.get('cost').rstrip())
             myBook.comment = self.request.get('comments').rstrip()
-            myBook.condition = self.request.get('conditions', allow_multiple=True)
+            if self.request.get('conditions', allow_multiple=True) is None:
+                myBook.condition = 'Nil'
+            else:
+                myBook.condition = self.request.get('conditions', allow_multiple=True)
             myBook.book_pic = db.Blob(images.resize(self.request.get('book_pic'), width=200))
             myBook.user = db.get(db.Key.from_path('User', user.email()))
             myBook.put()
-            self.redirect('/main')
+            self.redirect('/sell/currSale')
 
         template_values = {
             'myBook': myBook,
             'email': user.email(),
             'book_form': book_form,
             'logout': users.create_logout_url(self.request.host_url),
-            }
+        }
+
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
@@ -85,5 +100,6 @@ class ServeImage(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([('/sell', SellPage),
                                ('/sell/submit' , Submit),
                                ('/sell/currSale', DisplaySell),
-                               ('/sell/image/.*?', ServeImage)],
+                               ('/sell/image/.*?', ServeImage),
+                               ('/sell/edit/.*?', SellPage)],
                               debug=True)

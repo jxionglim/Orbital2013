@@ -12,7 +12,7 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="../bootstrap/js/html5shiv.js"></script>
+    <script src="../bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 </head>
 
@@ -49,18 +49,59 @@
 
 <div class="container">
 
-    <!-- Main hero unit for a primary marketing message or call to action -->
-    <div class="hero-unit">
-
-    </div>
-
     <!-- Example row of columns -->
-    <div class="row">
-        {% for book in currUser.books_onSale %}
-            {{ book.cost }}
-            {{ book.module_code }}
-            <img class="img-polaroid" src='/sell/image/{{ book.key().id() }}'>
-        {% endfor %}
+    <div class="row-fluid">
+        <div class="hero-unit">
+            <legend><strong>Current Sales</strong></legend>
+            {% for book in currUser.books_onSale %}
+            Module Code: {{ book.module_code|e }}
+            <div class="hero-unitplain1">
+                <div class="container">
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <img class="img-polaroid" src='/sell/image/{{ book.key().id() }}'
+                                 style="display: inline-block; max-width: 100px; max-height: 120px; width: 100%; height: 100%">
+                        </div>
+                        <div class="span5">
+                            <div class="row">
+                                <div class="span5"><strong>{{ book.title|e }}</strong></div>
+                            </div>
+                            <div class="row">
+                                <div class="span3"><small>{{ book.author|e }}</small></div>
+                            </div>
+                            <div class="row">
+                                <div class="span3"><small>{% if book.edition|e == '1' %} {{ book.edition|e }}<sup>st</sup> Edition
+                                    {% elif book.edition|e == '2' %} {{ book.edition|e }}<sup>nd</sup> Edition
+                                    {% elif book.edition|e == '3' %} {{ book.edition|e }}<sup>rd</sup> Edition
+                                    {% else %} {{ book.edition|e }} Edition {% endif %}</small></div>
+                            </div>
+                        </div>
+                        <div class="span5">
+                            <div class="row">
+                                <div class="span5"><small>Cost: ${{ book.cost|e }}</small></div>
+                            </div>
+                            <div class="row">
+                                <div class="span5"><small>Condition of book: {% if not book.condition %}
+                                    qwe
+                                    {% else %}
+                                    {% for condition in book.condition %}
+                                    {{ condition }}
+                                    {% endfor %}
+                                    {% endif %}</small></div>
+                            </div>
+                            <div class="row">
+                                <div class="span4"><small>Comment: {{ book.comment|e }}</small></div>
+                            </div>
+                        </div>
+                        <div class="span1">
+                            <a href="/sell/edit/{{ book.key().id() }}" class="btn btn-small btn-info">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
     </div>
 
     <hr>
