@@ -23,7 +23,7 @@ class ProfileEdit(webapp2.RequestHandler):
             'initial': initial,
             'currUser': currUser,
             'email': user.email(),
-            'userform': models.UserInfoForm(obj=currUser),
+            'userform': models.UserInfoForm(obj=currUsers),
             'insform': models.InstituteInfoForm(obj=currUser),
             'logout': users.create_logout_url(self.request.host_url),}
         template = jinja_environment.get_template('edit_profile.html')

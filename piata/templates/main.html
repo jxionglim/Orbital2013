@@ -48,7 +48,7 @@
 </div>
 
 <div class="container">
-    <form class="form-search form-horizontal" action="/profile/update" method="post" enctype="multipart/form-data">
+    <form class="form-search form-horizontal" action="/main" method="post" enctype="multipart/form-data">
         {% if reminder == False %}
             <div class="alert alert-info">
                 We have detected that you yet to update your profile completely. Doing so will attract more buyers! <strong>Click <a href="/profile/edit">here</a> to update</strong>
@@ -61,7 +61,7 @@
                     <label class="control-label">{{ fields.label }}: </label>
                     <div class="controls">
                         {% if fields.id == 'search_field' %}
-                            <input id="search_field" name="search_field" type="text" class="span5 search-query" placeholder="Enter search term">
+                            <input id="search_field" name="search_field" type="text" class="span5 search-query" placeholder="Enter search term" {% if fields.data != None %}value={{ fields.data }} {% endif %} >
                             <button type="submit" class="btn">Search</button>
                         {% else %}
                             {{ fields }}
@@ -71,11 +71,11 @@
             {% endfor %}
         </div>
     </form>
-    {% if searchResult == True %}
+    {% if searchResult %}
         <div class="hero-unitplain">
             <legend><strong>Search Results</strong></legend>
-            {% if searchResult.len == 0 %}
-                asd
+            {% if emptyResult == True %}
+                No results... Try again with another term
             {% else %}
                 <table class="table table-striped">
                     <thead>
