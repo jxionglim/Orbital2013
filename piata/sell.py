@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 import models
+import time
 
 from google.appengine.api import users
 from google.appengine.ext import db
@@ -50,7 +51,7 @@ class Submit(webapp2.RequestHandler):
             myBook.publisher = self.request.get('publisher').rstrip()
             myBook.edition = int(self.request.get('edition').rstrip())
             myBook.cost = int(self.request.get('cost').rstrip())
-            myBook.comment = self.request.get('comments').rstrip()
+            myBook.comment = self.request.get('comment').rstrip()
             if self.request.get('conditions', allow_multiple=True) is None:
                 myBook.condition = 'Nil'
             else:
@@ -69,6 +70,7 @@ class Submit(webapp2.RequestHandler):
             myBook.user = db.get(db.Key.from_path('User', user.email()))
             myBook.put()
             if not trigger:
+                time.sleep(0.5)
                 self.redirect('/sell/currSale')
             else:
                 template_values = {
@@ -80,15 +82,15 @@ class Submit(webapp2.RequestHandler):
                 }
                 template = jinja_environment.get_template('sell.html')
                 self.response.out.write(template.render(template_values))
-
-        template_values = {
-            'myBook': myBook,
-            'email': user.email(),
-            'book_form': book_form,
-            'logout': users.create_logout_url(self.request.host_url),
-        }
-        template = jinja_environment.get_template('sell.html')
-        self.response.out.write(template.render(template_values))
+        else:
+            template_values = {
+                'myBook': myBook,
+                'email': user.email(),
+                'book_form': book_form,
+                'logout': users.create_logout_url(self.request.host_url),
+            }
+            template = jinja_environment.get_template('sell.html')
+            self.response.out.write(template.render(template_values))
 
 
 class DisplaySell(webapp2.RedirectHandler):
