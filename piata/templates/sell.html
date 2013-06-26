@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Le styles -->
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="../bootstrap/js/html5shiv.js"></script>
+      <script src="/bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 </head>
 
@@ -106,21 +106,20 @@
             <div class="control-group">
                 <label class="control-label">Condition</label>
                 <div class="controls">
-
                     <div class="row-fluid">
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_stains' value= 'Stains' name="conditions"> Stains
+                                <input type="checkbox" id='condition_stains' value='Stains' name="condition_stains" {% if book_form.condition_stains.data == True %}checked{% endif %}> Stains
                             </label>
                         </div>
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_writings' value= 'Writings' name="conditions"> Writings
+                                <input type="checkbox" id='condition_writings' value= 'Writings' name="condition_writings" {% if book_form.condition_writings.data == True %}checked{% endif %}> Writings
                             </label>
                         </div>
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_highlights' value= 'Highlights' name="conditions"> Highlights
+                                <input type="checkbox" id='condition_highlights' value= 'Highlights' name="condition_highlights" {% if book_form.condition_highlights.data == True %}checked{% endif %}> Highlights
                             </label>
                         </div>
                     </div>
@@ -131,17 +130,17 @@
                     <div class="row-fluid">
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_dog_eared' value= 'Dog Eared' name="conditions"> Dog-Eared
+                                <input type="checkbox" id='condition_dog_eared' value= 'Dog Eared' name="condition_dog_eared" {% if book_form.condition_dog_eared.data == True %}checked{% endif %}> Dog-Eared
                             </label>
                         </div>
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_torn' value= 'Torn' name="conditions"> Torn
+                                <input type="checkbox" id='condition_torn' value= 'Torn' name="condition_torn" {% if book_form.condition_torn.data == True %}checked{% endif %}> Torn
                             </label>
                         </div>
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_wrapped' value= 'Wrapped' name="conditions"> Wrapped
+                                <input type="checkbox" id='condition_wrapped' value= 'Wrapped' name="condition_wrapped" {% if book_form.condition_wrapped.data == True %}checked{% endif %}> Wrapped
                             </label>
                         </div>
                     </div>
@@ -151,7 +150,7 @@
                     <div class="row-fluid">
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_not_used_once' value= 'Not Used Once' name="conditions"> Not Used Once
+                                <input type="checkbox" id='condition_not_used_once' value= 'Not Used Once' name="condition_not_used_once" {% if book_form.condition_not_used_once.data == True %}checked{% endif %}> Not Used Once
                             </label>
                         </div>
                     </div>
@@ -161,7 +160,7 @@
             <div class="control-group">
                 <label class="control-label">Comments</label>
                 <div class="controls">
-                    <textarea style="overflow: auto;resize: none" id="inputComment" name="comments"></textarea>
+                    <textarea style="overflow: auto;resize: none" id="comment" name="comment">{% if book_form.comment.data != None %}{{ book_form.comment.data }}{% endif %}</textarea>
                 </div>
             </div>
             <div class="control-group">
@@ -183,19 +182,19 @@
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../bootstrap/js/jquery.js"></script>
-<script src="../bootstrap/js/bootstrap-transition.js"></script>
-<script src="../bootstrap/js/bootstrap-alert.js"></script>
-<script src="../bootstrap/js/bootstrap-modal.js"></script>
-<script src="../bootstrap/js/bootstrap-dropdown.js"></script>
-<script src="../bootstrap/js/bootstrap-scrollspy.js"></script>
-<script src="../bootstrap/js/bootstrap-tab.js"></script>
-<script src="../bootstrap/js/bootstrap-tooltip.js"></script>
-<script src="../bootstrap/js/bootstrap-popover.js"></script>
-<script src="../bootstrap/js/bootstrap-button.js"></script>
-<script src="../bootstrap/js/bootstrap-collapse.js"></script>
-<script src="../bootstrap/js/bootstrap-carousel.js"></script>
-<script src="../bootstrap/js/bootstrap-typeahead.js"></script>
+<script src="/bootstrap/js/jquery.js"></script>
+<script src="/bootstrap/js/bootstrap-transition.js"></script>
+<script src="/bootstrap/js/bootstrap-alert.js"></script>
+<script src="/bootstrap/js/bootstrap-modal.js"></script>
+<script src="/bootstrap/js/bootstrap-dropdown.js"></script>
+<script src="/bootstrap/js/bootstrap-scrollspy.js"></script>
+<script src="/bootstrap/js/bootstrap-tab.js"></script>
+<script src="/bootstrap/js/bootstrap-tooltip.js"></script>
+<script src="/bootstrap/js/bootstrap-popover.js"></script>
+<script src="/bootstrap/js/bootstrap-button.js"></script>
+<script src="/bootstrap/js/bootstrap-collapse.js"></script>
+<script src="/bootstrap/js/bootstrap-carousel.js"></script>
+<script src="/bootstrap/js/bootstrap-typeahead.js"></script>
 
 </body>
 </html>

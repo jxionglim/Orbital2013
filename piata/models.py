@@ -6,7 +6,7 @@ from wtforms import Form, BooleanField, TextField, validators, ValidationError, 
 class User(db.Model):
     first_name = db.StringProperty(default="")
     last_name = db.StringProperty(default="")
-    address = db.StringProperty(default="")
+    address = db.StringProperty(default="", multiline='True')
     postal_code = db.StringProperty(default="")
     contact_num = db.StringProperty(default="")
     contact_num_hide = db.BooleanProperty(default=False)
@@ -49,9 +49,9 @@ class InstituteInfoForm(Form):
 
 class SearchForm(Form):
     search_cat = SelectField('Search Category', choices=[('module_code', 'Module Code'),
-                                                          ('title', 'Title'),
-                                                          ('author', 'Author'),
-                                                          ('publisher', 'Publisher')])
+                                                         ('title', 'Title'),
+                                                         ('author', 'Author'),
+                                                         ('publisher', 'Publisher')])
     search_field = TextField('Keyword', [validators.optional()])
 
 

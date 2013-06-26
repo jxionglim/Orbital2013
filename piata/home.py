@@ -87,6 +87,7 @@ class MainPage(webapp2.RequestHandler):
             template = jinja_environment.get_template('main.html')
             self.response.out.write(template.render(template_values))
 
+
 class BuyPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()

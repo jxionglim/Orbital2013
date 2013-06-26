@@ -7,6 +7,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models.py" afterPath="$PROJECT_DIR$/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/piata.iml" afterPath="$PROJECT_DIR$/.idea/piata.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/profile.py" afterPath="$PROJECT_DIR$/profile.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/sell.html" afterPath="$PROJECT_DIR$/templates/sell.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="piata.iws" />
@@ -60,7 +61,7 @@
       <file leaf-file-name="sell.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/sell.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="14" selection-start="7942" selection-end="7942" vertical-scroll-proportion="3.1935484">
+            <state line="85" column="75" selection-start="3883" selection-end="3883" vertical-scroll-proportion="0.37366548">
               <folding />
             </state>
           </provider>
@@ -107,6 +108,7 @@
       <list>
         <option value="$PROJECT_DIR$/templates/currSale.html" />
         <option value="$PROJECT_DIR$/sell.py" />
+        <option value="$PROJECT_DIR$/templates/sell.html" />
       </list>
     </option>
   </component>
@@ -114,7 +116,7 @@
     <option name="x" value="48" />
     <option name="y" value="-4" />
     <option name="width" value="1319" />
-    <option name="height" value="676" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -273,7 +275,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="-4" width="1319" height="676" extended-state="6" />
+    <frame x="48" y="-4" width="1319" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -405,7 +407,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/sell.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="14" selection-start="7942" selection-end="7942" vertical-scroll-proportion="3.1935484">
+        <state line="85" column="75" selection-start="3883" selection-end="3883" vertical-scroll-proportion="0.37366548">
           <folding />
         </state>
       </provider>
