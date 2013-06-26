@@ -83,4 +83,4 @@ class BookForm(Form):
     condition_wrapped = BooleanField([validators.optional()])
     condition_not_used_once = BooleanField([validators.optional()])
     comment = TextAreaField("Comment", [validators.optional()])
-    book_pic = HiddenField(FileField)
+    book_pic = HiddenField(FileField, [validators.optional()])
