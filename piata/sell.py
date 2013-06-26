@@ -6,6 +6,7 @@ import models
 from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.api import images
+from google.appengine.api.images import BadImageError, LargeImageError, NotImageError
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -18,21 +19,18 @@ class SellPage(webapp2.RequestHandler):
         url = self.request.url
         if "edit" in url:
             currBook = models.Book.get_by_id(int(url.split('/')[-1]))
-            template_values = {
-                'email': user.email(),
-                'book_form': models.BookForm(obj=currBook),
-                'currBook': currBook,
-                'logout': users.create_logout_url(self.request.host_url),
-            }
-            self.redirect("/sell")
+            bookform = models.BookForm(obj=currBook)
         else:
-            template_values = {
-                'email': user.email(),
-                'book_form': models.BookForm(),
-                'logout': users.create_logout_url(self.request.host_url),
-            }
+            bookform = models.BookForm()
+
         if not currUser.required_complete:
             self.redirect('/profile/edit')
+
+        template_values = {
+            'email': user.email(),
+            'book_form': bookform,
+            'logout': users.create_logout_url(self.request.host_url),
+        }
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
@@ -57,10 +55,31 @@ class Submit(webapp2.RequestHandler):
                 myBook.condition = 'Nil'
             else:
                 myBook.condition = self.request.get('conditions', allow_multiple=True)
-            myBook.book_pic = db.Blob(images.resize(self.request.get('book_pic'), width=200))
+
+            trigger = False
+            if self.request.get('book_pic') != "":
+                try:
+                    myBook.book_pic = db.Blob(images.resize(self.request.get('book_pic'), width=200))
+                except LargeImageError:
+                    trigger = True
+                    msg = "Upload a smaller image"
+                except (BadImageError, NotImageError):
+                    trigger = True
+                    msg = "Upload a proper image"
             myBook.user = db.get(db.Key.from_path('User', user.email()))
             myBook.put()
-            self.redirect('/sell/currSale')
+            if not trigger:
+                self.redirect('/sell/currSale')
+            else:
+                template_values = {
+                    'myBook': myBook,
+                    'image_error': msg,
+                    'email': user.email(),
+                    'book_form': book_form,
+                    'logout': users.create_logout_url(self.request.host_url),
+                }
+                template = jinja_environment.get_template('sell.html')
+                self.response.out.write(template.render(template_values))
 
         template_values = {
             'myBook': myBook,
@@ -68,7 +87,6 @@ class Submit(webapp2.RequestHandler):
             'book_form': book_form,
             'logout': users.create_logout_url(self.request.host_url),
         }
-
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
