@@ -2,36 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d554f99c-5c15-402d-ad2b-93c6379d8790" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/about.html" afterPath="$PROJECT_DIR$/templates/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adv_search.html" afterPath="$PROJECT_DIR$/templates/adv_search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/buy.html" afterPath="$PROJECT_DIR$/templates/buy.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contact.html" afterPath="$PROJECT_DIR$/templates/contact.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/currSale.html" afterPath="$PROJECT_DIR$/templates/currSale.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/edit_profile.html" afterPath="$PROJECT_DIR$/templates/edit_profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.py" afterPath="$PROJECT_DIR$/home.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main.html" afterPath="$PROJECT_DIR$/templates/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models.py" afterPath="$PROJECT_DIR$/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/profile.html" afterPath="$PROJECT_DIR$/templates/profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/profile.py" afterPath="$PROJECT_DIR$/profile.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/public_about.html" afterPath="$PROJECT_DIR$/templates/public_about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/public_contact.html" afterPath="$PROJECT_DIR$/templates/public_contact.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/public_main.html" afterPath="$PROJECT_DIR$/templates/public_main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/sell.html" afterPath="$PROJECT_DIR$/templates/sell.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sell.py" afterPath="$PROJECT_DIR$/sell.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/submit.html" afterPath="$PROJECT_DIR$/templates/submit.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="piata.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372258030111" ignored="false" />
+    <file path="/Dummy.txt" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372325849141" ignored="false" />
     <file path="/user.py" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371442356912" ignored="false" />
-    <file path="/home.py" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372258307796" ignored="false" />
+    <file path="/home.py" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372330813616" ignored="false" />
     <file path="/home.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371443984987" ignored="false" />
     <file path="/models.py" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372258462582" ignored="false" />
     <file path="/login.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371447239020" ignored="false" />
     <file path="/main,html.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371448403710" ignored="false" />
     <file path="/login.py" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371451613570" ignored="false" />
-    <file path="/main.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372095241286" ignored="false" />
+    <file path="/main.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372337217508" ignored="false" />
     <file path="/public_main.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371637725652" ignored="false" />
     <file path="/public_main.css" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371450129759" ignored="false" />
     <file path="/profile.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371824977110" ignored="false" />
@@ -44,7 +31,7 @@
     <file path="/about.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371451237608" ignored="false" />
     <file path="/app.yaml" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371709473001" ignored="false" />
     <file path="/profile.css" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371543167703" ignored="false" />
-    <file path="/profile.py" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372094285001" ignored="false" />
+    <file path="/profile.py" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372327426553" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/openapi.jar!/standardSchemas/xhtml1-frameset.xsd" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371633030826" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/openapi.jar!/standardSchemas/xhtml1-transitional.xsd" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371633030826" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/openapi.jar!/standardSchemas/xhtml1-strict.xsd" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371633030826" ignored="false" />
@@ -57,7 +44,7 @@
     <file path="$APPLICATION_HOME_DIR$/lib/openapi.jar!/standardSchemas/xslt-2_0.xsd" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371633030827" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/openapi.jar!/standardSchemas/xml.xsd" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371633030827" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/relaxng.rng" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371633030827" ignored="false" />
-    <file path="/edit_profile.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1371826280484" ignored="false" />
+    <file path="/edit_profile.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372327340419" ignored="false" />
     <file path="/sell.py" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372262227762" ignored="false" />
     <file path="/main.css" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372082556231" ignored="false" />
     <file path="/currSale.html" changelist="d554f99c-5c15-402d-ad2b-93c6379d8790" time="1372259131023" ignored="false" />
@@ -80,22 +67,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sell.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sell.py">
+      <file leaf-file-name="main.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="34" selection-start="2458" selection-end="2458" vertical-scroll-proportion="0.33854166">
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
+            <state line="75" column="60" selection-start="3243" selection-end="3243" vertical-scroll-proportion="0.33333334">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="currSale.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/currSale.html">
+      <file leaf-file-name="home.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="29.347826">
-              <folding />
+            <state line="73" column="29" selection-start="2701" selection-end="2713" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,17 +91,6 @@
         <entry file="file://$PROJECT_DIR$/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="54" column="64" selection-start="2577" selection-end="2577" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sell.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/sell.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="162" column="169" selection-start="8277" selection-end="8277" vertical-scroll-proportion="-15.0">
               <folding />
             </state>
           </provider>
@@ -138,11 +114,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/home.py" />
-        <option value="$PROJECT_DIR$/templates/edit_profile.html" />
-        <option value="$PROJECT_DIR$/templates/currSale.html" />
         <option value="$PROJECT_DIR$/templates/contact.html" />
-        <option value="$PROJECT_DIR$/templates/main.html" />
         <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/templates/public_about.html" />
         <option value="$PROJECT_DIR$/templates/public_contact.html" />
@@ -154,6 +126,10 @@
         <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/templates/sell.html" />
         <option value="$PROJECT_DIR$/sell.py" />
+        <option value="$PROJECT_DIR$/profile.py" />
+        <option value="$PROJECT_DIR$/templates/edit_profile.html" />
+        <option value="$PROJECT_DIR$/home.py" />
+        <option value="$PROJECT_DIR$/templates/main.html" />
       </list>
     </option>
   </component>
@@ -189,6 +165,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -249,20 +226,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="piata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="piata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="piata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="piata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.templateLanguages.TemplateLanguageModulesConfigurable" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -492,119 +504,112 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.078125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/adv_search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/buy.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1084" selection-end="1084" vertical-scroll-proportion="-19.565218">
-          <folding />
-        </state>
+        <state line="31" column="0" selection-start="1084" selection-end="1084" vertical-scroll-proportion="-19.565218" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/contact.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="0" selection-start="4601" selection-end="4601" vertical-scroll-proportion="-19.565218">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/edit_profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="0" selection-start="7450" selection-end="7450" vertical-scroll-proportion="-19.565218">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="0" selection-start="7821" selection-end="7821" vertical-scroll-proportion="-19.565218">
-          <folding />
-        </state>
+        <state line="104" column="0" selection-start="4601" selection-end="4601" vertical-scroll-proportion="-19.565218" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/public_about.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="0" selection-start="4612" selection-end="4612" vertical-scroll-proportion="-18.652174">
-          <folding />
-        </state>
+        <state line="103" column="0" selection-start="4612" selection-end="4612" vertical-scroll-proportion="-18.652174" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/public_contact.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="0" selection-start="4613" selection-end="4613" vertical-scroll-proportion="-18.652174">
-          <folding />
-        </state>
+        <state line="103" column="0" selection-start="4613" selection-end="4613" vertical-scroll-proportion="-18.652174" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/public_main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/submit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/sell.html">
+    <entry file="file://$PROJECT_DIR$/sell.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="169" selection-start="8277" selection-end="8277" vertical-scroll-proportion="-15.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="64" selection-start="2577" selection-end="2577" vertical-scroll-proportion="0.0">
+        <state line="64" column="34" selection-start="2458" selection-end="2458" vertical-scroll-proportion="0.025951557">
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/currSale.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="29.347826">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sell.py">
+    <entry file="file://$PROJECT_DIR$/bootstrap/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="34" selection-start="2458" selection-end="2458" vertical-scroll-proportion="0.33854166">
+        <state line="9" column="0" selection-start="233" selection-end="233" vertical-scroll-proportion="0.20446096">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="0" selection-start="7821" selection-end="7821" vertical-scroll-proportion="2.0425925">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="73" selection-start="3862" selection-end="3862" vertical-scroll-proportion="1.46875">
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/edit_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="16" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.9166667">
+          <folding>
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/sell.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="20" selection-start="2987" selection-end="4777" vertical-scroll-proportion="0.5833333">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="29" selection-start="2701" selection-end="2713" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="64" selection-start="2577" selection-end="2577" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="60" selection-start="3243" selection-end="3243" vertical-scroll-proportion="0.33333334">
+          <folding />
         </state>
       </provider>
     </entry>
