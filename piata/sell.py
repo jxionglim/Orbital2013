@@ -20,18 +20,24 @@ class SellPage(webapp2.RequestHandler):
         url = self.request.url
         if "edit" in url:
             currBook = models.Book.get_by_id(int(url.split('/')[-1]))
+            bookid = int(url.split('/')[-1])
             bookform = models.BookForm(obj=currBook)
+            template_values = {
+                'email': user.email(),
+                'book_form': bookform,
+                'bookid': bookid,
+                'logout': users.create_logout_url(self.request.host_url),
+            }
         else:
             bookform = models.BookForm()
-
+            template_values = {
+                'email': user.email(),
+                'book_form': bookform,
+                'logout': users.create_logout_url(self.request.host_url),
+            }
         if not currUser.required_complete:
             self.redirect('/profile/edit')
 
-        template_values = {
-            'email': user.email(),
-            'book_form': bookform,
-            'logout': users.create_logout_url(self.request.host_url),
-        }
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
