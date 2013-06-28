@@ -77,12 +77,6 @@ class Post(db.Model):
     book_pic = db.BlobProperty()
 
 
-
-
-
-
-
-
 class SellForm(Form):
     module_code = TextField('Module Code', [validators.Required()])
     title = TextField('Title', [validators.Required()])

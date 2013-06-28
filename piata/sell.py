@@ -19,9 +19,9 @@ class SellPage(webapp2.RequestHandler):
         currUser = db.get(db.Key.from_path('User', user.email()))
         url = self.request.url
         if "edit" in url:
-            currBook = models.Book.get_by_id(int(url.split('/')[-1]))
+            currPost = models.Post.get_by_id(int(url.split('/')[-1]))
             bookid = int(url.split('/')[-1])
-            sellform = models.SellForm(obj=currBook)
+            sellform = models.SellForm(module_code=currPost.module.module_code.upper(), title=currPost.book.title, author=currPost.book.author, publisher=currPost.book.publisher, edition=currPost.book.edition, cost=currPost.cost, condition_highlights=condition_stainscondition_writingscondition_dog_earedcondition_torncondition_wrappedcondition_not_used_oncecomment)
             template_values = {
                 'email': user.email(),
                 'sell_form': sellform,
@@ -46,29 +46,6 @@ class Submit(webapp2.RequestHandler):
     def get(self):
         self.redirect('/sell')
 
-        user = users.get_current_user()
-
-        post = models.Post()
-        module = models.Module()
-        book = models.Book()
-
-        book.title = "asd"
-        book.author = "asd"
-        book.publisher = "asd"
-        book.edition = 1
-        book.put()
-
-        module.book = book
-        module.module_code = "qwe"
-        module.put()
-
-        post.module = module
-        post.book = book
-        post.user = db.get(db.Key.from_path('User', user.email()))
-        post.cost = 1
-        post.comment = "asd"
-        post.put()
-
     def post(self):
         user = users.get_current_user()
         post = models.Post()
@@ -76,15 +53,6 @@ class Submit(webapp2.RequestHandler):
         book = models.Book()
         sellform = models.SellForm(self.request.POST)
 
-        '''if self.request.get('condition_stains').rstrip() is not '':
-            post.condition.append(self.request.get('condition_stains').rstrip())
-        if self.request.get('condition_writings').rstrip() is not '':
-            post.condition.append(self.request.get('condition_writings').rstrip())
-
-        self.response.out.write(post.condition)'''
-        '''self.response.out.write(self.request.get('condition_stains').rstrip())'''
-
-        '''self.response.out.write(post.module.get())'''
         if self.request.method == 'POST' and sellform.validate():
             module.module_code = self.request.get('module_code').rstrip()
             module.put()
@@ -167,13 +135,6 @@ class DisplaySell(webapp2.RedirectHandler):
                 currSales[post.module.module_code.upper()].append(post)
             else:
                 currSales[post.module.module_code.upper()] = [post]
-
-        '''self.response.out.write(currSales)'''
-
-        '''for sale in currSales:
-            self.response.out.write(sale)
-            for post in currSales[sale]:
-                self.response.out.write(post.book.author + " ")'''
 
         template_values = {
             'currUser': currUser,
