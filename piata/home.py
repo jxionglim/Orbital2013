@@ -63,11 +63,26 @@ class MainPage(webapp2.RequestHandler):
             search_cat = self.request.get('search_cat').rstrip()
             search_field = self.request.get('search_field').rstrip()
 
-            records = models.Book.all()
+            tempResult = []
             results = []
-            for entry in records:
-                if search_field in getattr(entry, search_cat):
-                    results.append(entry)
+            if search_cat == 'module_code':
+                moduleList = models.Module.all()
+                for module in moduleList:
+                    if search_field in module.module_code:
+                        tempResult.append(module)
+                for records in tempResult:
+                    allRecords = models.Post.all().filter('module', records)
+                    for entry in allRecords:
+                        results.append(entry)
+            else:
+                bookList = models.Book.all()
+                for book in bookList:
+                    if search_field in getattr(book, search_cat):
+                        tempResult.append(book)
+                for records in tempResult:
+                    allRecords = models.Post.all().filter('book', records)
+                    for entry in allRecords:
+                        results.append(entry)
 
             template_values = {
                 'searchform': search_form,
