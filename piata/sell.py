@@ -86,6 +86,18 @@ class Submit(webapp2.RequestHandler):
 
         '''self.response.out.write(post.module.get())'''
         if self.request.method == 'POST' and sellform.validate():
+            module.module_code = self.request.get('module_code').rstrip()
+            module.put()
+
+            book.title = self.request.get('title').rstrip()
+            book.author = self.request.get('author').rstrip()
+            book.publisher = self.request.get('publisher').rstrip()
+            book.edition = int(self.request.get('edition').rstrip())
+            book.module = module
+            book.put()
+
+            post.module = module
+            post.book = book
             post.user = db.get(db.Key.from_path('User', user.email()))
             post.cost = int(self.request.get('cost').rstrip())
             post.comment = self.request.get('comment').rstrip()
@@ -118,18 +130,6 @@ class Submit(webapp2.RequestHandler):
 
             post.put()
 
-            module.module_code = self.request.get('module_code').rstrip()
-            module.post_modulekey = post
-            module.put()
-
-            book.title = self.request.get('title').rstrip()
-            book.author = self.request.get('author').rstrip()
-            book.publisher = self.request.get('publisher').rstrip()
-            book.edition = int(self.request.get('edition').rstrip())
-            book.module = module
-            book.post_bookkey = post
-            book.put()
-
             if not trigger:
                 time.sleep(0.5)
                 self.redirect('/sell/currSale')
@@ -160,9 +160,19 @@ class DisplaySell(webapp2.RedirectHandler):
 
         modules = models.Module().all()
 
+        post = models.Post.all().filter('user', currUser)
+
+        for test in post:
+            asd = test.module.module_code
+            qwe = test.book.title
+
+        '''self.response.out.write(asd)
+        self.response.out.write(qwe)'''
+
         template_values = {
             'currUser': currUser,
             'modules': modules,
+            'asd': asd,
             'email': user.email(),
             'logout': users.create_logout_url(self.request.host_url)}
 

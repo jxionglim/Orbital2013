@@ -53,12 +53,9 @@
     <div class="row-fluid">
         <div class="hero-unit">
             <legend><strong>Current Sales</strong></legend>
-            {% for module in modules %}
-                {{ module.module_code }}
-            
-
-            {% endfor %}
+            {{ asd }}
             {% for post in currUser.books_onSale %}
+                {{ post.post_module }}
                 Module Code: {{ post.module_code|e }}
                 <div class="hero-unitplain1">
                     <div class="container">

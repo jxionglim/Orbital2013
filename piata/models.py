@@ -55,17 +55,8 @@ class SearchForm(Form):
     search_field = TextField('Keyword', [validators.optional()])
 
 
-class Post(db.Model):
-    user = db.ReferenceProperty(User, collection_name="books_onSale")
-    condition = db.ListProperty(str)
-    comment = db.StringProperty(multiline='True')
-    cost = db.IntegerProperty(default=0)
-    book_pic = db.BlobProperty()
-
-
 class Module(db.Model):
     module_code = db.StringProperty(default="")
-    post_modulekey = db.ReferenceProperty(Post, name="post_module")
 
 
 class Book(db.Model):
@@ -73,8 +64,23 @@ class Book(db.Model):
     author = db.StringProperty(default="")
     publisher = db.StringProperty(default="")
     edition = db.IntegerProperty(default=0)
-    module = db.ReferenceProperty(Module, collection_name="books")
-    post_bookkey = db.ReferenceProperty(Post, name="post_book")
+    module = db.ReferenceProperty(Module, collection_name="booklist")
+
+
+class Post(db.Model):
+    module = db.ReferenceProperty(Module)
+    book = db.ReferenceProperty(Book)
+    user = db.ReferenceProperty(User, collection_name="books_onSale")
+    condition = db.ListProperty(str)
+    comment = db.StringProperty(multiline='True')
+    cost = db.IntegerProperty(default=0)
+    book_pic = db.BlobProperty()
+
+
+
+
+
+
 
 
 class SellForm(Form):
