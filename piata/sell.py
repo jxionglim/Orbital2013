@@ -21,18 +21,18 @@ class SellPage(webapp2.RequestHandler):
         if "edit" in url:
             currBook = models.Book.get_by_id(int(url.split('/')[-1]))
             bookid = int(url.split('/')[-1])
-            bookform = models.BookForm(obj=currBook)
+            sellform = models.SellForm(obj=currBook)
             template_values = {
                 'email': user.email(),
-                'book_form': bookform,
+                'sell_form': sellform,
                 'bookid': bookid,
                 'logout': users.create_logout_url(self.request.host_url),
             }
         else:
-            bookform = models.BookForm()
+            sellform = models.SellForm()
             template_values = {
                 'email': user.email(),
-                'book_form': bookform,
+                'sell_form': sellform,
                 'logout': users.create_logout_url(self.request.host_url),
             }
         if not currUser.required_complete:
@@ -46,55 +46,109 @@ class Submit(webapp2.RequestHandler):
     def get(self):
         self.redirect('/sell')
 
+        user = users.get_current_user()
+
+        post = models.Post()
+        module = models.Module()
+        book = models.Book()
+
+        book.title = "asd"
+        book.author = "asd"
+        book.publisher = "asd"
+        book.edition = 1
+        book.put()
+
+        module.book = book
+        module.module_code = "qwe"
+        module.put()
+
+        post.module = module
+        post.book = book
+        post.user = db.get(db.Key.from_path('User', user.email()))
+        post.cost = 1
+        post.comment = "asd"
+        post.put()
+
     def post(self):
         user = users.get_current_user()
-        myBook = models.Book()
-        book_form = models.BookForm(self.request.POST)
-        if self.request.method == 'POST' and book_form.validate():
-            myBook.module_code = self.request.get('module_code').rstrip()
-            myBook.title = self.request.get('title').rstrip()
-            myBook.author = self.request.get('author').rstrip()
-            myBook.publisher = self.request.get('publisher').rstrip()
-            myBook.edition = int(self.request.get('edition').rstrip())
-            myBook.cost = int(self.request.get('cost').rstrip())
-            myBook.comment = self.request.get('comment').rstrip()
-            if self.request.get('conditions', allow_multiple=True) is None:
-                myBook.condition = 'Nil'
-            else:
-                myBook.condition = self.request.get('conditions', allow_multiple=True)
+        post = models.Post()
+        module = models.Module()
+        book = models.Book()
+        sellform = models.SellForm(self.request.POST)
+
+        '''if self.request.get('condition_stains').rstrip() is not '':
+            post.condition.append(self.request.get('condition_stains').rstrip())
+        if self.request.get('condition_writings').rstrip() is not '':
+            post.condition.append(self.request.get('condition_writings').rstrip())
+
+        self.response.out.write(post.condition)'''
+        '''self.response.out.write(self.request.get('condition_stains').rstrip())'''
+
+        '''self.response.out.write(post.module.get())'''
+        if self.request.method == 'POST' and sellform.validate():
+            post.user = db.get(db.Key.from_path('User', user.email()))
+            post.cost = int(self.request.get('cost').rstrip())
+            post.comment = self.request.get('comment').rstrip()
+
+            if self.request.get('condition_stains').rstrip() is not '':
+                post.condition.append(self.request.get('condition_stains').rstrip())
+            if self.request.get('condition_writings').rstrip() is not '':
+                post.condition.append(self.request.get('condition_writings').rstrip())
+            if self.request.get('condition_highlights').rstrip() is not '':
+                post.condition.append(self.request.get('condition_highlights').rstrip())
+            if self.request.get('condition_dog_eared').rstrip() is not '':
+                post.condition.append(self.request.get('condition_dog_eared').rstrip())
+            if self.request.get('condition_torn').rstrip() is not '':
+                post.condition.append(self.request.get('condition_torn').rstrip())
+            if self.request.get('condition_wrapped').rstrip() is not '':
+                post.condition.append(self.request.get('condition_wrapped').rstrip())
+            if self.request.get('condition_not_used_once').rstrip() is not '':
+                post.condition.append(self.request.get('condition_not_used_once').rstrip())
 
             trigger = False
             if self.request.get('book_pic') != "":
                 try:
-                    myBook.book_pic = db.Blob(images.resize(self.request.get('book_pic'), width=200))
+                    post.book_pic = db.Blob(images.resize(self.request.get('book_pic'), width=200))
                 except LargeImageError:
                     trigger = True
                     msg = "Upload a smaller image"
                 except (BadImageError, NotImageError):
                     trigger = True
                     msg = "Upload a proper image"
-            myBook.user = db.get(db.Key.from_path('User', user.email()))
-            myBook.put()
+
+            post.put()
+
+            module.module_code = self.request.get('module_code').rstrip()
+            module.post_modulekey = post
+            module.put()
+
+            book.title = self.request.get('title').rstrip()
+            book.author = self.request.get('author').rstrip()
+            book.publisher = self.request.get('publisher').rstrip()
+            book.edition = int(self.request.get('edition').rstrip())
+            book.module = module
+            book.post_bookkey = post
+            book.put()
+
             if not trigger:
                 time.sleep(0.5)
                 self.redirect('/sell/currSale')
             else:
                 template_values = {
-                    'myBook': myBook,
                     'image_error': msg,
                     'email': user.email(),
-                    'book_form': book_form,
+                    'sell_form': sellform,
                     'logout': users.create_logout_url(self.request.host_url),
                 }
                 template = jinja_environment.get_template('sell.html')
                 self.response.out.write(template.render(template_values))
         else:
             template_values = {
-                'myBook': myBook,
                 'email': user.email(),
-                'book_form': book_form,
+                'sell_form': sellform,
                 'logout': users.create_logout_url(self.request.host_url),
             }
+
             template = jinja_environment.get_template('sell.html')
             self.response.out.write(template.render(template_values))
 
@@ -104,8 +158,11 @@ class DisplaySell(webapp2.RedirectHandler):
         user = users.get_current_user()
         currUser = db.get(db.Key.from_path('User', user.email()))
 
+        modules = models.Module().all()
+
         template_values = {
             'currUser': currUser,
+            'modules': modules,
             'email': user.email(),
             'logout': users.create_logout_url(self.request.host_url)}
 

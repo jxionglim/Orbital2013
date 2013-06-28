@@ -54,7 +54,7 @@
             <legend><strong>Book Information</strong></legend>
             <div class="row-fluid">
                 <div class="span9">
-                    {% for fields in book_form %}
+                    {% for fields in sell_form %}
                         {% if fields.type != 'BooleanField' and fields.id != "comment" and fields.type != 'HiddenField'%}
                             <div class="control-group">
                                 <label class="control-label">{{ fields.label }}</label>
@@ -93,10 +93,10 @@
                         #previewPane { display: inline-block; max-width: 180px; max-height: 180px; width: 100%; height: 100%;}
                     </style>
                     <span id="previewPane">
-                        {% if book_form.book_pic.data == None %}
-                            <img id="img_prev" class="img-polaroid" src="../images/nopic.png"/>
+                        {% if sell_form.book_pic.data == None %}
+                            <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>
                         {% else %}
-                            <img id="img_prev" class="img-polaroid" src="/sell/image/{{ bookid }}"/>
+                            <img id="img_prev" class="img-polaroid" src="/sell/image/{{ bookid }}" />
                         {% endif %}
                     </span>
                     <script>
@@ -113,17 +113,17 @@
                     <div class="row-fluid">
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_stains' value='Stains' name="condition_stains" {% if book_form.condition_stains.data == True %}checked{% endif %}> Stains
+                                <input type="checkbox" id='condition_stains' value='Stains' name="condition_stains" {% if sell_form.condition_stains.data == True %}checked{% endif %}> Stains
                             </label>
                         </div>
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_writings' value= 'Writings' name="condition_writings" {% if book_form.condition_writings.data == True %}checked{% endif %}> Writings
+                                <input type="checkbox" id='condition_writings' value= 'Writings' name="condition_writings" {% if sell_form.condition_writings.data == True %}checked{% endif %}> Writings
                             </label>
                         </div>
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_highlights' value= 'Highlights' name="condition_highlights" {% if book_form.condition_highlights.data == True %}checked{% endif %}> Highlights
+                                <input type="checkbox" id='condition_highlights' value= 'Highlights' name="condition_highlights" {% if sell_form.condition_highlights.data == True %}checked{% endif %}> Highlights
                             </label>
                         </div>
                     </div>
@@ -134,17 +134,17 @@
                     <div class="row-fluid">
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_dog_eared' value= 'Dog Eared' name="condition_dog_eared" {% if book_form.condition_dog_eared.data == True %}checked{% endif %}> Dog-Eared
+                                <input type="checkbox" id='condition_dog_eared' value= 'Dog Eared' name="condition_dog_eared" {% if sell_form.condition_dog_eared.data == True %}checked{% endif %}> Dog-Eared
                             </label>
                         </div>
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_torn' value= 'Torn' name="condition_torn" {% if book_form.condition_torn.data == True %}checked{% endif %}> Torn
+                                <input type="checkbox" id='condition_torn' value= 'Torn' name="condition_torn" {% if sell_form.condition_torn.data == True %}checked{% endif %}> Torn
                             </label>
                         </div>
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_wrapped' value= 'Wrapped' name="condition_wrapped" {% if book_form.condition_wrapped.data == True %}checked{% endif %}> Wrapped
+                                <input type="checkbox" id='condition_wrapped' value= 'Wrapped' name="condition_wrapped" {% if sell_form.condition_wrapped.data == True %}checked{% endif %}> Wrapped
                             </label>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                     <div class="row-fluid">
                         <div class="span2">
                             <label class="checkbox inline">
-                                <input type="checkbox" id='condition_not_used_once' value= 'Not Used Once' name="condition_not_used_once" {% if book_form.condition_not_used_once.data == True %}checked{% endif %}> Not Used Once
+                                <input type="checkbox" id='condition_not_used_once' value= 'Not Used Once' name="condition_not_used_once" {% if sell_form.condition_not_used_once.data == True %}checked{% endif %}> Not Used Once
                             </label>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
             <div class="control-group">
                 <label class="control-label">Comments</label>
                 <div class="controls">
-                    <textarea style="overflow: auto;resize: none" id="comment" name="comment">{% if book_form.comment.data != None %}{{ book_form.comment.data }}{% endif %}</textarea>
+                    <textarea style="overflow: auto;resize: none" id="comment" name="comment">{% if sell_form.comment.data != None %}{{ sell_form.comment.data }}{% endif %}</textarea>
                 </div>
             </div>
             <div class="control-group">

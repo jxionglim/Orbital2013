@@ -55,13 +55,12 @@ class SearchForm(Form):
     search_field = TextField('Keyword', [validators.optional()])
 
 
-class Book(db.Model):
-    title = db.StringProperty(default="")
-    author = db.StringProperty(default="")
-    publisher = db.StringProperty(default="")
-    edition = db.IntegerProperty(default=0)
-    module = db.ReferenceProperty(Module, collection_name="books")
-    post_bookkey = db.ReferenceProperty(Post, name="post_book")
+class Post(db.Model):
+    user = db.ReferenceProperty(User, collection_name="books_onSale")
+    condition = db.ListProperty(str)
+    comment = db.StringProperty(multiline='True')
+    cost = db.IntegerProperty(default=0)
+    book_pic = db.BlobProperty()
 
 
 class Module(db.Model):
@@ -69,12 +68,13 @@ class Module(db.Model):
     post_modulekey = db.ReferenceProperty(Post, name="post_module")
 
 
-class Post(db.Model):
-    user = db.ReferenceProperty(User, collection_name="books_onSale")
-    condition = db.ListProperty(str)
-    comment = db.StringProperty(multiline='True')
-    cost = db.IntegerProperty(default=0)
-    book_pic = db.BlobProperty()
+class Book(db.Model):
+    title = db.StringProperty(default="")
+    author = db.StringProperty(default="")
+    publisher = db.StringProperty(default="")
+    edition = db.IntegerProperty(default=0)
+    module = db.ReferenceProperty(Module, collection_name="books")
+    post_bookkey = db.ReferenceProperty(Post, name="post_book")
 
 
 class SellForm(Form):
