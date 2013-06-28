@@ -56,25 +56,34 @@ class SearchForm(Form):
 
 
 class Book(db.Model):
-    module_code = db.StringProperty(default="")
     title = db.StringProperty(default="")
     author = db.StringProperty(default="")
     publisher = db.StringProperty(default="")
     edition = db.IntegerProperty(default=0)
+
+
+class Module(db.Model):
+    module_code = db.StringProperty(default="")
+    book = db.ReferenceProperty(Book, name="book")
+
+
+class Post(db.Model):
+    module = db.ReferenceProperty(Module, name="module")
+    book = db.ReferenceProperty(Book, name="book")
+    user = db.ReferenceProperty(User, name="user")
     condition = db.ListProperty(str)
     comment = db.StringProperty(multiline='True')
     cost = db.IntegerProperty(default=0)
-    book_pic = db.BlobProperty()
-    user = db.ReferenceProperty(User, collection_name="books_onSale")
+    '''book_pic = db.BlobProperty()'''
 
 
-class BookForm(Form):
-    module_code = TextField('Module Code', [validators.Required()])
+class SellForm(Form):
+    '''module_code = TextField('Module Code', [validators.Required()])
     title = TextField('Title', [validators.Required()])
     author = TextField('Author', [validators.Required()])
     publisher = TextField('Publisher', [validators.Required()])
     edition = IntegerField('Edition', [validators.number_range(min=1, max=None)])
-    cost = IntegerField('Cost', [validators.number_range(min=1, max=None)])
+    cost = IntegerField('Cost', [validators.number_range(min=1, max=None)])'''
     condition_highlights = BooleanField([validators.optional()])
     condition_stains = BooleanField([validators.optional()])
     condition_writings = BooleanField([validators.optional()])
