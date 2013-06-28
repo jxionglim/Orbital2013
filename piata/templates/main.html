@@ -74,9 +74,12 @@
     {% if searchResult %}
         <div class="hero-unitplain">
             <legend><strong>Search Results</strong></legend>
-            {% if emptyResult == True %}
-                No results... Try again with another term
+            {% if resultLen == 0 %}
+                No results... Try again with another term.
             {% else %}
+                {% for records in searchResult %}
+                    {{ records.module_code }}
+                {% endfor %}
                 <table class="table table-striped">
                     <thead>
                     <tr>

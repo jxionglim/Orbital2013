@@ -9,6 +9,24 @@
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script>
+        var blank="/images/nopic.png";
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_prev').attr('src', e.target.result).height(200);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            else {
+                var img = input.value;
+                $('#img_prev').attr('src',img).height(200);
+            }
+        }
+    </script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -47,8 +65,9 @@
     </div>
 </div>
 
-<form class="form-horizontal" action="/profile/update" method="post" enctype="multipart/form-data">
-    <div class="container">
+
+<div class="container">
+    <form class="form-horizontal" action="/profile/update" method="post" enctype="multipart/form-data">
         {% if initial == True %}
             <div class="alert alert-warning">
                 <strong>Fill up the information below to allow us to serve you better!</strong>
@@ -101,20 +120,18 @@
                             <legend><strong>Profile Picture</strong></legend>
                             <div class="row">
                                 {% if currUser.profile_pic == None %}
-                                    <img class="img-polaroid" src="../images/nopic.png">
+                                    <img id="img_prev" class="img-polaroid" src="../images/nopic.png">
                                 {% else %}
-                                    <img class="img-polaroid" src='/profile/image'>
+                                    <img id="img_prev" class="img-polaroid" src='/profile/image'>
                                 {% endif %}
                                 <div class="row">
-                                    <br>
-                                    <p><small>Upload Picture:</small></p>
-                                    <input id="profile_pic" name="profile_pic" type="file"><span class="help-inline"><small><p class="text-error">{{ image_error }}</p></small></span>
+                                    <input id="profile_pic" name="profile_pic" type="file" onchange="readURL(this);" style="visibility: hidden">
+                                    <span class="help-inline text-center"><small><p class="text-error">{{ image_error }}</p></small></span>
                                     <div class="row">
                                         <div class="span2 offset1"><small>Rating:</small></div>
                                         <span class="offset1 help-inline"><img src='/images/{{ currUser.rating|e }}stars.png' width="150px"></span>
                                     </div>
                                 </div>
-                                <br><br><br><br>
                             </div>
                         </div>
                     </div>
@@ -122,13 +139,13 @@
 
             </div>
         </div>
-    </div>
-</form>
-<hr>
+    </form>
 
-<footer>
-    <p>&copy; Piata</p>
-</footer>
+    <hr>
+
+    <footer>
+        <p>&copy; Piata</p>
+    </footer>
 
 </div> <!-- /container -->
 
@@ -148,6 +165,10 @@
 <script src="/bootstrap/js/bootstrap-collapse.js"></script>
 <script src="/bootstrap/js/bootstrap-carousel.js"></script>
 <script src="/bootstrap/js/bootstrap-typeahead.js"></script>
-
+<script>
+    $("img").click(function(){
+        $("input[name=profile_pic]").trigger('click');
+    });
+</script>
 </body>
 </html>

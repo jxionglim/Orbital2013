@@ -79,14 +79,14 @@ class ProfileUpdate(webapp2.RequestHandler):
                 self.response.out.write(template.render(template_values))
         else:
             ins_form.validate()
-        template_values = {
-            'currUser': currUser,
-            'email': user.email(),
-            'userform': user_form,
-            'insform': ins_form,
-            'logout': users.create_logout_url(self.request.host_url)}
-        template = jinja_environment.get_template('edit_profile.html')
-        self.response.out.write(template.render(template_values))
+            template_values = {
+                'currUser': currUser,
+                'email': user.email(),
+                'userform': user_form,
+                'insform': ins_form,
+                'logout': users.create_logout_url(self.request.host_url)}
+            template = jinja_environment.get_template('edit_profile.html')
+            self.response.out.write(template.render(template_values))
 
 
 class ViewProfile(webapp2.RequestHandler):

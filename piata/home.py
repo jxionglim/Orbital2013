@@ -63,16 +63,16 @@ class MainPage(webapp2.RequestHandler):
             search_cat = self.request.get('search_cat').rstrip()
             search_field = self.request.get('search_field').rstrip()
 
-            results = models.Book.all().filter('%s' % search_cat, search_field)
-            emptyResult = True
-            for test in results:
-                emptyResult = False
-                break
+            records = models.Book.all()
+            results = []
+            for entry in records:
+                if search_field in getattr(entry, search_cat):
+                    results.append(entry)
 
             template_values = {
                 'searchform': search_form,
                 'searchResult': results,
-                'emptyResult': emptyResult,
+                'resultLen': len(results),
                 'email': user.email(),
                 'logout': users.create_logout_url(self.request.host_url),
                 }
