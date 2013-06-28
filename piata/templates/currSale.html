@@ -53,32 +53,31 @@
     <div class="row-fluid">
         <div class="hero-unit">
             <legend><strong>Current Sales</strong></legend>
-            {{ asd }}
-            {% for post in currUser.books_onSale %}
-                {{ post.post_module }}
-                Module Code: {{ post.module_code|e }}
+            {% for posts in currSales %}
+                Module Code: {{ posts }}
+                {% for post in currSales[posts] %}
                 <div class="hero-unitplain1">
                     <div class="container">
                         <div class="row-fluid">
                             <div class="span2">
                                 {% if post.book_pic == None %}
-                                    <img class="img-polaroid" src="../images/nopic.png" style="display: inline-block; max-width: 100px; max-height: 120px; width: 100%; height: 100%">
+                                    <img class="img-polaroid" src="/images/nopic.png" style="display: inline-block; max-width: 100px; max-height: 120px; width: 100%; height: 100%">
                                 {% else %}
                                     <img class="img-polaroid" src='/sell/image/{{ post.key().id() }}' style="display: inline-block; max-width: 100px; max-height: 120px; width: 100%; height: 100%">
                                 {% endif %}
                             </div>
                             <div class="span5">
                                 <div class="row">
-                                    <div class="span5"><strong>{{ post.title|e }}</strong></div>
+                                    <div class="span5"><strong>{{ post.book.title|e }}</strong></div>
                                 </div>
                                 <div class="row">
-                                    <div class="span3"><small>{{ post.author|e }}</small></div>
+                                    <div class="span3"><small>{{ post.book.author|e }}</small></div>
                                 </div>
                                 <div class="row">
-                                    <div class="span3"><small>{% if post.edition|e == '1' %} {{ post.edition|e }}<sup>st</sup> Edition
-                                    {% elif post.edition|e == '2' %} {{ post.edition|e }}<sup>nd</sup> Edition
-                                    {% elif post.edition|e == '3' %} {{ post.edition|e }}<sup>rd</sup> Edition
-                                    {% else %} {{ post.edition|e }} Edition {% endif %}</small></div>
+                                    <div class="span3"><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                                    {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
+                                    {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
+                                    {% else %} {{ post.book.edition|e }} Edition {% endif %}</small></div>
                                 </div>
                             </div>
                             <div class="span5">
@@ -105,6 +104,7 @@
                     </div>
                 </div>
                 <br>
+                {% endfor %}
             {% endfor %}
         </div>
     </div>

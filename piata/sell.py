@@ -158,21 +158,26 @@ class DisplaySell(webapp2.RedirectHandler):
         user = users.get_current_user()
         currUser = db.get(db.Key.from_path('User', user.email()))
 
-        modules = models.Module().all()
+        posts = models.Post.all().filter('user', currUser)
 
-        post = models.Post.all().filter('user', currUser)
+        currSales = {}
 
-        for test in post:
-            asd = test.module.module_code
-            qwe = test.book.title
+        for post in posts:
+            if post.module.module_code.upper() in currSales:
+                currSales[post.module.module_code.upper()].append(post)
+            else:
+                currSales[post.module.module_code.upper()] = [post]
 
-        '''self.response.out.write(asd)
-        self.response.out.write(qwe)'''
+        '''self.response.out.write(currSales)'''
+
+        '''for sale in currSales:
+            self.response.out.write(sale)
+            for post in currSales[sale]:
+                self.response.out.write(post.book.author + " ")'''
 
         template_values = {
             'currUser': currUser,
-            'modules': modules,
-            'asd': asd,
+            'currSales': currSales,
             'email': user.email(),
             'logout': users.create_logout_url(self.request.host_url)}
 
