@@ -94,13 +94,15 @@
                         #previewPane { display: inline-block; max-width: 180px; max-height: 180px; width: 100%; height: 100%;}
                     </style>
                     <span id="previewPane">
-                        {% if sell_form.book_pic.data == None %}
+                    {% if currPost %}
+                        {% if currPost.book_pic == None %}
                             <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>
                         {% else %}
                             <img id="img_prev" class="img-polaroid" src="/sell/image/{{ bookid }}" />
-
                         {% endif %}
-
+                    {% else %}
+                        <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>
+                    {% endif %}
                     </span>
                     <script>
                         $("img").click(function(){
