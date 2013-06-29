@@ -21,7 +21,16 @@ class SellPage(webapp2.RequestHandler):
         if "edit" in url:
             currPost = models.Post.get_by_id(int(url.split('/')[-1]))
             bookid = int(url.split('/')[-1])
-            sellform = models.SellForm(module_code=currPost.module.module_code.upper(), title=currPost.book.title, author=currPost.book.author, publisher=currPost.book.publisher, edition=currPost.book.edition, cost=currPost.cost, condition_highlights=condition_stainscondition_writingscondition_dog_earedcondition_torncondition_wrappedcondition_not_used_oncecomment)
+
+            stains = True if 'Stains' in currPost.condition else False
+            highlights = True if 'Highlights' in currPost.condition else False
+            writings = True if 'Writings' in currPost.condition else False
+            dog_eared = True if 'Dog Eared' in currPost.condition else False
+            torn = True if 'Torn' in currPost.condition else False
+            wrapped = True if 'Wrapped' in currPost.condition else False
+            not_used_once = True if 'Not Used Once' in currPost.condition else False
+
+            sellform = models.SellForm(module_code=currPost.module.module_code.upper(), title=currPost.book.title, author=currPost.book.author, publisher=currPost.book.publisher, edition=currPost.book.edition, cost=currPost.cost, condition_highlights=highlights, condition_stains=stains, condition_writings=writings, condition_dog_eared=dog_eared, condition_torn=torn, condition_wrapped=wrapped, condition_not_used_once=not_used_once, comment=currPost.comment, book_pic=currPost.book_pic)
             template_values = {
                 'email': user.email(),
                 'sell_form': sellform,
@@ -52,6 +61,8 @@ class Submit(webapp2.RequestHandler):
         module = models.Module()
         book = models.Book()
         sellform = models.SellForm(self.request.POST)
+
+        self.response.out.write(self.request.url)
 
         if self.request.method == 'POST' and sellform.validate():
             module.module_code = self.request.get('module_code').rstrip()
@@ -149,11 +160,11 @@ class DisplaySell(webapp2.RedirectHandler):
 class ServeImage(webapp2.RequestHandler):
     def get(self):
         url = self.request.url
-        currBook = models.Book.get_by_id(int(url.split('/')[-1]))
-        if currBook:
-            if currBook.book_pic:
+        currPost = models.Post.get_by_id(int(url.split('/')[-1]))
+        if currPost:
+            if currPost.book_pic:
                 self.response.headers['Content-Type'] = 'image/zxc'
-                self.response.out.write(currBook.book_pic)
+                self.response.out.write(currPost.book_pic)
 
 
 app = webapp2.WSGIApplication([('/sell', SellPage),
