@@ -38,7 +38,7 @@ class SellPage(webapp2.RequestHandler):
                 'logout': users.create_logout_url(self.request.host_url),
             }
         else:
-            sellform = models.SellForm()
+            sellform = models.SellForm(book_pic=None)
             template_values = {
                 'email': user.email(),
                 'sell_form': sellform,
@@ -61,8 +61,6 @@ class Submit(webapp2.RequestHandler):
         module = models.Module()
         book = models.Book()
         sellform = models.SellForm(self.request.POST)
-
-        self.response.out.write(self.request.url)
 
         if self.request.method == 'POST' and sellform.validate():
             module.module_code = self.request.get('module_code').rstrip()
