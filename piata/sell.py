@@ -59,52 +59,60 @@ class Submit(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         if self.request.get('book_id').rstrip() == '':
-            post = models.Post()
-            module = models.Module()
-            book = models.Book()
+            currPost = models.Post()
+            currModule = models.Module()
+            currBook = models.Book()
         else:
-            post = models.Post.get_by_id(int(self.request.get('book_id').rstrip()))
-            module = post.module
-            book = post.book
+            currPost = models.Post.get_by_id(int(self.request.get('book_id').rstrip()))
+            currModule = currPost.module
+            currBook = currPost.book
 
         sellform = models.SellForm(self.request.POST)
 
         if self.request.method == 'POST' and sellform.validate():
-            module.module_code = self.request.get('module_code').rstrip()
-            module.put()
+            q = db.Query(models.Module)
+            q.filter('module_code =', self.request.get('module_code').rstrip().upper())
+            result_module = q.get()
+            if result_module is None:
+                currModule.module_code = self.request.get('module_code').rstrip().upper()
+                currModule.put()
+            else:
+                currModule = result_module
 
-            book.title = self.request.get('title').rstrip()
-            book.author = self.request.get('author').rstrip()
-            book.publisher = self.request.get('publisher').rstrip()
-            book.edition = int(self.request.get('edition').rstrip())
-            book.module = module
-            book.put()
+            currBook.title = self.request.get('title').rstrip()
+            currBook.author = self.request.get('author').rstrip()
+            currBook.publisher = self.request.get('publisher').rstrip()
+            currBook.edition = int(self.request.get('edition').rstrip())
+            currBook.module = currModule
+            currBook.put()
 
-            post.module = module
-            post.book = book
-            post.user = db.get(db.Key.from_path('User', user.email()))
-            post.cost = int(self.request.get('cost').rstrip())
-            post.comment = self.request.get('comment').rstrip()
+            currPost.module = currModule
+            currPost.book = currBook
+            currPost.user = db.get(db.Key.from_path('User', user.email()))
+            currPost.cost = int(self.request.get('cost').rstrip())
+            currPost.comment = self.request.get('comment').rstrip()
 
-            if self.request.get('condition_stains').rstrip() is not '' and self.request.get('condition_stains').rstrip() not in post.condition:
-                post.condition.append(self.request.get('condition_stains').rstrip())
-            if self.request.get('condition_writings').rstrip() is not '' and self.request.get('condition_writings').rstrip() not in post.condition:
-                post.condition.append(self.request.get('condition_writings').rstrip())
-            if self.request.get('condition_highlights').rstrip() is not '' and self.request.get('condition_highlights').rstrip() not in post.condition:
-                post.condition.append(self.request.get('condition_highlights').rstrip())
-            if self.request.get('condition_dog_eared').rstrip() is not '' and self.request.get('condition_dog_eared').rstrip() not in post.condition:
-                post.condition.append(self.request.get('condition_dog_eared').rstrip())
-            if self.request.get('condition_torn').rstrip() is not '' and self.request.get('condition_torn').rstrip() not in post.condition:
-                post.condition.append(self.request.get('condition_torn').rstrip())
-            if self.request.get('condition_wrapped').rstrip() is not '' and self.request.get('condition_wrapped').rstrip() not in post.condition:
-                post.condition.append(self.request.get('condition_wrapped').rstrip())
-            if self.request.get('condition_not_used_once').rstrip() is not '' and self.request.get('condition_not_used_once').rstrip() not in post.condition:
-                post.condition.append(self.request.get('condition_not_used_once').rstrip())
+            currPost.condition = []
+
+            if self.request.get('condition_stains').rstrip() is not '' and self.request.get('condition_stains').rstrip() not in currPost.condition:
+                currPost.condition.append(self.request.get('condition_stains').rstrip())
+            if self.request.get('condition_writings').rstrip() is not '' and self.request.get('condition_writings').rstrip() not in currPost.condition:
+                currPost.condition.append(self.request.get('condition_writings').rstrip())
+            if self.request.get('condition_highlights').rstrip() is not '' and self.request.get('condition_highlights').rstrip() not in currPost.condition:
+                currPost.condition.append(self.request.get('condition_highlights').rstrip())
+            if self.request.get('condition_dog_eared').rstrip() is not '' and self.request.get('condition_dog_eared').rstrip() not in currPost.condition:
+                currPost.condition.append(self.request.get('condition_dog_eared').rstrip())
+            if self.request.get('condition_torn').rstrip() is not '' and self.request.get('condition_torn').rstrip() not in currPost.condition:
+                currPost.condition.append(self.request.get('condition_torn').rstrip())
+            if self.request.get('condition_wrapped').rstrip() is not '' and self.request.get('condition_wrapped').rstrip() not in currPost.condition:
+                currPost.condition.append(self.request.get('condition_wrapped').rstrip())
+            if self.request.get('condition_not_used_once').rstrip() is not '' and self.request.get('condition_not_used_once').rstrip() not in currPost.condition:
+                currPost.condition.append(self.request.get('condition_not_used_once').rstrip())
 
             trigger = False
             if self.request.get('book_pic') != "":
                 try:
-                    post.book_pic = db.Blob(images.resize(self.request.get('book_pic'), width=200))
+                    currPost.book_pic = db.Blob(images.resize(self.request.get('book_pic'), width=200))
                 except LargeImageError:
                     trigger = True
                     msg = "Upload a smaller image"
@@ -112,7 +120,7 @@ class Submit(webapp2.RequestHandler):
                     trigger = True
                     msg = "Upload a proper image"
 
-            post.put()
+            currPost.put()
 
             if not trigger:
                 pass
@@ -129,7 +137,7 @@ class Submit(webapp2.RequestHandler):
                 self.response.out.write(template.render(template_values))
         else:
             template_values = {
-                'bookpic': post.book_pic,
+                'bookpic': currPost.book_pic,
                 'email': user.email(),
                 'sell_form': sellform,
                 'logout': users.create_logout_url(self.request.host_url),

@@ -32,6 +32,7 @@
                     <li><a href="/main">Home</a></li>
                     <li><a href="/buy">Post Book</a></li>
                     <li class="active"><a href="/sell">Request Book</a></li>
+                    <li><a href="/sell/currSale">Current Sales</a></li>
                     <li><a href="/adv_search">Advance Search</a></li>
                 </ul>
                 <form class="navbar-form pull-right">
@@ -103,12 +104,12 @@
                     {% else %}
                         {% if bookpic %}
                             {% if bookpic == None %}
-                                <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>'
+                                <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>
                             {% else %}
                                 <img id="img_prev" class="img-polaroid" src="/sell/image/{{ sell_form.book_id.data }}" />
                             {% endif %}
                          {% else %}
-                            <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>'
+                            <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>
                         {% endif %}
                     {% endif %}
                     </span>
@@ -183,7 +184,7 @@
             </div>
             <div class="control-group">
                 <div class="span4 offset3">
-                    <button type="submit" class="btn">Request</button>
+                    <button type="submit" class="btn btn-small btn-info">Request</button>
                 </div>
             </div>
         </div>

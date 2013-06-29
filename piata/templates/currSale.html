@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>About Piata</title>
+    <title>Piata Current Sales</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Le styles -->
@@ -31,7 +31,8 @@
                 <ul class="nav">
                     <li><a href="/main">Home</a></li>
                     <li><a href="/buy">Post Book</a></li>
-                    <li><a class="active" href="/sell">Request Book</a></li>
+                    <li><a href="/sell">Request Book</a></li>
+                    <li class="active"><a href="/sell/currSale">Current Sales</a></li>
                     <li><a href="/adv_search">Advance Search</a></li>
                 </ul>
                 <form class="navbar-form pull-right">
@@ -48,67 +49,42 @@
 </div>
 
 <div class="container">
-
-    <!-- Example row of columns -->
-    <div class="row-fluid">
-        <div class="hero-unit">
-            <legend><strong>Current Sales</strong></legend>
+    <div class="hero-unit1">
+        <legend><strong>Current Sales</strong></legend>
+        {% if currSales.__len__() == 0 %}
+            <strong>There are no current books on sales now.</strong>
+        {% else %}
             {% for posts in currSales %}
-                Module Code: {{ posts }}
-                {% for post in currSales[posts] %}
-                <div class="hero-unitplain1">
-                    <div class="container">
-                        <div class="row-fluid">
-                            <div class="span2">
-                                {% if post.book_pic == None %}
-                                    <img class="img-polaroid" src="/images/nopic.png" style="display: inline-block; max-width: 100px; max-height: 120px; width: 100%; height: 100%">
-                                {% else %}
-                                    <img class="img-polaroid" src='/sell/image/{{ post.key().id() }}' style="display: inline-block; max-width: 100px; max-height: 120px; width: 100%; height: 100%">
-                                {% endif %}
-                            </div>
-                            <div class="span5">
-                                <div class="row">
-                                    <div class="span5"><strong>{{ post.book.title|e }}</strong></div>
-                                </div>
-                                <div class="row">
-                                    <div class="span3"><small>{{ post.book.author|e }}</small></div>
-                                </div>
-                                <div class="row">
-                                    <div class="span3"><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
-                                    {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
-                                    {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
-                                    {% else %} {{ post.book.edition|e }} Edition {% endif %}</small></div>
-                                </div>
-                            </div>
-                            <div class="span5">
-                                <div class="row">
-                                    <div class="span5"><small>Cost: ${{ post.cost|e }}</small></div>
-                                </div>
-                                <div class="row">
-                                    <div class="span5"><small>Condition of book: {% if not post.condition %}
-                                        qwe
-                                    {% else %}
-                                        {% for condition in post.condition %}
-                                            {{ condition }}
-                                        {% endfor %}
-                                    {% endif %}</small></div>
-                                </div>
-                                <div class="row">
-                                    <div class="span4"><small>Comment: {{ post.comment|e }}</small></div>
-                                </div>
-                            </div>
-                            <div class="span1">
-                                <a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info">Edit</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                {% endfor %}
+                <strong>Module Code: {{ posts }}</strong>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="span1">#</th>
+                        <th class="span1">Sale Records</th>
+                        <th class="span3"></th>
+                        <th class="span5">Details</th>
+                        <th class="span2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set count = 1 %}
+                    {% for post in currSales[posts] %}
+                        <tr>
+                            <td>{{ count }}{% set count = count + 1 %}</td>
+                            <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
+                            <td><strong>{{ post.book.title|e }}</strong><br><small><i>{{ post.book.author|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                            {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
+                            {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
+                            {% else %} {{ post.book.edition|e }} Edition {% endif %}</small></td>
+                            <td>Cost: ${{ post.cost|e }}<br>Condition of book: {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>Comment: {{ post.comment|e }}</td>
+                            <td><a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             {% endfor %}
-        </div>
+        {% endif %}
     </div>
-
     <hr>
 
     <footer>
