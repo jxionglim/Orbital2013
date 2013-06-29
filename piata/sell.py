@@ -39,7 +39,7 @@ class SellPage(webapp2.RequestHandler):
                 'logout': users.create_logout_url(self.request.host_url),
                 }
         else:
-            sellform = models.SellForm(book_pic=None)
+            sellform = models.SellForm()
             template_values = {
                 'email': user.email(),
                 'sell_form': sellform,
@@ -86,19 +86,19 @@ class Submit(webapp2.RequestHandler):
             post.cost = int(self.request.get('cost').rstrip())
             post.comment = self.request.get('comment').rstrip()
 
-            if self.request.get('condition_stains').rstrip() is not '':
+            if self.request.get('condition_stains').rstrip() is not '' and self.request.get('condition_stains').rstrip() not in post.condition:
                 post.condition.append(self.request.get('condition_stains').rstrip())
-            if self.request.get('condition_writings').rstrip() is not '':
+            if self.request.get('condition_writings').rstrip() is not '' and self.request.get('condition_writings').rstrip() not in post.condition:
                 post.condition.append(self.request.get('condition_writings').rstrip())
-            if self.request.get('condition_highlights').rstrip() is not '':
+            if self.request.get('condition_highlights').rstrip() is not '' and self.request.get('condition_highlights').rstrip() not in post.condition:
                 post.condition.append(self.request.get('condition_highlights').rstrip())
-            if self.request.get('condition_dog_eared').rstrip() is not '':
+            if self.request.get('condition_dog_eared').rstrip() is not '' and self.request.get('condition_dog_eared').rstrip() not in post.condition:
                 post.condition.append(self.request.get('condition_dog_eared').rstrip())
-            if self.request.get('condition_torn').rstrip() is not '':
+            if self.request.get('condition_torn').rstrip() is not '' and self.request.get('condition_torn').rstrip() not in post.condition:
                 post.condition.append(self.request.get('condition_torn').rstrip())
-            if self.request.get('condition_wrapped').rstrip() is not '':
+            if self.request.get('condition_wrapped').rstrip() is not '' and self.request.get('condition_wrapped').rstrip() not in post.condition:
                 post.condition.append(self.request.get('condition_wrapped').rstrip())
-            if self.request.get('condition_not_used_once').rstrip() is not '':
+            if self.request.get('condition_not_used_once').rstrip() is not '' and self.request.get('condition_not_used_once').rstrip() not in post.condition:
                 post.condition.append(self.request.get('condition_not_used_once').rstrip())
 
             trigger = False
