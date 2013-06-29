@@ -36,14 +36,14 @@ class SellPage(webapp2.RequestHandler):
                 'sell_form': sellform,
                 'bookid': bookid,
                 'logout': users.create_logout_url(self.request.host_url),
-            }
+                }
         else:
             sellform = models.SellForm()
             template_values = {
                 'email': user.email(),
                 'sell_form': sellform,
                 'logout': users.create_logout_url(self.request.host_url),
-            }
+                }
         if not currUser.required_complete:
             self.redirect('/profile/edit')
 
@@ -62,10 +62,10 @@ class Submit(webapp2.RequestHandler):
         book = models.Book()
         sellform = models.SellForm(self.request.POST)
 
-        self.response.out.write(self.request.url)
-
         if self.request.method == 'POST' and sellform.validate():
-            module.module_code = self.request.get('module_code').rstrip()
+            asda = self.request.get('book_id').rstrip()
+            self.response.out.write(asda+'111')
+            """module.module_code = self.request.get('module_code').rstrip()
             module.put()
 
             book.title = self.request.get('title').rstrip()
@@ -110,8 +110,9 @@ class Submit(webapp2.RequestHandler):
             post.put()
 
             if not trigger:
-                time.sleep(0.5)
-                self.redirect('/sell/currSale')
+                pass
+                #time.sleep(0.5)
+                #self.redirect('/sell/currSale')
             else:
                 template_values = {
                     'image_error': msg,
@@ -119,8 +120,8 @@ class Submit(webapp2.RequestHandler):
                     'sell_form': sellform,
                     'logout': users.create_logout_url(self.request.host_url),
                 }
-                template = jinja_environment.get_template('sell.html')
-                self.response.out.write(template.render(template_values))
+                #template = jinja_environment.get_template('sell.html')
+                #self.response.out.write(template.render(template_values))
         else:
             template_values = {
                 'email': user.email(),
@@ -129,7 +130,7 @@ class Submit(webapp2.RequestHandler):
             }
 
             template = jinja_environment.get_template('sell.html')
-            self.response.out.write(template.render(template_values))
+            self.response.out.write(template.render(template_values))"""
 
 
 class DisplaySell(webapp2.RedirectHandler):
