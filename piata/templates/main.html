@@ -77,41 +77,27 @@
             {% if resultLen == 0 %}
                 No results... Try again with another term.
             {% else %}
-                {% for records in searchResult %}
-                    {{ records.module_code }}
-                {% endfor %}
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Book</th>
-                        <th></th>
-                        <th>Details</th>
-                        <th>Actions</th>
+                        <th class="span1">#</th>
+                        <th class="span1">Sale Records</th>
+                        <th class="span3"></th>
+                        <th class="span5">Details</th>
+                        <th class="span2">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><img class="img-search" src="/images/nopic.png">
-                        <td>Author: asd<br>Edition:1</td>
-                        <td>Mark asdasdasdsadasdasds<br>adasdasd</td>
-                        <td><a href="/profile/edit" class="btn btn-small btn-info">Edit</a><a href="/profile/edit" class="btn btn-small btn-info">Buy</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><img class="img-search" src="/images/test.jpg"></td>
-                        <td>Author: asd<br>Edition:1</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><img class="img-search" src="/images/test.jpg"></td>
-                        <td>Author: asd<br>Edition:1</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                    </tr>
+                    {% set count = 1 %}
+                    {% for records in searchResult %}
+                        <tr>
+                            <td>{{ count }}{% set count = count + 1 %}</td>
+                            <td>{% if records.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ records.key().id() }}">{% endif %}</td>
+                            <td>Author: asd<br>Edition:1</td>
+                            <td>User:zxczxcxzc<br>Conditions:asasdasd<br>Comments:asdsadas</td>
+                            <td><a href="/profile/edit" class="btn btn-small btn-info span1">Edit</a><br><br><a href="/profile/edit" class="btn btn-small btn-info span1">Buy</a></td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             {% endif %}

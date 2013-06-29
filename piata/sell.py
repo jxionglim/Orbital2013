@@ -129,6 +129,7 @@ class Submit(webapp2.RequestHandler):
                 self.response.out.write(template.render(template_values))
         else:
             template_values = {
+                'bookpic': post.book_pic,
                 'email': user.email(),
                 'sell_form': sellform,
                 'logout': users.create_logout_url(self.request.host_url),

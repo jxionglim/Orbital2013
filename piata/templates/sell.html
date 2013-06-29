@@ -31,7 +31,7 @@
                 <ul class="nav">
                     <li><a href="/main">Home</a></li>
                     <li><a href="/buy">Post Book</a></li>
-                    <li class="active"><a href="#">Request Book</a></li>
+                    <li class="active"><a href="/sell">Request Book</a></li>
                     <li><a href="/adv_search">Advance Search</a></li>
                 </ul>
                 <form class="navbar-form pull-right">
@@ -101,7 +101,15 @@
                             <img id="img_prev" class="img-polaroid" src="/sell/image/{{ bookid }}" />
                         {% endif %}
                     {% else %}
-                        <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>
+                        {% if bookpic %}
+                            {% if bookpic == None %}
+                                <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>'
+                            {% else %}
+                                <img id="img_prev" class="img-polaroid" src="/sell/image/{{ sell_form.book_id.data }}" />
+                            {% endif %}
+                         {% else %}
+                            <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>'
+                        {% endif %}
                     {% endif %}
                     </span>
                     <script>
@@ -110,7 +118,7 @@
                         });
                     </script>
                     <input name="book_pic" type='file' onchange="readURL(this);" style="visibility: hidden"/><br/>
-                    <input name="book_id" id="book_id" type='text' style="visibility: hidden" value="{{ bookid }}"/><br/>
+                    <input name="book_id" id="book_id" type='text' style="visibility: hidden" {% if currPost %}{% if sell_form.book_id.data == None %}value="{{ bookid }}"{% else %}value={{ sell_form.book_id.data }}{% endif %}{% else %}{% if sell_form.book_id.data != None %}value={{ sell_form.book_id.data }}{% endif %}{% endif %}><br/>
                 </div>
             </div>
             <div class="control-group">
