@@ -93,3 +93,4 @@ class SellForm(Form):
     condition_not_used_once = BooleanField([validators.optional()])
     comment = TextAreaField("Comment", [validators.optional()])
     book_pic = HiddenField(FileField, [validators.optional()])
+    book_id = HiddenField(TextField, [validators.optional()])
