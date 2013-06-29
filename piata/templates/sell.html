@@ -66,6 +66,7 @@
                     {% endfor %}
                 </div>
                 <div class="span2">
+
                     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
                     <script>
                         var blank="../images/nopic.png";
@@ -97,7 +98,9 @@
                             <img id="img_prev" class="img-polaroid" src="/images/nopic.png"/>
                         {% else %}
                             <img id="img_prev" class="img-polaroid" src="/sell/image/{{ bookid }}" />
+
                         {% endif %}
+
                     </span>
                     <script>
                         $("img").click(function(){
@@ -105,6 +108,7 @@
                         });
                     </script>
                     <input name="book_pic" type='file' onchange="readURL(this);" style="visibility: hidden"/><br/>
+                    <input name="book_id" id="book_id" type='text' style="visibility: hidden" value="{{ bookid }}"/><br/>
                 </div>
             </div>
             <div class="control-group">
