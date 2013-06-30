@@ -55,7 +55,7 @@
             <strong>There are no current books on sales now.</strong>
         {% else %}
             {% for posts in currSales %}
-                <strong>Module Code: {{ posts }}</strong>
+                <h4><strong>Module Code: {{ posts }}</strong></h4>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -72,7 +72,7 @@
                         <tr>
                             <td>{{ count }}{% set count = count + 1 %}</td>
                             <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
-                            <td><strong>{{ post.book.title|e }}</strong><br><small><i>{{ post.book.author|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                            <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
                             {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
                             {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
                             {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
