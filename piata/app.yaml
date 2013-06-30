@@ -1,8 +1,12 @@
 application: piata-v1
-version: 3
+version: 4
 runtime: python27
 api_version: 1
 threadsafe: true
+
+error_handlers:
+
+  - file: error.html
 
 handlers:
 
@@ -18,15 +22,6 @@ handlers:
 - url: /
   script: login.app
 
-- url: /#myCarousel
-  script: login.app
-
-- url: /about_us
-  script: login.app
-
-- url: /contact_us
-  script: login.app
-
 - url: /profile/?(.*?)/?(.*?)
   script: profile.app
   login: required
@@ -39,9 +34,12 @@ handlers:
   script: current.app
   login: required
 
-- url: /.*
+- url: /(login|main)
   script: home.app
   login: required
+
+- url: /.*
+  script: error.app
 
 libraries:
 - name: jinja2

@@ -3,12 +3,17 @@ import jinja2
 import models
 import os
 
+from google.appengine.api import users
+
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
 
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if user:
+            self.redirect('/main')
         template_values = {
             'searchform': models.SearchForm(),
             'search': False,
