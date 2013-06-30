@@ -49,6 +49,43 @@
 </div>
 
 <div class="container">
+    {% if search == False %}
+        <h2 class="text-error"><em>Latest News</em></h2>
+        <div class="bs-docs-example">
+            <div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="/images/nus.png" alt="">
+                        <div class="carousel-caption">
+                            <h4>1st Dummy</h4>
+                            <p>This is just dummy data. Testing in progress</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/images/nus.png" alt="">
+                        <div class="carousel-caption">
+                            <h4>2nd Dummy</h4>
+                            <p>This is just dummy data. Testing in progress</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/images/nus.png" alt="">
+                        <div class="carousel-caption">
+                            <h4>3rd Dummy</h4>
+                            <p>This is just dummy data. Testing in progress</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+        </div>
+    {% endif %}
     <form class="form-search form-horizontal" action="/main" method="post" enctype="multipart/form-data">
         {% if reminder == False %}
             <div class="alert alert-info">
@@ -100,12 +137,17 @@
                             {% else %} {{ records.book.edition|e }} Edition {% endif %}</small></td>
                             <td>
                                 <strong>Module Code:</strong> {{ records.module.module_code|e }}<br>
-                                <strong>Seller:</strong><a href="#"> {{ records.user.first_name|e }}</a><br>
+                                <strong>Seller:</strong><a href="#"> {{ email|e }}</a><br>
                                 <strong>Cost:</strong> ${{ records.cost|e }}<br>
                                 <strong>Condition of book:</strong> {% if not records.condition %} Nil {% else %}{% for condition in records.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ records.condition[-1] }}</u>{% endif %}<br>
                                 <strong>Comment:</strong> {% if records.comment != "" %}{{ records.comment|e }}{% else %} Nil {% endif %}
                             </td>
-                            <td><a href="#" class="btn btn-small btn-info span1">Edit</a><br><br><a href="#" class="btn btn-small btn-info span1">Buy</a></td>
+                            <td>
+                                {% if records.user.key().name() == email %}
+                                    <a href="/sell/edit/{{ records.key().id() }}" class="btn btn-small btn-info span1">Edit</a><br><br>
+                                {% endif %}
+                                <a href="#" class="btn btn-small btn-info span1">Buy</a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -125,18 +167,14 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/bootstrap/js/jquery.js"></script>
-<script src="/bootstrap/js/bootstrap-transition.js"></script>
-<script src="/bootstrap/js/bootstrap-alert.js"></script>
-<script src="/bootstrap/js/bootstrap-modal.js"></script>
-<script src="/bootstrap/js/bootstrap-dropdown.js"></script>
-<script src="/bootstrap/js/bootstrap-scrollspy.js"></script>
-<script src="/bootstrap/js/bootstrap-tab.js"></script>
-<script src="/bootstrap/js/bootstrap-tooltip.js"></script>
-<script src="/bootstrap/js/bootstrap-popover.js"></script>
-<script src="/bootstrap/js/bootstrap-button.js"></script>
-<script src="/bootstrap/js/bootstrap-collapse.js"></script>
-<script src="/bootstrap/js/bootstrap-carousel.js"></script>
-<script src="/bootstrap/js/bootstrap-typeahead.js"></script>
-
+<script src="/bootstrap/js/bootstrap.js"></script>
+<script>
+    !function ($) {
+        $(function(){
+            // carousel demo
+            $('#myCarousel').carousel()
+        })
+    }(window.jQuery)
+</script>
 </body>
 </html>

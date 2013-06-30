@@ -11,6 +11,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         template_values = {
             'searchform': models.SearchForm(),
+            'search': False,
             }
         template = jinja_environment.get_template('public_main.html')
         self.response.out.write(template.render(template_values))
@@ -52,6 +53,7 @@ class MainPage(webapp2.RequestHandler):
         else:
             template_values = {
                 'searchform': search_form,
+                'search': False,
                 }
             template = jinja_environment.get_template('public_main.html')
             self.response.out.write(template.render(template_values))

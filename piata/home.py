@@ -46,6 +46,7 @@ class MainPage(webapp2.RequestHandler):
 
         template_values = {
             'searchform': models.SearchForm(),
+            'search': False,
             'email': user.email(),
             'logout': users.create_logout_url(self.request.host_url),
             }
@@ -96,6 +97,7 @@ class MainPage(webapp2.RequestHandler):
         else:
             template_values = {
                 'searchform': search_form,
+                'search': False,
                 'email': user.email(),
                 'logout': users.create_logout_url(self.request.host_url),
                 }
