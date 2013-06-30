@@ -18,6 +18,8 @@ class SellPage(webapp2.RequestHandler):
         user = users.get_current_user()
         currUser = db.get(db.Key.from_path('User', user.email()))
         url = self.request.url
+        if not currUser.required_complete:
+            self.redirect('/profile/edit')
         if "edit" in url:
             currPost = models.Post.get_by_id(int(url.split('/')[-1]))
             bookid = int(url.split('/')[-1])
@@ -45,9 +47,6 @@ class SellPage(webapp2.RequestHandler):
                 'sell_form': sellform,
                 'logout': users.create_logout_url(self.request.host_url),
                 }
-        if not currUser.required_complete:
-            self.redirect('/profile/edit')
-
         template = jinja_environment.get_template('sell.html')
         self.response.out.write(template.render(template_values))
 
@@ -125,7 +124,7 @@ class Submit(webapp2.RequestHandler):
             if not trigger:
                 pass
                 time.sleep(0.5)
-                self.redirect('/sell/currSale')
+                self.redirect('/current')
             else:
                 template_values = {
                     'image_error': msg,
@@ -147,31 +146,6 @@ class Submit(webapp2.RequestHandler):
             self.response.out.write(template.render(template_values))
 
 
-class DisplaySell(webapp2.RedirectHandler):
-    def get(self):
-        user = users.get_current_user()
-        currUser = db.get(db.Key.from_path('User', user.email()))
-
-        posts = models.Post.all().filter('user', currUser)
-
-        currSales = {}
-
-        for post in posts:
-            if post.module.module_code.upper() in currSales:
-                currSales[post.module.module_code.upper()].append(post)
-            else:
-                currSales[post.module.module_code.upper()] = [post]
-
-        template_values = {
-            'currUser': currUser,
-            'currSales': currSales,
-            'email': user.email(),
-            'logout': users.create_logout_url(self.request.host_url)}
-
-        template = jinja_environment.get_template('currSale.html')
-        self.response.out.write(template.render(template_values))
-
-
 class ServeImage(webapp2.RequestHandler):
     def get(self):
         url = self.request.url
@@ -184,7 +158,6 @@ class ServeImage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([('/sell', SellPage),
                                ('/sell/submit' , Submit),
-                               ('/sell/currSale', DisplaySell),
                                ('/sell/image/.*?', ServeImage),
                                ('/sell/edit/.*?', SellPage)],
                               debug=True)

@@ -28,8 +28,12 @@ handlers:
   script: profile.app
   login: required
 
-- url: /sell/?(.*?)
+- url: /sell/?(.*?)/?(.*?)
   script: sell.app
+  login: required
+
+- url: /current
+  script: current.app
   login: required
 
 - url: /.*

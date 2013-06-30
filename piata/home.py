@@ -87,7 +87,7 @@ class MainPage(webapp2.RequestHandler):
             template_values = {
                 'searchform': search_form,
                 'searchResult': results,
-                'resultLen': len(results),
+                'search': True,
                 'email': user.email(),
                 'logout': users.create_logout_url(self.request.host_url),
                 }

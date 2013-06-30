@@ -20,6 +20,28 @@ class User(db.Model):
     last_active = db.DateTimeProperty(default=datetime.datetime.now())
 
 
+class Module(db.Model):
+    module_code = db.StringProperty(default="")
+
+
+class Book(db.Model):
+    title = db.StringProperty(default="")
+    author = db.StringProperty(default="")
+    publisher = db.StringProperty(default="")
+    edition = db.IntegerProperty(default=0)
+    module = db.ReferenceProperty(Module, collection_name="booklist")
+
+
+class Post(db.Model):
+    module = db.ReferenceProperty(Module)
+    book = db.ReferenceProperty(Book)
+    user = db.ReferenceProperty(User, collection_name="books_onSale")
+    condition = db.ListProperty(str)
+    comment = db.StringProperty(multiline='True')
+    cost = db.IntegerProperty(default=0)
+    book_pic = db.BlobProperty()
+
+
 class UserInfoForm(Form):
     first_name = TextField('First Name:', [validators.required()])
     last_name = TextField('Last Name:', [validators.required()])
@@ -53,28 +75,6 @@ class SearchForm(Form):
                                                          ('author', 'Author'),
                                                          ('publisher', 'Publisher')])
     search_field = TextField('Keyword', [validators.optional()])
-
-
-class Module(db.Model):
-    module_code = db.StringProperty(default="")
-
-
-class Book(db.Model):
-    title = db.StringProperty(default="")
-    author = db.StringProperty(default="")
-    publisher = db.StringProperty(default="")
-    edition = db.IntegerProperty(default=0)
-    module = db.ReferenceProperty(Module, collection_name="booklist")
-
-
-class Post(db.Model):
-    module = db.ReferenceProperty(Module)
-    book = db.ReferenceProperty(Book)
-    user = db.ReferenceProperty(User, collection_name="books_onSale")
-    condition = db.ListProperty(str)
-    comment = db.StringProperty(multiline='True')
-    cost = db.IntegerProperty(default=0)
-    book_pic = db.BlobProperty()
 
 
 class SellForm(Form):

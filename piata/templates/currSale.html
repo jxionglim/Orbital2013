@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Piata Current Sales</title>
+    <title>Piata Current</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Le styles -->
@@ -32,7 +32,7 @@
                     <li><a href="/main">Home</a></li>
                     <li><a href="/buy">Post Book</a></li>
                     <li><a href="/sell">Request Book</a></li>
-                    <li class="active"><a href="/sell/currSale">Current Sales</a></li>
+                    <li class="active"><a href="/current">Current Sales</a></li>
                     <li><a href="/adv_search">Advance Search</a></li>
                 </ul>
                 <form class="navbar-form pull-right">
@@ -59,11 +59,11 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th class="span1">#</th>
-                        <th class="span1">Sale Records</th>
-                        <th class="span3"></th>
-                        <th class="span5">Details</th>
-                        <th class="span2">Actions</th>
+                        <th class="span1"><p>#</p></th>
+                        <th class="span1"><p>Sale Records</p></th>
+                        <th class="span3"><p></p></th>
+                        <th class="span5"><p></p>Details</p></th>
+                        <th class="span2"><p class="text-center">Actions</p></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -75,9 +75,13 @@
                             <td><strong>{{ post.book.title|e }}</strong><br><small><i>{{ post.book.author|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
                             {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
                             {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
-                            {% else %} {{ post.book.edition|e }} Edition {% endif %}</small></td>
-                            <td>Cost: ${{ post.cost|e }}<br>Condition of book: {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>Comment: {{ post.comment|e }}</td>
-                            <td><a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info">Edit</a></td>
+                            {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
+                            <td>
+                                <strong>Cost:</strong> ${{ post.cost|e }}<br>
+                                <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
+                                <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
+                            </td>
+                            <td><a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info span1">Edit</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

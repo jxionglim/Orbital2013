@@ -29,7 +29,7 @@
             <a class="brand">Piata</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="/">Home</a></li>
                     <li><a href="/about_us">About Us</a></li>
                     <li><a href="/contact_us">Contact Us</a></li>
                 </ul>
@@ -47,33 +47,65 @@
 </div>
 
 <div class="container">
-
-    <!-- Main hero unit for a primary marketing message or call to action -->
-    <div class="hero-unit">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-    </div>
-
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
+    <form class="form-search form-horizontal" action="/" method="post" enctype="multipart/form-data">
+        <div class="hero-unit">
+            <legend><strong>Search Books</strong></legend>
+            {% for fields in searchform %}
+                <div class="control-group input-append">
+                    <label class="control-label">{{ fields.label }}: </label>
+                    <div class="controls">
+                        {% if fields.id == 'search_field' %}
+                            <input id="search_field" name="search_field" type="text" class="span5 search-query" placeholder="Enter search term" {% if fields.data != None %}value={{ fields.data }} {% endif %} >
+                            <button type="submit" class="btn">Search</button>
+                        {% else %}
+                            {{ fields }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
+    </form>
+    {% if search %}
+        <div class="hero-unitplain">
+            <legend><strong>Search Results</strong></legend>
+            {% if searchResult.__len__() == 0 %}
+                No results... Try again with another term.
+            {% else %}
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="span1"><p>#</p></th>
+                        <th class="span1"><p>Sale Records</p></th>
+                        <th class="span3"><p></p></th>
+                        <th class="span5"><p></p>Details</p></th>
+                        <th class="span2"><p class="text-center">Actions</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set count = 1 %}
+                    {% for records in searchResult %}
+                        <tr>
+                            <td>{{ count }}{% set count = count + 1 %}</td>
+                            <td>{% if records.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ records.key().id() }}">{% endif %}</td>
+                            <td><strong>{{ records.book.title|e }}</strong><br><small><i>{{ records.book.author|e }}</i></small><br><small>{% if records.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                            {% elif records.book.edition|e == '2' %} {{ records.book.edition|e }}<sup>nd</sup> Edition
+                            {% elif records.book.edition|e == '3' %} {{ records.book.edition|e }}<sup>rd</sup> Edition
+                            {% else %} {{ records.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
+                            <td>
+                                <strong>Module Code:</strong> {{ records.module.module_code|e }}<br>
+                                <strong>Seller:</strong><a href="#"> {{ records.user.first_name|e }}</a><br>
+                                <strong>Cost:</strong> ${{ records.cost|e }}<br>
+                                <strong>Condition of book:</strong> {% if not records.condition %} Nil {% else %}{% for condition in records.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ records.condition[-1] }}</u>{% endif %}<br>
+                                <strong>Comment:</strong> {% if records.comment != "" %}{{ records.comment|e }}{% else %} Nil {% endif %}
+                            </td>
+                            <td><a href="#" class="btn btn-small btn-info span1">Buy</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
         </div>
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-    </div>
-
+    {% endif %}
     <hr>
 
     <footer>

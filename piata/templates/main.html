@@ -29,10 +29,10 @@
             <a class="brand">Piata</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="/main">Home</a></li>
                     <li><a href="/buy">Post Book</a></li>
                     <li><a href="/sell">Request Book</a></li>
-                    <li><a href="/sell/currSale">Current Sales</a></li>
+                    <li><a href="/current">Current Sales</a></li>
                     <li><a href="/sell">Advance Search</a></li>
                 </ul>
                 <form class="navbar-form pull-right">
@@ -72,20 +72,20 @@
             {% endfor %}
         </div>
     </form>
-    {% if searchResult %}
+    {% if search %}
         <div class="hero-unitplain">
             <legend><strong>Search Results</strong></legend>
-            {% if resultLen == 0 %}
+            {% if searchResult.__len__() == 0 %}
                 No results... Try again with another term.
             {% else %}
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th class="span1">#</th>
-                        <th class="span1">Sale Records</th>
-                        <th class="span3"></th>
-                        <th class="span5">Details</th>
-                        <th class="span2">Actions</th>
+                        <th class="span1"><p>#</p></th>
+                        <th class="span1"><p>Sale Records</p></th>
+                        <th class="span3"><p></p></th>
+                        <th class="span5"><p></p>Details</p></th>
+                        <th class="span2"><p class="text-center">Actions</p></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -94,9 +94,18 @@
                         <tr>
                             <td>{{ count }}{% set count = count + 1 %}</td>
                             <td>{% if records.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ records.key().id() }}">{% endif %}</td>
-                            <td>Author: asd<br>Edition:1</td>
-                            <td>User:zxczxcxzc<br>Conditions:asasdasd<br>Comments:asdsadas</td>
-                            <td><a href="/profile/edit" class="btn btn-small btn-info span1">Edit</a><br><br><a href="/profile/edit" class="btn btn-small btn-info span1">Buy</a></td>
+                            <td><strong>{{ records.book.title|e }}</strong><br><small><i>{{ records.book.author|e }}</i></small><br><small>{% if records.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                            {% elif records.book.edition|e == '2' %} {{ records.book.edition|e }}<sup>nd</sup> Edition
+                            {% elif records.book.edition|e == '3' %} {{ records.book.edition|e }}<sup>rd</sup> Edition
+                            {% else %} {{ records.book.edition|e }} Edition {% endif %}</small></td>
+                            <td>
+                                <strong>Module Code:</strong> {{ records.module.module_code|e }}<br>
+                                <strong>Seller:</strong><a href="#"> {{ records.user.first_name|e }}</a><br>
+                                <strong>Cost:</strong> ${{ records.cost|e }}<br>
+                                <strong>Condition of book:</strong> {% if not records.condition %} Nil {% else %}{% for condition in records.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ records.condition[-1] }}</u>{% endif %}<br>
+                                <strong>Comment:</strong> {% if records.comment != "" %}{{ records.comment|e }}{% else %} Nil {% endif %}
+                            </td>
+                            <td><a href="#" class="btn btn-small btn-info span1">Edit</a><br><br><a href="#" class="btn btn-small btn-info span1">Buy</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
