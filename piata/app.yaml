@@ -1,5 +1,5 @@
-application: piata-v1
-version: 4
+application: piata-sg
+version: 1
 runtime: python27
 api_version: 1
 threadsafe: true
