@@ -78,12 +78,23 @@ class Submit(webapp2.RequestHandler):
             else:
                 currModule = result_module
 
-            currBook.title = self.request.get('title').rstrip()
-            currBook.author = self.request.get('author').rstrip()
-            currBook.publisher = self.request.get('publisher').rstrip()
-            currBook.edition = int(self.request.get('edition').rstrip())
-            currBook.module = currModule
-            currBook.put()
+            q1 = db.Query(models.Book)
+            q1.filter('title =', self.request.get('title').rstrip().lower())
+            result_book = q1.get()
+
+            status = False
+            if result_book is not None:
+                if result_book.author == self.request.get('author').rstrip().lower() and result_book.publisher == self.request.get('publisher').rstrip().lower() and result_book.edition == int(self.request.get('edition').rstrip()):
+                    currBook = result_book
+                    status = True
+
+            if status is False:
+                currBook.title = self.request.get('title').rstrip().lower()
+                currBook.author = self.request.get('author').rstrip().lower()
+                currBook.publisher = self.request.get('publisher').rstrip().lower()
+                currBook.edition = int(self.request.get('edition').rstrip())
+                currBook.module = currModule
+                currBook.put()
 
             currPost.module = currModule
             currPost.book = currBook
