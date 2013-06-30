@@ -69,7 +69,7 @@ class MainPage(webapp2.RequestHandler):
             if search_cat == 'module_code':
                 moduleList = models.Module.all()
                 for module in moduleList:
-                    if search_field in module.module_code:
+                    if search_field.upper() in module.module_code:
                         tempResult.append(module)
                 for records in tempResult:
                     allRecords = models.Post.all().filter('module', records)
@@ -78,7 +78,7 @@ class MainPage(webapp2.RequestHandler):
             else:
                 bookList = models.Book.all()
                 for book in bookList:
-                    if search_field in getattr(book, search_cat):
+                    if search_field.upper() in getattr(book, search_cat):
                         tempResult.append(book)
                 for records in tempResult:
                     allRecords = models.Post.all().filter('book', records)
