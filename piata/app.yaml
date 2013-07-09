@@ -4,10 +4,6 @@ runtime: python27
 api_version: 1
 threadsafe: true
 
-error_handlers:
-
-  - file: error.html
-
 handlers:
 
 - url: /css
@@ -22,11 +18,14 @@ handlers:
 - url: /
   script: login.app
 
-- url: /profile/?(.*?)/?(.*?)
+- url: /profile/?(.*?)
   script: profile.app
   login: required
 
-- url: /sell/?(.*?)/?(.*?)
+- url: /sell/image/?(.*?)
+  script: sell.app
+
+- url: /sell/?(.*?)
   script: sell.app
   login: required
 
@@ -34,7 +33,7 @@ handlers:
   script: current.app
   login: required
 
-- url: /(login|main)
+- url: /(login|main|adv_search)
   script: home.app
   login: required
 

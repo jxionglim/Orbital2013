@@ -123,7 +123,7 @@
                         <tr>
                             <td>{{ count }}{% set count = count + 1 %}</td>
                             <td>{% if records.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ records.key().id() }}">{% endif %}</td>
-                            <td><strong>{{ records.book.title|e }}</strong><br><small><i>{{ records.book.author|e }}</i></small><br><small>{% if records.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                            <td><strong>{{ records.book.title|e }}</strong><br><small><i>{{ records.book.author|e }}</i></small><br><small>{% if records.book.edition|e == '1' %} {{ records.book.edition|e }}<sup>st</sup> Edition
                             {% elif records.book.edition|e == '2' %} {{ records.book.edition|e }}<sup>nd</sup> Edition
                             {% elif records.book.edition|e == '3' %} {{ records.book.edition|e }}<sup>rd</sup> Edition
                             {% else %} {{ records.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>

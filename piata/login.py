@@ -41,7 +41,7 @@ class MainPage(webapp2.RequestHandler):
             else:
                 bookList = models.Book.all()
                 for book in bookList:
-                    if search_field.upper() in getattr(book, search_cat):
+                    if search_field.lower() in getattr(book, search_cat):
                         tempResult.append(book)
                 for records in tempResult:
                     allRecords = models.Post.all().filter('book', records)

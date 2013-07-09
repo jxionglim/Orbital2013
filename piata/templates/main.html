@@ -131,7 +131,7 @@
                         <tr>
                             <td>{{ count }}{% set count = count + 1 %}</td>
                             <td>{% if records.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ records.key().id() }}">{% endif %}</td>
-                            <td><strong>{{ records.book.title.title()|e }}</strong><br><small><i>{{ records.book.author.title()|e }}</i></small><br><small>{% if records.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                            <td><strong>{{ records.book.title.title()|e }}</strong><br><small><i>{{ records.book.author.title()|e }}</i></small><br><small>{% if records.book.edition|e == '1' %} {{ records.book.edition|e }}<sup>st</sup> Edition
                             {% elif records.book.edition|e == '2' %} {{ records.book.edition|e }}<sup>nd</sup> Edition
                             {% elif records.book.edition|e == '3' %} {{ records.book.edition|e }}<sup>rd</sup> Edition
                             {% else %} {{ records.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
@@ -145,8 +145,9 @@
                             <td>
                                 {% if records.user.key().name() == email %}
                                     <a href="/sell/edit/{{ records.key().id() }}" class="btn btn-small btn-info span1">Edit</a><br><br>
+                                {% else %}
+                                    <a href="#" class="btn btn-small btn-info span1">Buy</a>
                                 {% endif %}
-                                <a href="#" class="btn btn-small btn-info span1">Buy</a>
                             </td>
                         </tr>
                     {% endfor %}
