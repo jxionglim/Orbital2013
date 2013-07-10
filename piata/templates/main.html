@@ -49,8 +49,19 @@
 </div>
 
 <div class="container">
+    {% if reminder == False %}
+        <div class="alert alert-info">
+            We have detected that you yet to update your profile completely. Doing so will attract more buyers! <strong>Click <a href="/profile/edit">here</a> to update</strong>
+        </div>
+    {% endif %}
     {% if search == False %}
-        <h2 class="text-error"><em>Latest News</em></h2>
+        <h2 class="text-error">
+            <em>
+                Latest News &nbsp
+                <div class="fb-like" data-href="http://piata-sg.appspot.com/" data-send="false" data-width="450" data-show-faces="false" data-font="tahoma"></div>
+                <div id="fb-root"></div>
+            </em>
+        </h2>
         <div class="bs-docs-example">
             <div id="myCarousel" class="carousel slide">
                 <ol class="carousel-indicators">
@@ -86,12 +97,7 @@
             </div>
         </div>
     {% endif %}
-    <form class="form-search form-horizontal" action="/main" method="post" enctype="multipart/form-data">
-        {% if reminder == False %}
-            <div class="alert alert-info">
-                We have detected that you yet to update your profile completely. Doing so will attract more buyers! <strong>Click <a href="/profile/edit">here</a> to update</strong>
-            </div>
-        {% endif %}
+    <form class="form-search form-horizontal" action="/main" method="get" enctype="multipart/form-data">
         <div class="hero-unit">
             <legend><strong>Search Books</strong></legend>
             {% for fields in searchform %}
@@ -143,6 +149,9 @@
                                 <strong>Comment:</strong> {% if records.comment != "" %}{{ records.comment|e }}{% else %} Nil {% endif %}
                             </td>
                             <td>
+                                <a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('www.piata-sg.appspot.com/advsearch?module_code={{ records.module.module_code }}&module_code_type=exact&title={{ records.book.title }}&title_type=exact&author={{ records.book.author }}&author_type=exact&publisher={{ records.book.publisher }}&publisher_type=exact&edition_type=%3D&edition={{records.book.edition}}&cost_type=%3D&cost={{ records.cost }}'),'facebook-share-dialog','width=626,height=436');return false;">
+                                    <img class="imageshare" src="/images/share.png">
+                                </a>
                                 {% if records.user.key().name() == email %}
                                     <a href="/sell/edit/{{ records.key().id() }}" class="btn btn-small btn-info span1">Edit</a><br><br>
                                 {% else %}
@@ -176,6 +185,15 @@
             $('#myCarousel').carousel()
         })
     }(window.jQuery)
+</script>
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=495437447193859";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
 </html>

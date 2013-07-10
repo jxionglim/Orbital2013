@@ -21,6 +21,9 @@ handlers:
 - url: /
   script: login.app
 
+- url: /advsearch
+  script: login.app
+
 - url: /profile/?(.*?)
   script: profile.app
   login: required
