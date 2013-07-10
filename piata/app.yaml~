@@ -1,10 +1,13 @@
-application: piata-v1
+application: piata-sg
 version: 3
 runtime: python27
 api_version: 1
 threadsafe: true
 
 handlers:
+
+- url: /_ah/login_required
+  script: do_openid_login.app
 
 - url: /css
   static_dir: css
@@ -18,15 +21,27 @@ handlers:
 - url: /
   script: login.app
 
-- url: /about_us
-  script: login.app
+- url: /profile/?(.*?)
+  script: profile.app
+  login: required
 
-- url: /contact_us
-  script: login.app
+- url: /sell/image/?(.*?)
+  script: sell.app
 
-- url: /.*
+- url: /sell/?(.*?)
+  script: sell.app
+  login: required
+
+- url: /current
+  script: current.app
+  login: required
+
+- url: /(login-google|login-nus|main|adv_search)
   script: home.app
   login: required
+
+- url: /.*
+  script: error.app
 
 libraries:
 - name: jinja2

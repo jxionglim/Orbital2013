@@ -13,6 +13,7 @@ jinja_environment = jinja2.Environment(
 
 class ProcessLogin(webapp2.RequestHandler):
     def get(self):
+        pass
         user = users.get_current_user()
         if user:
             currUser = db.get(db.Key.from_path('User', user.email()))
@@ -306,8 +307,8 @@ class ContactPage(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
 app = webapp2.WSGIApplication([('/login', ProcessLogin),
-                               ('/main', MainPage),
                                ('/buy', BuyPage),
+                               ('/main', MainPage),
                                ('/adv_search', AdvanceSearchPage),
                                ('/about', AboutPage),
                                ('/contact', ContactPage)],
