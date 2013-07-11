@@ -21,7 +21,7 @@ handlers:
 - url: /
   script: login.app
 
-- url: /advsearch
+- url: /(advsearch|about_us|contact_us)
   script: login.app
 
 - url: /profile/?(.*?)
@@ -39,7 +39,7 @@ handlers:
   script: current.app
   login: required
 
-- url: /(login|main|adv_search)
+- url: /(login|main|adv_search|about|contact)
   script: home.app
   login: required
 

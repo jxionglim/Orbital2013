@@ -16,6 +16,12 @@ body {
     width: 92px;
 }
 
+.imagerate {
+    padding-left: 15px;
+    height: auto;
+    width: 30px;
+}
+
 .navbar .brand {
     color:#ffffff;
 }

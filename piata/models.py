@@ -10,7 +10,7 @@ class User(db.Model):
     address = db.StringProperty(default="", multiline='True')
     postal_code = db.StringProperty(default="")
     contact_num = db.StringProperty(default="")
-    contact_num_hide = db.BooleanProperty(default=False)
+    address_hide = db.BooleanProperty(default=False)
     institute = db.StringProperty(default="")
     faculty = db.StringProperty(default="")
     course = db.StringProperty(default="")
@@ -49,8 +49,8 @@ class UserInfoForm(Form):
     address = TextAreaField('Address', [validators.optional()])
     postal_code = IntegerField('Postal Code', [validators.optional()])
     contact_num = IntegerField('Contact Number', [validators.required(message="Enter a 9 digit number")])
-    contact_num_hide = SelectField('Contact Visibility', choices=[('n', 'Viewable by other users'),
-                                                                  ('y', 'Hidden from other users')])
+    address_hide = SelectField('Address Visibility', choices=[('False', 'Viewable by other users'),
+                                                              ('True', 'Hidden from other users')])
     profile_pic = FileField('Upload Profile Picture:', [validators.optional()])
 
     def validate_postal_code(form, field):

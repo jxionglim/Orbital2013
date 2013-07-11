@@ -54,7 +54,11 @@
             <div class="row-fluid">
                 <div class="span8">
                     <div class="hero-unit">
-                        <legend><strong>Personal Information</strong>&nbsp&nbsp&nbsp<a href="/profile/edit" class="btn btn-small btn-info">Edit</a></legend>
+                        <legend><strong>Personal Information</strong>&nbsp&nbsp&nbsp
+                            {% if ownerEmail == email %}
+                                <a href="/profile/edit" class="btn btn-small btn-info">Edit</a>
+                            {% endif %}
+                        </legend>
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Email</strong></small></div>
                             <div class="span5 offset1"><small>{{ email|e }}</small></div>
@@ -67,24 +71,30 @@
                             <div class="span2 offset1"><small><strong>Last&nbspName</strong></small></div>
                             <div class="span5 offset1"><small>{% if currUser.last_name != "" %}{{ currUser.last_name|e }}{% else %} - {% endif %}</small></div>
                         </div>
-                        <div class="row">
-                            <div class="span2 offset1"><small><strong>Address</strong></small></div>
-                            <div class="span3 offset1"><small>{% if currUser.address != "" %}{{ currUser.address|e }}{% else %} - {% endif %}</small></div>
-                        </div>
-                        <div class="row">
-                            <div class="span2 offset1"><small><strong>Postal&nbspCode</strong></small></div>
-                            <div class="span3 offset1"><small>{% if currUser.postal_code != "" %}{{ currUser.postal_code|e }}{% else %} - {% endif %}</small></div>
-                        </div>
+                        {% if currUser.address_hide == False or ownerEmail == email %}
+                            <div class="row">
+                                <div class="span2 offset1"><small><strong>Address</strong></small></div>
+                                <div class="span3 offset1"><small>{% if currUser.address != "" %}{{ currUser.address|e }}{% else %} - {% endif %}</small></div>
+                            </div>
+                            <div class="row">
+                                <div class="span2 offset1"><small><strong>Postal&nbspCode</strong></small></div>
+                                <div class="span3 offset1"><small>{% if currUser.postal_code != "" %}{{ currUser.postal_code|e }}{% else %} - {% endif %}</small></div>
+                            </div>
+                        {% endif %}
                         <div class="row">
                             <div class="span2 offset1"><small><strong>Contact&nbspNumber</strong></small></div>
                             <div class="span3 offset1"><small>{% if currUser.contact_num != "" %}{{ currUser.contact_num|e }}{% else %} - {% endif %}</small></div>
                         </div>
-                        {% if currUser.contact_num != "" %}
+                        {% if currUser.address != "" and ownerEmail == email %}
                             <div class="row">
-                                <div class="span2 offset1"><small><strong>Contact&nbspVisbility</strong></small></div>
-                                <div class="span5 offset1"><small>{% if currUser.contact_num_hide == True %}Hidden from other users{% else %}Viewable by other users{% endif %}</small></div>
+                                <div class="span2 offset1"><small><strong>Address&nbspVisbility</strong></small></div>
+                                <div class="span5 offset1"><small>{% if currUser.address_hide == True %}Hidden from other users{% else %}Viewable by other users{% endif %}</small></div>
                             </div>
                         {% endif %}
+                        <div class="row">
+                            <div class="span2 offset1"><small><strong>Last Login</strong></small></div>
+                            <div class="span5 offset1"><small>{{ currUser.last_active.strftime('%H:%M %d-%m-%Y') }}</small></div>
+                        </div>
                         <br>
                         <legend><strong>Institute Information</strong></legend>
                         <div class="row">
@@ -113,7 +123,14 @@
                             <div class="row">
                                 <br>
                                 <div class="span2 offset1"><small><strong>Rating</strong></small></div>
-                                <span class="offset1 help-inline"><img src='/images/{{ currUser.rating|e }}stars.png' width="150px"></span>
+                                <span class="offset1 help-inline"><img src='/images/{{ ratingScale|e }}stars.png' width="150px"></span>
+                                <br>
+                                {% if ownerEmail != email %}
+                                    <br>
+                                    <div class="span3 offset1"><small><strong>Rate me!</strong></small></div>
+                                    <a href="/profile/{{ currUser.key()}}/up"><img id="rateup" class="imagerate" src="/images/up.png"></a>
+                                    <a href="/profile/{{ currUser.key()}}/down"><img id="ratedown" class="imagerate" src="/images/down.png"></a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -146,6 +163,15 @@
 <script src="/bootstrap/js/bootstrap-collapse.js"></script>
 <script src="/bootstrap/js/bootstrap-carousel.js"></script>
 <script src="/bootstrap/js/bootstrap-typeahead.js"></script>
-
+<script>
+    $(document).ready(function(){
+        $('#rateup').click(function(){
+            return confirm("Are you sure? :)");
+        });
+        $('#ratedown').click(function(){
+            return confirm("Are you sure? :(");
+        });
+    });
+</script>
 </body>
 </html>

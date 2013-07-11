@@ -36,6 +36,5 @@ class DisplaySell(webapp2.RedirectHandler):
         template = jinja_environment.get_template('currSale.html')
         self.response.out.write(template.render(template_values))
 
-
 app = webapp2.WSGIApplication([('/current', DisplaySell)],
                               debug=True)

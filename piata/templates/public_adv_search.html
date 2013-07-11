@@ -149,7 +149,7 @@
                             {% else %} {{ records.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
                             <td>
                                 <strong>Module Code:</strong> {{ records.module.module_code|e }}<br>
-                                <strong>Seller:</strong><a href="#"> {{ records.user.key().name()|e }}</a><br>
+                                <strong>Seller:</strong><a href='/profile/user/{{ records.user.key().name()}}'> {{ records.user.key().name()|e }}</a><br>
                                 <strong>Cost:</strong> ${{ records.cost|e }}<br>
                                 <strong>Condition of book:</strong> {% if not records.condition %} Nil {% else %}{% for condition in records.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ records.condition[-1] }}</u>{% endif %}<br>
                                 <strong>Comment:</strong> {% if records.comment != "" %}{{ records.comment|e }}{% else %} Nil {% endif %}
