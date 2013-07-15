@@ -81,7 +81,63 @@
                                 <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
                                 <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
                             </td>
-                            <td><a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info span1">Edit</a></td>
+                            <td>
+                                <a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
+                                <br><br>
+                                <a href="/current/delete/{{ post.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+
+    <div class="hero-unit1">
+        <legend><strong>Current Request</strong></legend>
+        {% if currRequests.__len__() == 0 %}
+            <strong>There are no books on request.</strong>
+        {% else %}
+            {% for requests in currRequests %}
+                <h4><strong>Module Code: {{ requests }}</strong></h4>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="span1"><p>#</p></th>
+                        <th class="span4"><p>Title of Book</p></th>
+                        <th class="span3"><p>Author</p></th>
+                        <th class="span2"><p>Edition</p></th>
+                        <th class="span3"><p>Cost Range</p></th>
+                        <th class="span3"><p>Condition</p></th>
+                        <th class="span3"><p>Status</p></th>
+                        <th class="span2"><p class="text-center">Actions</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set count = 1 %}
+                    {% for request in currRequests[requests] %}
+                        <tr>
+                            <td>{{ count }}{% set count = count + 1 %}</td>
+                            <td><strong>{{ request.book.title.title()|e }}</strong></td>
+                            <td><small><i>{{ request.book.author.title()|e }}</i></small></td>
+                            <td><small>{% if request.book.edition|e == '1' %} {{ request.book.edition|e }}<sup>st</sup> Edition
+                            {% elif request.book.edition|e == '2' %} {{ request.book.edition|e }}<sup>nd</sup> Edition
+                            {% elif request.book.edition|e == '3' %} {{ request.book.edition|e }}<sup>rd</sup> Edition
+                            {% else %} {{ request.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
+                            <td></td>
+
+                            <td>
+                                <strong>Cost:</strong> ${{ request.cost|e }}<br>
+                                <strong>Condition of book:</strong> {% if not request.condition %} Nil {% else %}{% for condition in request.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ request.condition[-1] }}</u>{% endif %}<br>
+                                <strong>Comment:</strong> {% if request.comment != "" %}{{ request.comment|e }}{% else %} Nil {% endif %}
+                            </td>
+                            <td>
+                                <a href="/sell/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
+                                <br><br>
+                                <a href="/current/delete/{{ request.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

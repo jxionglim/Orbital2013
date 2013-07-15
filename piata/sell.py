@@ -133,7 +133,6 @@ class Submit(webapp2.RequestHandler):
             currPost.put()
 
             if not trigger:
-                pass
                 time.sleep(0.5)
                 self.redirect('/current')
             else:
