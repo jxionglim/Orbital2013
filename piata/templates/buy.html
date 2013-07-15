@@ -70,8 +70,8 @@
             <div class="control-group">
                 <label class="control-label">Cost Range</label>
                 <div class="controls">
-                    <input type="text" id='cost_lower' name="cost_lower" style="width: 30px;" {% if buy_form.cost_lower.data != None %}{{ buy_form.cost_lower.data }}{% endif %}>&nbsp;&ndash;
-                    <input type="text" id='cost_upper' name="cost_upper" style="width: 30px;" {% if buy_form.cost_upper.data != None %}{{ buy_form.cost_upper.data }}{% endif %}> {% if buy_form.cost_upper.errors != '' %} {% for error in buy_form.cost_upper.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %} {% endif %}
+                    <input type="text" id='cost_lower' name="cost_lower" style="width: 30px;" value={% if buy_form.cost_lower.data != None %} {{ buy_form.cost_lower.data }} {% endif %}>&nbsp;&ndash;
+                    <input type="text" id='cost_upper' name="cost_upper" style="width: 30px;" value={% if buy_form.cost_upper.data != None %} {{ buy_form.cost_upper.data }} {% endif %}> {% if buy_form.cost_upper.errors != [] %} {% for error in buy_form.cost_upper.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %} {% else %} {% if buy_form.cost_lower.errors != [] %} {% for error in buy_form.cost_lower.errors %} <span class="help-inline"><small><p class="text-error">{{ error }}</p></small></span> {% endfor %} {% endif %} {% endif %}
                 </div>
             </div>
 

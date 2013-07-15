@@ -35,7 +35,11 @@ handlers:
   script: sell.app
   login: required
 
-- url: /current
+- url: /buy/?(.*?)
+  script: buy.app
+  login: required
+
+- url: /current/?(.*?)
   script: current.app
   login: required
 
