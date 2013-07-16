@@ -43,6 +43,14 @@ class Post(db.Model):
     book_pic = db.BlobProperty()
 
 
+class Request(db.Model):
+    module = db.ReferenceProperty(Module)
+    book = db.ReferenceProperty(Book)
+    user = db.ReferenceProperty(User, collection_name="books_onRequest")
+    cost_range = db.StringProperty(default="")
+    condition = db.ListProperty(str)
+
+
 class UserInfoForm(Form):
     first_name = TextField('First Name', [validators.required()])
     last_name = TextField('Last Name', [validators.required()])
@@ -125,3 +133,20 @@ class SellForm(Form):
     comment = TextAreaField("Comment", [validators.optional()])
     book_pic = HiddenField(FileField, [validators.optional()])
     book_id = HiddenField(TextField, [validators.optional()])
+
+
+class BuyForm(Form):
+    module_code = TextField('Module Code', [validators.Required()])
+    title = TextField('Title', [validators.Required()])
+    author = TextField('Author', [validators.Required()])
+    publisher = TextField('Publisher', [validators.Required()])
+    edition = IntegerField('Edition', [validators.number_range(min=1, max=None)])
+    cost_lower = IntegerField('cost_lower', [validators.number_range(min=1, max=None)])
+    cost_upper = IntegerField('cost_upper', [validators.number_range(min=1, max=None)])
+    condition_highlights = BooleanField([validators.optional()])
+    condition_stains = BooleanField([validators.optional()])
+    condition_writings = BooleanField([validators.optional()])
+    condition_dog_eared = BooleanField([validators.optional()])
+    condition_torn = BooleanField([validators.optional()])
+    condition_wrapped = BooleanField([validators.optional()])
+    condition_not_used_once = BooleanField([validators.optional()])
