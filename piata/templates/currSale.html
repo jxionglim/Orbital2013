@@ -77,7 +77,7 @@
                             {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
                             {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
                             <td>
-                                <strong>Cost:</strong> ${{ post.cost|e }}<br>
+                                <strong>Cost:</strong> ${{ post.cost|e }} <a href="/stats/{{ post.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
                                 <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
                                 <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
                             </td>
@@ -129,7 +129,7 @@
                             <td></td>
 
                             <td>
-                                <strong>Cost:</strong> ${{ request.cost|e }}<br>
+                                <strong>Cost:</strong> ${{ request.cost|e }} <a href="/stats/{{ request.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
                                 <strong>Condition of book:</strong> {% if not request.condition %} Nil {% else %}{% for condition in request.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ request.condition[-1] }}</u>{% endif %}<br>
                                 <strong>Comment:</strong> {% if request.comment != "" %}{{ request.comment|e }}{% else %} Nil {% endif %}
                             </td>

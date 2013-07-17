@@ -51,6 +51,12 @@ class Request(db.Model):
     condition = db.ListProperty(str)
 
 
+class SaleRecord(db.Model):
+    book = db.ReferenceProperty(Book)
+    cost = db.IntegerProperty(default=0)
+    sold_date = db.DateTimeProperty(default=datetime.datetime.now())
+
+
 class UserInfoForm(Form):
     first_name = TextField('First Name', [validators.required()])
     last_name = TextField('Last Name', [validators.required()])

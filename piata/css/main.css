@@ -82,3 +82,11 @@ body {
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+.fb-like {
+  overflow: hidden;
+  height: 27.5px;
+}
+
+.fb-like iframe {
+  left: 0 !important;
+}

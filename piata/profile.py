@@ -98,7 +98,6 @@ class ViewProfile(webapp2.RequestHandler):
         currUser = db.get(db.Key.from_path('User', user.email()))
         if not currUser.required_complete:
             self.redirect('/profile/edit')
-        currUser = db.get(db.Key.from_path('User', user.email()))
         template_values = {
             'currUser': currUser,
             'ownerEmail': user.email(),

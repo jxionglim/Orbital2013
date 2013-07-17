@@ -58,8 +58,7 @@
         <h2 class="text-error">
             <em>
                 Latest News &nbsp
-                <div class="fb-like" data-href="http://piata-sg.appspot.com/" data-send="false" data-width="450" data-show-faces="false" data-font="tahoma"></div>
-                <div id="fb-root"></div>
+                <div class="fb-like" data-href="http://www.piata-sg.appspot.com" data-send="false" data-width="250" data-show-faces="false" data-font="tahoma"></div>
             </em>
         </h2>
         <div class="bs-docs-example">
@@ -144,7 +143,7 @@
                             <td>
                                 <strong>Module Code:</strong> {{ records.module.module_code|e }}<br>
                                 <strong>Seller:</strong><a href='/profile/user/{{ records.user.key().name()}}'> {{ records.user.key().name()|e }}</a><br>
-                                <strong>Cost:</strong> ${{ records.cost|e }}<br>
+                                <strong>Cost:</strong> ${{ records.cost|e }} <a href="/stats/{{ records.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
                                 <strong>Condition of book:</strong> {% if not records.condition %} Nil {% else %}{% for condition in records.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ records.condition[-1] }}</u>{% endif %}<br>
                                 <strong>Comment:</strong> {% if records.comment != "" %}{{ records.comment|e }}{% else %} Nil {% endif %}
                             </td>
@@ -186,6 +185,7 @@
         })
     }(window.jQuery)
 </script>
+<div id="fb-root"></div>
 <script>
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
