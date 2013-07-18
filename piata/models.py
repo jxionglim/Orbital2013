@@ -41,6 +41,7 @@ class Post(db.Model):
     comment = db.StringProperty(multiline='True')
     cost = db.IntegerProperty(default=0)
     book_pic = db.BlobProperty()
+    status = db.StringProperty()
 
 
 class Request(db.Model):
@@ -49,6 +50,7 @@ class Request(db.Model):
     user = db.ReferenceProperty(User, collection_name="books_onRequest")
     cost_range = db.StringProperty(default="")
     condition = db.ListProperty(str)
+    status = db.StringProperty()
 
 
 class SaleRecord(db.Model):
@@ -156,3 +158,4 @@ class BuyForm(Form):
     condition_torn = BooleanField([validators.optional()])
     condition_wrapped = BooleanField([validators.optional()])
     condition_not_used_once = BooleanField([validators.optional()])
+    book_id = HiddenField(TextField, [validators.optional()])
