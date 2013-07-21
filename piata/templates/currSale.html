@@ -130,7 +130,11 @@
                             <td>{% if not request.condition %} Nil {% else %}{% for condition in request.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ request.condition[-1] }}</u>{% endif %}<br></td>
                             <td></td>
                             <td>
-                                <a href="/buy/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
+                                {% if request.status|e == 'Matched' %}
+                                    <a href="/matched/{{ request.key().id() }}" class="btn btn-small btn-success span1">Deal</a>
+                                {% else %}
+                                    <a href="/buy/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
+                                {% endif %}
                                 <br><br>
                                 <a href="/current/delete/{{ request.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
                             </td>
