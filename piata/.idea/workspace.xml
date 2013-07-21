@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b715f924-0e07-41ca-8078-67f7eab2a5b9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/currSale.html" afterPath="$PROJECT_DIR$/templates/currSale.html" />
+    <list default="true" id="b715f924-0e07-41ca-8078-67f7eab2a5b9" name="Default" comment="Update carousel news">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="piata.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374398141679" ignored="false" />
+    <file path="/Dummy.txt" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374401914899" ignored="false" />
     <file path="/currSale.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374401414704" ignored="false" />
     <file path="/adv_search.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374043698801" ignored="false" />
     <file path="/about.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373525001151" ignored="false" />
@@ -79,7 +78,7 @@
       <file leaf-file-name="main.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="180" column="24" selection-start="9679" selection-end="9679" vertical-scroll-proportion="0.5204263">
+            <state line="177" column="10" selection-start="9623" selection-end="9623" vertical-scroll-proportion="0.44049734">
               <folding />
             </state>
           </provider>
@@ -320,7 +319,11 @@
       <created>1374398152351</created>
       <updated>1374398152351</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Update carousel news">
+      <created>1374401900888</created>
+      <updated>1374401900888</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -560,7 +563,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="24" selection-start="9679" selection-end="9679" vertical-scroll-proportion="0.5204263">
+        <state line="177" column="10" selection-start="9623" selection-end="9623" vertical-scroll-proportion="0.44049734">
           <folding />
         </state>
       </provider>
