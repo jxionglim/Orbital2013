@@ -3,6 +3,7 @@ import jinja2
 import os
 import models
 import time
+import re
 
 from google.appengine.api import users
 from google.appengine.ext import db
@@ -63,8 +64,8 @@ class Submit(webapp2.RequestHandler):
             currBook = models.Book()
         else:
             currPost = models.Post.get_by_id(int(self.request.get('book_id').rstrip()))
-            currModule = currPost.module
-            currBook = currPost.book
+            currModule = models.Module()
+            currBook = models.Book()
 
         sellform = models.SellForm(self.request.POST)
 
@@ -79,22 +80,18 @@ class Submit(webapp2.RequestHandler):
                 currModule = result_module
 
             q1 = db.Query(models.Book)
-            q1.filter('title =', self.request.get('title').rstrip().lower())
+            q1.filter('title =', self.request.get('title').rstrip().lower()).filter('author', self.request.get('author').rstrip().lower()).filter('publisher', self.request.get('publisher').rstrip().lower()).filter('edition', int(self.request.get('edition').rstrip()))
             result_book = q1.get()
 
-            status = False
-            if result_book is not None:
-                if result_book.author == self.request.get('author').rstrip().lower() and result_book.publisher == self.request.get('publisher').rstrip().lower() and result_book.edition == int(self.request.get('edition').rstrip()):
-                    currBook = result_book
-                    status = True
-
-            if status is False:
+            if result_book is None:
                 currBook.title = self.request.get('title').rstrip().lower()
                 currBook.author = self.request.get('author').rstrip().lower()
                 currBook.publisher = self.request.get('publisher').rstrip().lower()
                 currBook.edition = int(self.request.get('edition').rstrip())
                 currBook.module = currModule
                 currBook.put()
+            else:
+                currBook = result_book
 
             currPost.module = currModule
             currPost.book = currBook
@@ -131,6 +128,7 @@ class Submit(webapp2.RequestHandler):
                     msg = "Upload a proper image"
 
             currPost.put()
+            checkStatus(currPost)
 
             if not trigger:
                 time.sleep(0.5)
@@ -154,6 +152,39 @@ class Submit(webapp2.RequestHandler):
 
             template = jinja_environment.get_template('sell.html')
             self.response.out.write(template.render(template_values))
+
+
+def checkStatus(currPost):
+
+    q = db.Query(models.Request)
+    q.order('request_date')
+
+    results = q.get()
+
+    if results is not None:
+        currRequest = results
+        cost = map(int, re.findall(r'\d+', currRequest.cost_range))
+
+        if cost.__len__() == 1:
+            cost_lower = cost.__getitem__(0)
+            cost_upper = cost.__getitem__(0)
+        else:
+            cost_lower = cost.__getitem__(0)
+            cost_upper = cost.__getitem__(1)
+
+        if currRequest.module.module_code == currPost.module.module_code and currRequest.book.title == currPost.book.title and currRequest.book.author == currPost.book.author and currRequest.book.publisher == currPost.book.publisher and currRequest.book.edition == currPost.book.edition and cost_lower <= currPost.cost <= cost_upper:
+            currPost.status = "Matched"
+            currPost.put()
+            currRequest.status = "Matched"
+            currRequest.put()
+        else:
+            currPost.status = "Pending"
+            currPost.put()
+            currRequest.status = "Pending"
+            currRequest.put()
+    else:
+        currPost.status = "Pending"
+        currPost.put()
 
 
 class ServeImage(webapp2.RequestHandler):

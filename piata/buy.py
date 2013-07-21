@@ -75,8 +75,8 @@ class Submit(webapp2.RequestHandler):
             currBook = models.Book()
         else:
             currRequest = models.Request.get_by_id(int(self.request.get('book_id').rstrip()))
-            currModule = currRequest.module
-            currBook = currRequest.book
+            currModule = models.Module()
+            currBook = models.Book()
 
         buyform = models.BuyForm(self.request.POST)
 
@@ -91,22 +91,18 @@ class Submit(webapp2.RequestHandler):
                 currModule = result_module
 
             q1 = db.Query(models.Book)
-            q1.filter('title =', self.request.get('title').rstrip().lower())
+            q1.filter('title =', self.request.get('title').rstrip().lower()).filter('author', self.request.get('author').rstrip().lower()).filter('publisher', self.request.get('publisher').rstrip().lower()).filter('edition', int(self.request.get('edition').rstrip()))
             result_book = q1.get()
 
-            status = False
-            if result_book is not None:
-                if result_book.author == self.request.get('author').rstrip().lower() and result_book.publisher == self.request.get('publisher').rstrip().lower() and result_book.edition == int(self.request.get('edition').rstrip()):
-                    currBook = result_book
-                    status = True
-
-            if status is False:
+            if result_book is None:
                 currBook.title = self.request.get('title').rstrip().lower()
                 currBook.author = self.request.get('author').rstrip().lower()
                 currBook.publisher = self.request.get('publisher').rstrip().lower()
                 currBook.edition = int(self.request.get('edition').rstrip())
                 currBook.module = currModule
                 currBook.put()
+            else:
+                currBook = result_book
 
             currRequest.module = currModule
             currRequest.book = currBook
@@ -136,6 +132,7 @@ class Submit(webapp2.RequestHandler):
                 currRequest.condition.append(self.request.get('condition_not_used_once').rstrip())
 
             currRequest.put()
+            checkStatus(currRequest)
 
             time.sleep(0.5)
             self.redirect('/current')
@@ -149,6 +146,38 @@ class Submit(webapp2.RequestHandler):
 
             template = jinja_environment.get_template('buy.html')
             self.response.out.write(template.render(template_values))
+
+
+def checkStatus(currRequest):
+    cost = map(int, re.findall(r'\d+', currRequest.cost_range))
+
+    if cost.__len__() == 1:
+        cost_lower = cost.__getitem__(0)
+        cost_upper = cost.__getitem__(0)
+    else:
+        cost_lower = cost.__getitem__(0)
+        cost_upper = cost.__getitem__(1)
+
+    posts = models.Post.all()
+
+    curr = []
+
+    for post in posts:
+        if currRequest.module.module_code == post.module.module_code and currRequest.book.title == post.book.title and currRequest.book.author == post.book.author and currRequest.book.publisher == post.book.publisher and currRequest.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper:
+            post.status = "Matched"
+            post.matched_request = currRequest
+            post.put()
+            curr.append(post)
+        else:
+            post.status = "Pending"
+            post.put()
+
+    if curr.__len__() != 0:
+        currRequest.status = "Matched"
+        currRequest.put()
+    else:
+        currRequest.status = "Pending"
+        currRequest.put()
 
 
 app = webapp2.WSGIApplication([('/buy', BuyPage),

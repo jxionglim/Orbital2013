@@ -109,9 +109,9 @@
                         <th class="span4"><p>Title of Book</p></th>
                         <th class="span3"><p>Author</p></th>
                         <th class="span2"><p>Edition</p></th>
-                        <th class="span3"><p>Cost Range</p></th>
-                        <th class="span3"><p>Condition</p></th>
-                        <th class="span3"><p>Status</p></th>
+                        <th class="span2"><p>Cost Range</p></th>
+                        <th class="span4"><p>Condition</p></th>
+                        <th class="span2"><p>Status</p></th>
                         <th class="span2"><p class="text-center">Actions</p></th>
                     </tr>
                     </thead>
@@ -126,15 +126,11 @@
                             {% elif request.book.edition|e == '2' %} {{ request.book.edition|e }}<sup>nd</sup> Edition
                             {% elif request.book.edition|e == '3' %} {{ request.book.edition|e }}<sup>rd</sup> Edition
                             {% else %} {{ request.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
+                            <td>{{ request.cost_range }}</td>
+                            <td>{% if not request.condition %} Nil {% else %}{% for condition in request.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ request.condition[-1] }}</u>{% endif %}<br></td>
                             <td></td>
-
                             <td>
-                                <strong>Cost:</strong> ${{ request.cost|e }} <a href="/stats/{{ request.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
-                                <strong>Condition of book:</strong> {% if not request.condition %} Nil {% else %}{% for condition in request.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ request.condition[-1] }}</u>{% endif %}<br>
-                                <strong>Comment:</strong> {% if request.comment != "" %}{{ request.comment|e }}{% else %} Nil {% endif %}
-                            </td>
-                            <td>
-                                <a href="/sell/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
+                                <a href="/buy/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
                                 <br><br>
                                 <a href="/current/delete/{{ request.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
                             </td>

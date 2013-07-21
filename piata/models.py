@@ -41,7 +41,8 @@ class Post(db.Model):
     comment = db.StringProperty(multiline='True')
     cost = db.IntegerProperty(default=0)
     book_pic = db.BlobProperty()
-    status = db.StringProperty()
+    status = db.StringProperty(default="")
+    post_date = db.DateTimeProperty(default=datetime.datetime.now())
 
 
 class Request(db.Model):
@@ -50,7 +51,9 @@ class Request(db.Model):
     user = db.ReferenceProperty(User, collection_name="books_onRequest")
     cost_range = db.StringProperty(default="")
     condition = db.ListProperty(str)
-    status = db.StringProperty()
+    status = db.StringProperty(default="")
+    request_date = db.DateTimeProperty(default=datetime.datetime.now())
+    matched_posts = db.ListProperty(Post)
 
 
 class SaleRecord(db.Model):
