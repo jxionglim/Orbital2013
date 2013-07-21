@@ -50,100 +50,108 @@
 
 <div class="container">
     <div class="hero-unit1">
-        <legend><strong>Current Sales</strong></legend>
-        {% if currSales.__len__() == 0 %}
-            <strong>There are no books on sale.</strong>
-        {% else %}
-            {% for posts in currSales %}
-                <h4><strong>Module Code: {{ posts }}</strong></h4>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th class="span1"><p>#</p></th>
-                        <th class="span1"><p>Sale Records</p></th>
-                        <th class="span3"><p></p></th>
-                        <th class="span5"><p></p>Details</p></th>
-                        <th class="span2"><p class="text-center">Actions</p></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% set count = 1 %}
-                    {% for post in currSales[posts] %}
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
+            <legend><strong>Current Sales</strong> <small>(click to expand/collapse)</small></legend>
+        </a>
+        <div id="collapseOne" class="accordion-body collapse in">
+            {% if currSales.__len__() == 0 %}
+                <strong>There are no books on sale.</strong>
+            {% else %}
+                {% for posts in currSales %}
+                    <h4><strong>Module Code: {{ posts }}</strong></h4>
+                    <table class="table table-striped">
+                        <thead>
                         <tr>
-                            <td>{{ count }}{% set count = count + 1 %}</td>
-                            <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
-                            <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
-                            {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
-                            {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
-                            {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
-                            <td>
-                                <strong>Cost:</strong> ${{ post.cost|e }} <a href="/stats/{{ post.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
-                                <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
-                                <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
-                            </td>
-                            <td>
-                                <a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
-                                <br><br>
-                                <a href="/current/delete/{{ post.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
-                            </td>
+                            <th class="span1"><p>#</p></th>
+                            <th class="span1"><p>Sale Records</p></th>
+                            <th class="span3"><p></p></th>
+                            <th class="span5"><p></p>Details</p></th>
+                            <th class="span2"><p class="text-center">Actions</p></th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            {% endfor %}
-        {% endif %}
+                        </thead>
+                        <tbody>
+                        {% set count = 1 %}
+                        {% for post in currSales[posts] %}
+                            <tr>
+                                <td>{{ count }}{% set count = count + 1 %}</td>
+                                <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
+                                <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                                {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
+                                {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
+                                {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
+                                <td>
+                                    <strong>Cost:</strong> ${{ post.cost|e }} <a href="/stats/{{ post.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
+                                    <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
+                                    <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
+                                </td>
+                                <td>
+                                    <a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
+                                    <br><br>
+                                    <a href="/current/delete/{{ post.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
     <hr>
 
     <div class="hero-unit1">
-        <legend><strong>Current Request</strong></legend>
-        {% if currRequests.__len__() == 0 %}
-            <strong>There are no books on request.</strong>
-        {% else %}
-            {% for requests in currRequests %}
-                <h4><strong>Module Code: {{ requests }}</strong></h4>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th class="span1"><p>#</p></th>
-                        <th class="span4"><p>Title of Book</p></th>
-                        <th class="span3"><p>Author</p></th>
-                        <th class="span2"><p>Edition</p></th>
-                        <th class="span2"><p>Cost Range</p></th>
-                        <th class="span4"><p>Condition</p></th>
-                        <th class="span2"><p>Status</p></th>
-                        <th class="span2"><p class="text-center">Actions</p></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% set count = 1 %}
-                    {% for request in currRequests[requests] %}
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
+            <legend><strong>Current Request</strong> <small>(click to expand/collapse)</small></legend>
+        </a>
+        <div id="collapseTwo" class="accordion-body collapse">
+            {% if currRequests.__len__() == 0 %}
+                <strong>There are no books on request.</strong>
+            {% else %}
+                {% for requests in currRequests %}
+                    <h4><strong>Module Code: {{ requests }}</strong></h4>
+                    <table class="table table-striped">
+                        <thead>
                         <tr>
-                            <td>{{ count }}{% set count = count + 1 %}</td>
-                            <td><strong>{{ request.book.title.title()|e }}</strong></td>
-                            <td><small><i>{{ request.book.author.title()|e }}</i></small></td>
-                            <td><small>{% if request.book.edition|e == '1' %} {{ request.book.edition|e }}<sup>st</sup> Edition
-                            {% elif request.book.edition|e == '2' %} {{ request.book.edition|e }}<sup>nd</sup> Edition
-                            {% elif request.book.edition|e == '3' %} {{ request.book.edition|e }}<sup>rd</sup> Edition
-                            {% else %} {{ request.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
-                            <td>{{ request.cost_range }}</td>
-                            <td>{% if not request.condition %} Nil {% else %}{% for condition in request.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ request.condition[-1] }}</u>{% endif %}<br></td>
-                            <td></td>
-                            <td>
-                                {% if request.status|e == 'Matched' %}
-                                    <a href="/matched/{{ request.key().id() }}" class="btn btn-small btn-success span1">Deal</a>
-                                {% else %}
-                                    <a href="/buy/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
-                                {% endif %}
-                                <br><br>
-                                <a href="/current/delete/{{ request.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
-                            </td>
+                            <th class="span1"><p>#</p></th>
+                            <th class="span4"><p>Title of Book</p></th>
+                            <th class="span3"><p>Author</p></th>
+                            <th class="span2"><p>Edition</p></th>
+                            <th class="span2"><p>Cost Range</p></th>
+                            <th class="span4"><p>Condition</p></th>
+                            <th class="span2"><p>Status</p></th>
+                            <th class="span2"><p class="text-center">Actions</p></th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            {% endfor %}
-        {% endif %}
+                        </thead>
+                        <tbody>
+                        {% set count = 1 %}
+                        {% for request in currRequests[requests] %}
+                            <tr>
+                                <td>{{ count }}{% set count = count + 1 %}</td>
+                                <td><strong>{{ request.book.title.title()|e }}</strong></td>
+                                <td><small><i>{{ request.book.author.title()|e }}</i></small></td>
+                                <td><small>{% if request.book.edition|e == '1' %} {{ request.book.edition|e }}<sup>st</sup> Edition
+                                {% elif request.book.edition|e == '2' %} {{ request.book.edition|e }}<sup>nd</sup> Edition
+                                {% elif request.book.edition|e == '3' %} {{ request.book.edition|e }}<sup>rd</sup> Edition
+                                {% else %} {{ request.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
+                                <td>{{ request.cost_range }}</td>
+                                <td>{% if not request.condition %} Nil {% else %}{% for condition in request.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ request.condition[-1] }}</u>{% endif %}<br></td>
+                                <td></td>
+                                <td>
+                                    {% if request.status|e == 'Matched' %}
+                                        <a href="/matched/{{ request.key().id() }}" class="btn btn-small btn-success span1">Deal</a>
+                                    {% else %}
+                                        <a href="/buy/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
+                                    {% endif %}
+                                    <br><br>
+                                    <a href="/current/delete/{{ request.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
     <hr>
 
@@ -157,17 +165,6 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/bootstrap/js/jquery.js"></script>
-<script src="/bootstrap/js/bootstrap-transition.js"></script>
-<script src="/bootstrap/js/bootstrap-alert.js"></script>
-<script src="/bootstrap/js/bootstrap-modal.js"></script>
-<script src="/bootstrap/js/bootstrap-dropdown.js"></script>
-<script src="/bootstrap/js/bootstrap-scrollspy.js"></script>
-<script src="/bootstrap/js/bootstrap-tab.js"></script>
-<script src="/bootstrap/js/bootstrap-tooltip.js"></script>
-<script src="/bootstrap/js/bootstrap-popover.js"></script>
-<script src="/bootstrap/js/bootstrap-button.js"></script>
-<script src="/bootstrap/js/bootstrap-collapse.js"></script>
-<script src="/bootstrap/js/bootstrap-carousel.js"></script>
-<script src="/bootstrap/js/bootstrap-typeahead.js"></script>
+<script src="/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>
