@@ -33,6 +33,17 @@ class Book(db.Model):
     module = db.ReferenceProperty(Module, collection_name="booklist")
 
 
+class Request(db.Model):
+    module = db.ReferenceProperty(Module)
+    book = db.ReferenceProperty(Book)
+    user = db.ReferenceProperty(User, collection_name="books_onRequest")
+    cost_range = db.StringProperty(default="")
+    condition = db.ListProperty(str)
+    status = db.StringProperty(default="")
+    request_date = db.DateTimeProperty(default=datetime.datetime.now())
+    matched_posts = db.ListProperty(db.Key)
+
+
 class Post(db.Model):
     module = db.ReferenceProperty(Module)
     book = db.ReferenceProperty(Book)
@@ -43,17 +54,7 @@ class Post(db.Model):
     book_pic = db.BlobProperty()
     status = db.StringProperty(default="")
     post_date = db.DateTimeProperty(default=datetime.datetime.now())
-
-
-class Request(db.Model):
-    module = db.ReferenceProperty(Module)
-    book = db.ReferenceProperty(Book)
-    user = db.ReferenceProperty(User, collection_name="books_onRequest")
-    cost_range = db.StringProperty(default="")
-    condition = db.ListProperty(str)
-    status = db.StringProperty(default="")
-    request_date = db.DateTimeProperty(default=datetime.datetime.now())
-    matched_posts = db.ListProperty(Post)
+    matched_request = db.ReferenceProperty(Request)
 
 
 class SaleRecord(db.Model):

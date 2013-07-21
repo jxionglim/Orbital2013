@@ -160,19 +160,22 @@ def checkStatus(currRequest):
 
     posts = models.Post.all()
 
-    curr = []
-
     for post in posts:
-        if currRequest.module.module_code == post.module.module_code and currRequest.book.title == post.book.title and currRequest.book.author == post.book.author and currRequest.book.publisher == post.book.publisher and currRequest.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper:
+        if currRequest.module.module_code == post.module.module_code and currRequest.book.title == post.book.title and currRequest.book.author == post.book.author and currRequest.book.publisher == post.book.publisher and currRequest.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper and post.status != "Matched":
             post.status = "Matched"
             post.matched_request = currRequest
             post.put()
-            curr.append(post)
+            if post.key() not in currRequest.matched_posts:
+                currRequest.matched_posts.append(post.key())
         else:
             post.status = "Pending"
+            if post.matched_request != '':
+                post.matched_request = None
             post.put()
+            if post.key() in currRequest.matched_posts:
+                currRequest.matched_posts.remove(post.key())
 
-    if curr.__len__() != 0:
+    if currRequest.matched_posts.__len__() != 0:
         currRequest.status = "Matched"
         currRequest.put()
     else:

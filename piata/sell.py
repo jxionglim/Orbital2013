@@ -172,15 +172,23 @@ def checkStatus(currPost):
             cost_lower = cost.__getitem__(0)
             cost_upper = cost.__getitem__(1)
 
-        if currRequest.module.module_code == currPost.module.module_code and currRequest.book.title == currPost.book.title and currRequest.book.author == currPost.book.author and currRequest.book.publisher == currPost.book.publisher and currRequest.book.edition == currPost.book.edition and cost_lower <= currPost.cost <= cost_upper:
+        if currRequest.module.module_code == currPost.module.module_code and currRequest.book.title == currPost.book.title and currRequest.book.author == currPost.book.author and currRequest.book.publisher == currPost.book.publisher and currRequest.book.edition == currPost.book.edition and cost_lower <= currPost.cost <= cost_upper and currPost.status != "Matched":
             currPost.status = "Matched"
+            currPost.matched_request = currRequest
             currPost.put()
             currRequest.status = "Matched"
+            if currPost.key() not in currRequest.matched_posts:
+                currRequest.matched_posts.append(currPost.key())
             currRequest.put()
         else:
             currPost.status = "Pending"
+            if currPost.matched_request != '':
+                currPost.matched_request = None
             currPost.put()
-            currRequest.status = "Pending"
+            if currPost.key() in currRequest.matched_posts:
+                currRequest.matched_posts.remove(currPost.key())
+                if currRequest.matched_posts.__len__() == 0:
+                    currRequest.status = "Pending"
             currRequest.put()
     else:
         currPost.status = "Pending"

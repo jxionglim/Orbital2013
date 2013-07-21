@@ -55,8 +55,20 @@ class Delete(webapp2.RequestHandler):
         currPost = models.Post.get_by_id(int(url.split('/')[-1]))
         currRequest = models.Request.get_by_id(int(url.split('/')[-1]))
         if currPost:
+            if currPost.status != "Pending":
+                matched_request = currPost.matched_request
+                matched_request.matched_posts.remove(currPost.key())
+                if matched_request.matched_posts.__len__() == 0:
+                    matched_request.status = "Pending"
+                matched_request.put()
             currPost.delete()
         if currRequest:
+            if currRequest.status != "Pending":
+                for post_key in currRequest.matched_posts:
+                    post = models.Post.get(post_key)
+                    post.matched_request = None
+                    post.status = "Pending"
+                    post.put()
             currRequest.delete()
 
         time.sleep(0.5)
