@@ -39,6 +39,10 @@ handlers:
   script: buy.app
   login: required
 
+- url: /matched/?(.*?)
+  script: matched.app
+  login: required
+
 - url: /stats/?(.*?)
   script: statistics.app
   login: required
