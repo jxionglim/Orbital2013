@@ -22,6 +22,8 @@ class ShowStats(webapp2.RequestHandler):
         headingArr = []
         editionArr = []
         totalRecords = []
+        data = []
+        costArr = []
         for books in bookList:
             if books.edition not in headingArr:
                 headingArr.append(books.edition)
@@ -29,27 +31,28 @@ class ShowStats(webapp2.RequestHandler):
             allRecords = models.SaleRecord.all().filter('book =', books)
             for eachRecords in allRecords:
                 totalRecords.append(eachRecords)
-        headingArr.sort()
-        editionArr.sort()
-        headingArr = [str(x)+" e.d." for x in headingArr]
-        headingArr.insert(0, 'Cost')
 
-        costArr = []
-        for records in totalRecords:
-            if records.cost not in costArr:
-                costArr.append(records.cost)
-        costArr.sort()
+        if len(totalRecords) != 0:
+            headingArr.sort()
+            editionArr.sort()
+            headingArr = [str(x)+" e.d." for x in headingArr]
+            headingArr.insert(0, 'Cost')
 
-        data = []
-        for eachCost in costArr:
-            eachCostArr = [str(eachCost)]
-            for eachEdition in editionArr:
-                bookEntry = models.Book.all().filter('title =', currBook.title).filter('author =', currBook.author).filter('publisher =', currBook.publisher).filter('edition =', eachEdition)[0]
-                count = models.SaleRecord.all().filter('book =', bookEntry).filter('cost =', eachCost).count()
-                eachCostArr.append(count)
-            data.append(eachCostArr)
+            for records in totalRecords:
+                if records.cost not in costArr:
+                    costArr.append(records.cost)
+            costArr.sort()
 
-        data.insert(0, headingArr)
+            for eachCost in costArr:
+                eachCostArr = [str(eachCost)]
+                for eachEdition in editionArr:
+                    bookEntry = models.Book.all().filter('title =', currBook.title).filter('author =', currBook.author).filter('publisher =', currBook.publisher).filter('edition =', eachEdition)[0]
+                    count = models.SaleRecord.all().filter('book =', bookEntry).filter('cost =', eachCost).count()
+                    eachCostArr.append(count)
+                data.append(eachCostArr)
+
+            data.insert(0, headingArr)
+
         template_values = {
             'title': currBook.title.title(),
             'author': currBook.author.title(),

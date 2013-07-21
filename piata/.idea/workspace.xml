@@ -4,19 +4,18 @@
     <list default="true" id="b715f924-0e07-41ca-8078-67f7eab2a5b9" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/images/test.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/adv_search.html" afterPath="$PROJECT_DIR$/templates/adv_search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.yaml" afterPath="$PROJECT_DIR$/app.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/currSale.html" afterPath="$PROJECT_DIR$/templates/currSale.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.py" afterPath="$PROJECT_DIR$/home.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login.py" afterPath="$PROJECT_DIR$/login.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main.html" afterPath="$PROJECT_DIR$/templates/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models.py" afterPath="$PROJECT_DIR$/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/profile.py" afterPath="$PROJECT_DIR$/profile.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/public_adv_search.html" afterPath="$PROJECT_DIR$/templates/public_adv_search.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/public_main.html" afterPath="$PROJECT_DIR$/templates/public_main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/statistics.py" afterPath="$PROJECT_DIR$/statistics.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/stats.html" afterPath="$PROJECT_DIR$/templates/stats.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="piata.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374034527878" ignored="false" />
+    <file path="/Dummy.txt" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374391490647" ignored="false" />
     <file path="/currSale.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374043569985" ignored="false" />
     <file path="/adv_search.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374043698801" ignored="false" />
     <file path="/about.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373525001151" ignored="false" />
@@ -31,7 +30,7 @@
     <file path="/sell.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1372575291669" ignored="false" />
     <file path="/login.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373452329472" ignored="false" />
     <file path="/public_main.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374043617282" ignored="false" />
-    <file path="/home.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373451901516" ignored="false" />
+    <file path="/home.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374394471242" ignored="false" />
     <file path="/error.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1372586341816" ignored="false" />
     <file path="/error.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1372587093118" ignored="false" />
     <file path="/edit_profile.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373523726631" ignored="false" />
@@ -41,11 +40,11 @@
     <file path="/do_openid_login.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373432423016" ignored="false" />
     <file path="/facebookoauth.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373446188217" ignored="false" />
     <file path="/main.css" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373980803915" ignored="false" />
-    <file path="/public_adv_search.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374043665284" ignored="false" />
+    <file path="/public_adv_search.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374394629220" ignored="false" />
     <file path="/current.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373516034331" ignored="false" />
     <file path="/profile.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373522921718" ignored="false" />
-    <file path="/statistics.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374042049589" ignored="false" />
-    <file path="/stats.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374042654393" ignored="false" />
+    <file path="/statistics.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374392635221" ignored="false" />
+    <file path="/stats.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374392843168" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,75 +63,7 @@
     <favorites_list name="piata" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="statistics.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/statistics.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="42" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/main.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="135" column="28" selection-start="6121" selection-end="6121" vertical-scroll-proportion="0.25399646">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="adv_search.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/adv_search.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="103" selection-start="8612" selection-end="8612" vertical-scroll-proportion="-17.608696">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stats.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/stats.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="0" selection-start="2783" selection-end="2783" vertical-scroll-proportion="-45.652172">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sell.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/sell.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="12" selection-start="2164" selection-end="2214" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="public_main.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/public_main.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="142" column="119" selection-start="7568" selection-end="7568" vertical-scroll-proportion="-20.217392">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="currSale.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/currSale.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="39" selection-start="5950" selection-end="5950" vertical-scroll-proportion="-8.478261">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -150,8 +81,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/profile.html" />
-        <option value="$PROJECT_DIR$/templates/about.html" />
         <option value="$PROJECT_DIR$/templates/public_about.html" />
         <option value="$PROJECT_DIR$/templates/contact.html" />
         <option value="$PROJECT_DIR$/templates/public_contact.html" />
@@ -159,20 +88,22 @@
         <option value="$PROJECT_DIR$/app.yaml" />
         <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/profile.py" />
+        <option value="$PROJECT_DIR$/templates/currSale.html" />
         <option value="$PROJECT_DIR$/statistics.py" />
         <option value="$PROJECT_DIR$/templates/stats.html" />
-        <option value="$PROJECT_DIR$/templates/currSale.html" />
-        <option value="$PROJECT_DIR$/templates/public_main.html" />
-        <option value="$PROJECT_DIR$/templates/main.html" />
+        <option value="$PROJECT_DIR$/home.py" />
+        <option value="$PROJECT_DIR$/login.py" />
         <option value="$PROJECT_DIR$/templates/public_adv_search.html" />
+        <option value="$PROJECT_DIR$/templates/public_main.html" />
         <option value="$PROJECT_DIR$/templates/adv_search.html" />
+        <option value="$PROJECT_DIR$/templates/main.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="48" />
     <option name="y" value="-4" />
-    <option name="width" value="1319" />
+    <option name="width" value="1313" />
     <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -201,7 +132,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,11 +180,28 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="91" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="114" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="107" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="118" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="907" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="912" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="112" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="109" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -366,19 +313,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="-4" width="1319" height="773" extended-state="6" />
+    <frame x="48" y="-4" width="1313" height="773" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2368214" sideWeight="0.6704" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24505928" sideWeight="0.6704" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -458,81 +405,29 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="10" selection-start="583" selection-end="588" vertical-scroll-proportion="-13.043478">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/buy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/contact.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/edit_profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="106" selection-start="6835" selection-end="6835" vertical-scroll-proportion="-23.26087">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/error.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="69" selection-start="7285" selection-end="7285" vertical-scroll-proportion="-0.65217394">
-          <folding />
-        </state>
+        <state line="125" column="69" selection-start="7285" selection-end="7285" vertical-scroll-proportion="-0.65217394" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/public_about.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/public_contact.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="10" selection-start="585" selection-end="590" vertical-scroll-proportion="0.5188679">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/currSale.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="39" selection-start="5950" selection-end="5950" vertical-scroll-proportion="-8.478261">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statistics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="42" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="20" column="10" selection-start="585" selection-end="590" vertical-scroll-proportion="0.5188679" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/stats.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="0" selection-start="2783" selection-end="2783" vertical-scroll-proportion="-45.652172">
+        <state line="81" column="26" selection-start="3125" selection-end="3125" vertical-scroll-proportion="2.102076">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -541,36 +436,86 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/sell.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="12" selection-start="2164" selection-end="2214" vertical-scroll-proportion="-0.0">
+        <state line="54" column="12" selection-start="2164" selection-end="2214" vertical-scroll-proportion="0.42628774">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/currSale.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="39" selection-start="5785" selection-end="5785" vertical-scroll-proportion="3.0373">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/statistics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="46" selection-start="2222" selection-end="2222" vertical-scroll-proportion="0.87030715">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.61433446">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="64" selection-start="4418" selection-end="4418" vertical-scroll-proportion="-2.1245735">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/public_adv_search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="153" selection-start="8522" selection-end="8522" vertical-scroll-proportion="0.339254">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/public_main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="119" selection-start="7568" selection-end="7568" vertical-scroll-proportion="-20.217392">
+        <state line="146" column="523" selection-start="8421" selection-end="8421" vertical-scroll-proportion="0.4724689">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/adv_search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="103" selection-start="8612" selection-end="8612" vertical-scroll-proportion="-17.608696">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/public_adv_search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="128" selection-start="7767" selection-end="7767" vertical-scroll-proportion="0.47785977">
+        <state line="158" column="523" selection-start="9652" selection-end="9652" vertical-scroll-proportion="0.1616341">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="28" selection-start="6121" selection-end="6121" vertical-scroll-proportion="0.25399646">
+        <state line="154" column="135" selection-start="8832" selection-end="8832" vertical-scroll-proportion="0.5559503">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="235" column="0" selection-start="11075" selection-end="11075" vertical-scroll-proportion="0.025597269">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

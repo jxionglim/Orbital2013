@@ -148,7 +148,7 @@
                                 <strong>Comment:</strong> {% if records.comment != "" %}{{ records.comment|e }}{% else %} Nil {% endif %}
                             </td>
                             <td>
-                                <a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('www.piata-sg.appspot.com/advsearch?module_code={{ records.module.module_code }}&module_code_type=exact&title={{ records.book.title }}&title_type=exact&author={{ records.book.author }}&author_type=exact&publisher={{ records.book.publisher }}&publisher_type=exact&edition_type=%3D&edition={{records.book.edition}}&cost_type=%3D&cost={{ records.cost }}'),'facebook-share-dialog','width=626,height=436');return false;">
+                                <a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('www.piata-sg.appspot.com/advsearch?module_code={{ records.module.module_code }}&module_code_type=exact&title={{ records.book.title }}&title_type=exact&author={{ records.book.author }}&author_type=exact&publisher={{ records.book.publisher }}&publisher_type=exact&edition_type=%3D&edition={{records.book.edition}}&cost_type=%3D&cost={{ records.cost }}&usermail={{ records.user.key().name() }}'),'facebook-share-dialog','width=626,height=436');return false;">
                                     <img class="imageshare" src="/images/share.png">
                                 </a>
                                 {% if records.user.key().name() == email %}

@@ -91,6 +91,7 @@ class AdvanceSearchPage(webapp2.RequestHandler):
                 edition_type = self.request.get('edition_type').rstrip()
                 cost = int(self.request.get('cost').rstrip()) if self.request.get('cost').rstrip() != "" else self.request.get('cost').rstrip()
                 cost_type = self.request.get('cost_type').rstrip()
+                usermail = self.request.get('usermail').rstrip()
 
                 exactDict, containDict = {}, {}
                 postList, postListTemp = [], []
@@ -191,6 +192,9 @@ class AdvanceSearchPage(webapp2.RequestHandler):
                             postListTemp.append(post)
 
                 postList = [item for item in postList if item not in postListTemp]
+
+                if usermail != "":
+                    postList = [item for item in postList if item.user.key().name() == usermail]
 
                 template_values = {
                     'searchform': search_form,
