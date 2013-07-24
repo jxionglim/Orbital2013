@@ -49,6 +49,11 @@
 </div>
 
 <div class="container">
+    {% if status == True %}
+        <div class="alert alert-info">
+            The Seller has been informed. In the mean time, you can also contact him via his User Profile Page.
+        </div>
+    {% endif %}
     <div class="hero-unit1">
         <legend><strong>Current Matches</strong></legend>
         {% if posts.__len__() == 0 %}
@@ -80,7 +85,11 @@
                         <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
                         <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
                     </td>
-                    <td><a href="/matched/request/{{ post.key().id() }}" class="btn btn-small btn-warning span1">Request</a></td>
+                    {% if post.status == 'Pre-Completed' %}
+                        <td><a class="btn btn-small btn-danger disabled span1">On Hold</a></td>
+                    {% else %}
+                        <td><a href="/matched/request/{{ post.key().id() }}" class="btn btn-small btn-warning span1">Request</a></td>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>

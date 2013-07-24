@@ -55,6 +55,7 @@ class Post(db.Model):
     status = db.StringProperty(default="")
     post_date = db.DateTimeProperty(default=datetime.datetime.now())
     matched_request = db.ReferenceProperty(Request)
+    seller = db.ReferenceProperty(User)
 
 
 class SaleRecord(db.Model):

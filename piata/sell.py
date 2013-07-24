@@ -9,6 +9,7 @@ from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.api import images
 from google.appengine.api.images import BadImageError, LargeImageError, NotImageError
+from google.appengine.api import mail
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -155,7 +156,6 @@ class Submit(webapp2.RequestHandler):
 
 
 def checkStatus(currPost):
-
     q = db.Query(models.Request)
     q.order('request_date')
 
@@ -163,6 +163,8 @@ def checkStatus(currPost):
 
     if results is not None:
         currRequest = results
+        user = users.get_current_user()
+        currUser = db.get(db.Key.from_path('User', user.email()))
         cost = map(int, re.findall(r'\d+', currRequest.cost_range))
 
         if cost.__len__() == 1:
@@ -172,7 +174,7 @@ def checkStatus(currPost):
             cost_lower = cost.__getitem__(0)
             cost_upper = cost.__getitem__(1)
 
-        if currRequest.module.module_code == currPost.module.module_code and currRequest.book.title == currPost.book.title and currRequest.book.author == currPost.book.author and currRequest.book.publisher == currPost.book.publisher and currRequest.book.edition == currPost.book.edition and cost_lower <= currPost.cost <= cost_upper and currPost.status != "Matched":
+        if currRequest.module.module_code == currPost.module.module_code and currRequest.book.title == currPost.book.title and currRequest.book.author == currPost.book.author and currRequest.book.publisher == currPost.book.publisher and currRequest.book.edition == currPost.book.edition and cost_lower <= currPost.cost <= cost_upper and currPost.status != "Matched" and currRequest.user.key() != currUser.key():
             currPost.status = "Matched"
             currPost.matched_request = currRequest
             currPost.put()
@@ -180,6 +182,20 @@ def checkStatus(currPost):
             if currPost.key() not in currRequest.matched_posts:
                 currRequest.matched_posts.append(currPost.key())
             currRequest.put()
+            url = "http://piata-sg.appspot.com/matched/" + str(currRequest.key().id())
+            message = mail.EmailMessage()
+            message.sender = "teamlupus.13@gmail.com"
+            message.to = str(currRequest.user.key().name())
+            message.subject = "A match has been found for " + str(currRequest.book.title.title())
+            message.body = """
+            A match has been found for the book that you have requested.
+
+            Please click the following link below to access it.
+
+            %s
+                    """ % url
+
+            message.send()
         else:
             currPost.status = "Pending"
             if currPost.matched_request != '':

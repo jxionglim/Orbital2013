@@ -22,15 +22,23 @@ class Matched(webapp2.RequestHandler):
         currRequest = models.Request.get_by_id(int(url.split('/')[-1]))
         posts = []
         if currRequest is not None:
-            if currRequest.status == "Matched":
+            if currRequest.status == "Matched" or currRequest.status == "Pre-Completed":
                 post_keys = currRequest.matched_posts
                 for post_key in post_keys:
                     post = models.Post.get(post_key)
                     posts.append(post)
 
+        status = False
+
+        for post in posts:
+            if post.status == "Pre-Completed":
+                status = True
+                break
+
         template_values = {
             'email': user.email(),
             'posts': posts,
+            'status': status,
             'logout': users.create_logout_url(self.request.host_url)}
 
         template = jinja_environment.get_template('matched.html')
@@ -39,18 +47,19 @@ class Matched(webapp2.RequestHandler):
 
 class RequestingNow(webapp2.RequestHandler):
     def get(self):
-        self.redirect('/main')
-        '''url = self.request.url
+        url = self.request.url
         currPost = models.Post.get_by_id(int(url.split('/')[-1]))
         currPost.status = "Pre-Completed"
         currPost.put()
 
-        self.response.out.write("asd")
+        currRequest = models.Request.get_by_id(int(currPost.matched_request.key().id()))
+        currRequest.status = "Pre-Completed"
+        currRequest.put()
 
         time.sleep(0.5)
-        self.redirect('/matched')'''
+        self.redirect('/matched/' + str(currPost.matched_request.key().id()))
 
 
-app = webapp2.WSGIApplication([('/matched/.*?', Matched),
-                               ('/matched/request/.*?', RequestingNow)],
+app = webapp2.WSGIApplication([('/matched/request/.*?', RequestingNow),
+                               ('/matched/.*?', Matched)],
                               debug=True)

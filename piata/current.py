@@ -11,7 +11,7 @@ jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
 
 
-class DisplaySell(webapp2.RequestHandler):
+class Display(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         currUser = db.get(db.Key.from_path('User', user.email()))
@@ -37,10 +37,20 @@ class DisplaySell(webapp2.RequestHandler):
             else:
                 currRequests[request.module.module_code.upper()] = [request]
 
+        posts_all = models.Post.all()
+        pending = []
+        status = False
+        for post in posts_all:
+            if post.status == "Pre-Completed" and post.seller is not None and post.seller.key() == currUser.key():
+                pending.append(post)
+                status = True
+
         template_values = {
             'currUser': currUser,
             'currSales': currSales,
             'currRequests': currRequests,
+            'pending': pending,
+            'status': status,
             'email': user.email(),
             'logout': users.create_logout_url(self.request.host_url)}
 
@@ -75,6 +85,6 @@ class Delete(webapp2.RequestHandler):
         self.redirect('/current')
 
 
-app = webapp2.WSGIApplication([('/current', DisplaySell),
+app = webapp2.WSGIApplication([('/current', Display),
                                ('/current/delete/.*?', Delete)],
                               debug=True)

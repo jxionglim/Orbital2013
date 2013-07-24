@@ -7,8 +7,6 @@ import re
 
 from google.appengine.api import users
 from google.appengine.ext import db
-from google.appengine.api import images
-from google.appengine.api.images import BadImageError, LargeImageError, NotImageError
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -135,7 +133,10 @@ class Submit(webapp2.RequestHandler):
             checkStatus(currRequest)
 
             time.sleep(0.5)
-            self.redirect('/current')
+            if currRequest.status == "Matched":
+                self.redirect('/matched/' + str(currRequest.key().id()))
+            else:
+                self.redirect('/current')
 
         else:
             template_values = {
@@ -149,6 +150,8 @@ class Submit(webapp2.RequestHandler):
 
 
 def checkStatus(currRequest):
+    user = users.get_current_user()
+    currUser = db.get(db.Key.from_path('User', user.email()))
     cost = map(int, re.findall(r'\d+', currRequest.cost_range))
 
     if cost.__len__() == 1:
@@ -161,19 +164,20 @@ def checkStatus(currRequest):
     posts = models.Post.all()
 
     for post in posts:
-        if currRequest.module.module_code == post.module.module_code and currRequest.book.title == post.book.title and currRequest.book.author == post.book.author and currRequest.book.publisher == post.book.publisher and currRequest.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper and post.status != "Matched":
+        if currRequest.module.module_code == post.module.module_code and currRequest.book.title == post.book.title and currRequest.book.author == post.book.author and currRequest.book.publisher == post.book.publisher and currRequest.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper and post.status != "Matched" and post.user.key() != currUser.key() and post.seller == '':
             post.status = "Matched"
             post.matched_request = currRequest
             post.put()
             if post.key() not in currRequest.matched_posts:
                 currRequest.matched_posts.append(post.key())
         else:
-            post.status = "Pending"
-            if post.matched_request != '':
-                post.matched_request = None
-            post.put()
-            if post.key() in currRequest.matched_posts:
-                currRequest.matched_posts.remove(post.key())
+            if post.seller == '':
+                post.status = "Pending"
+                if post.matched_request != '':
+                    post.matched_request = None
+                post.put()
+                if post.key() in currRequest.matched_posts:
+                    currRequest.matched_posts.remove(post.key())
 
     if currRequest.matched_posts.__len__() != 0:
         currRequest.status = "Matched"
@@ -183,7 +187,21 @@ def checkStatus(currRequest):
         currRequest.put()
 
 
+class RequestingNow(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        currUser = db.get(db.Key.from_path('User', user.email()))
+        url = self.request.url
+        currPost = models.Post.get_by_id(int(url.split('/')[-1]))
+        currPost.status = "Pre-Completed"
+        currPost.seller = currUser
+        currPost.put()
+
+        time.sleep(0.5)
+        self.redirect('/current')
+
 app = webapp2.WSGIApplication([('/buy', BuyPage),
                                ('/buy/submit', Submit),
-                               ('/buy/edit/.*?', BuyPage)],
+                               ('/buy/edit/.*?', BuyPage),
+                               ('/buy/request/.*?', RequestingNow)],
                               debug=True)
