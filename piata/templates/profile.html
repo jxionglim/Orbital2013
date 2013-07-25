@@ -118,7 +118,11 @@
                             {% if currUser.profile_pic == None %}
                                 <img class="img-polaroid" src="/images/nopic.png">
                             {% else %}
-                                <img class="img-polaroid" src='/profile/image'>
+                                {% if ownerEmail == email %}
+                                    <img class="img-polaroid" src='/profile/image'>
+                                {% else %}
+                                    <img class="img-polaroid" src='/profile/image/{{ email }}'>
+                                {% endif %}
                             {% endif %}
                             <div class="row">
                                 <br>

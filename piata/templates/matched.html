@@ -86,7 +86,9 @@
                         <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
                     </td>
                     {% if post.status == 'Pre-Completed' %}
-                        <td><a class="btn btn-small btn-danger disabled span1">On Hold</a><div class="btn-group">
+                        <td>
+                            <a class="btn btn-small btn-danger disabled span1">On Hold</a>
+                            <div class="btn-group">
                                 <a class="btn dropdown-toggle" data-toggle="dropdown">
                                     Status
                                     <span class="caret"></span>
@@ -95,7 +97,8 @@
                                     <li><a data-toggle="dropdown" href="#">Completed</a></li>
                                     <li><a data-toggle="dropdown" href="#">Deal Cancelled</a></li>
                                 </ul>
-                            </div></td>
+                            </div>
+                        </td>
                     {% else %}
                         <td><a href="/matched/request/{{ post.key().id() }}" class="btn btn-small btn-warning span1">Request</a></td>
                     {% endif %}

@@ -64,7 +64,8 @@ class ProfileUpdate(webapp2.RequestHandler):
             currUser.put()
             if currUser.address != "" and currUser.postal_code != "" and currUser.profile_pic is not None:
                 currUser.prof_complete = True
-                currUser.rating = 125
+                if currUser.rating < 125:
+                    currUser.rating = 125
             currUser.put()
             if not trigger:
                 self.redirect('/profile')
@@ -117,6 +118,14 @@ class ServeImage(webapp2.RequestHandler):
             self.response.out.write(currUser.profile_pic)
 
 
+class ServeImageOthers(webapp2.RequestHandler):
+    def get(self):
+        currUser = db.get(db.Key.from_path('User', self.request.url.split('/')[-1]))
+        if currUser.profile_pic:
+            self.response.headers['Content-Type'] = 'image/zxc'
+            self.response.out.write(currUser.profile_pic)
+
+
 class DisplayUser(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -154,14 +163,16 @@ class RateDown(webapp2.RequestHandler):
         if not currUser.required_complete:
             self.redirect('/profile/edit')
         userReq = db.get(self.request.url.split('/')[-2])
-        userReq.rating -= 1
-        userReq.put()
+        if userReq.rating !=0:
+            userReq.rating -= 1
+            userReq.put()
         self.redirect('/profile/user/' + userReq.key().name())
 
 app = webapp2.WSGIApplication([('/profile', ViewProfile),
                                ('/profile/update', ProfileUpdate),
                                ('/profile/edit', ProfileEdit),
-                               ('/profile/image',ServeImage),
+                               ('/profile/image$',ServeImage),
+                               ('/profile/image/.*?',ServeImageOthers),
                                ('/profile/user/.*?', DisplayUser),
                                ('/profile/.*/up', RateUp),
                                ('/profile/.*/down', RateDown)],
