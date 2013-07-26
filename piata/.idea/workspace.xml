@@ -2,29 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b715f924-0e07-41ca-8078-67f7eab2a5b9" name="Default" comment="Update carousel news">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/matched.html" afterPath="$PROJECT_DIR$/templates/matched.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/profile.html" afterPath="$PROJECT_DIR$/templates/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/profile.py" afterPath="$PROJECT_DIR$/profile.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.yaml" afterPath="$PROJECT_DIR$/app.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/currSale.html" afterPath="$PROJECT_DIR$/templates/currSale.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.py" afterPath="$PROJECT_DIR$/home.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login.py" afterPath="$PROJECT_DIR$/login.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="piata.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374742464437" ignored="false" />
-    <file path="/currSale.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374401414704" ignored="false" />
+    <file path="/Dummy.txt" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374824374038" ignored="false" />
+    <file path="/currSale.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374825670574" ignored="false" />
     <file path="/adv_search.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374043698801" ignored="false" />
     <file path="/about.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373525001151" ignored="false" />
     <file path="/buy.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1372587449010" ignored="false" />
     <file path="/contact.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373525370502" ignored="false" />
-    <file path="/main.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374043629948" ignored="false" />
+    <file path="/main.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374824871404" ignored="false" />
     <file path="/profile.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374743425509" ignored="false" />
     <file path="/public_about.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373525007337" ignored="false" />
     <file path="/public_contact.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373525382042" ignored="false" />
     <file path="/submit.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1372575133321" ignored="false" />
-    <file path="/app.yaml" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373982966784" ignored="false" />
+    <file path="/app.yaml" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374826749759" ignored="false" />
     <file path="/sell.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1372575291669" ignored="false" />
     <file path="/login.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373452329472" ignored="false" />
     <file path="/public_main.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374398055175" ignored="false" />
-    <file path="/home.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374394471242" ignored="false" />
+    <file path="/home.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374825273149" ignored="false" />
     <file path="/error.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1372586341816" ignored="false" />
     <file path="/error.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1372587093118" ignored="false" />
     <file path="/edit_profile.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1373523726631" ignored="false" />
@@ -40,6 +41,8 @@
     <file path="/statistics.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374392635221" ignored="false" />
     <file path="/stats.html" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374392843168" ignored="false" />
     <file path="/giftbook.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374410540007" ignored="false" />
+    <file path="/cron.py" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374827015999" ignored="false" />
+    <file path="/cron.yaml" changelist="b715f924-0e07-41ca-8078-67f7eab2a5b9" time="1374827010485" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +61,59 @@
     <favorites_list name="piata" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="cron.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cron.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="0" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.yaml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="21" selection-start="697" selection-end="697" vertical-scroll-proportion="0.34891486">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cron.yaml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cron.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="26" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/profile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="170" column="0" selection-start="7138" selection-end="7692" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -76,29 +131,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/statistics.py" />
-        <option value="$PROJECT_DIR$/templates/stats.html" />
-        <option value="$PROJECT_DIR$/home.py" />
-        <option value="$PROJECT_DIR$/login.py" />
         <option value="$PROJECT_DIR$/templates/public_adv_search.html" />
         <option value="$PROJECT_DIR$/templates/adv_search.html" />
         <option value="$PROJECT_DIR$/css/main.css" />
-        <option value="$PROJECT_DIR$/templates/currSale.html" />
         <option value="$PROJECT_DIR$/current.py" />
-        <option value="$PROJECT_DIR$/app.yaml" />
         <option value="$PROJECT_DIR$/templates/public_main.html" />
-        <option value="$PROJECT_DIR$/templates/main.html" />
         <option value="$PROJECT_DIR$/../../joscelin/giftbook.py" />
         <option value="$PROJECT_DIR$/profile.py" />
         <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/templates/matched.html" />
+        <option value="$PROJECT_DIR$/templates/main.html" />
+        <option value="$PROJECT_DIR$/home.py" />
+        <option value="$PROJECT_DIR$/login.py" />
+        <option value="$PROJECT_DIR$/templates/currSale.html" />
+        <option value="$PROJECT_DIR$/cron.yaml" />
+        <option value="$PROJECT_DIR$/cron.py" />
+        <option value="$PROJECT_DIR$/app.yaml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="48" />
     <option name="y" value="-4" />
-    <option name="width" value="1319" />
+    <option name="width" value="1313" />
     <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -160,20 +215,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="piata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="piata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -194,8 +235,8 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="912" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="112" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="109" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
   </component>
   <component name="RecentsManager">
@@ -321,14 +362,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="-4" width="1319" height="773" extended-state="6" />
-    <editor active="true" />
+    <frame x="48" y="-4" width="1313" height="773" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24940991" sideWeight="0.6704" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25375494" sideWeight="0.6704" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24505928" sideWeight="0.2864" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -416,63 +457,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sell.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="235" column="0" selection-start="11075" selection-end="11075" vertical-scroll-proportion="0.18088737">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/buy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matched.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="48" selection-start="767" selection-end="767" vertical-scroll-proportion="0.5509182">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/error.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="64" selection-start="4418" selection-end="4418" vertical-scroll-proportion="2.380546">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="220" selection-end="220" vertical-scroll-proportion="0.4006678">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/public_main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="114" selection-start="2439" selection-end="2439" vertical-scroll-proportion="0.43516874" />
@@ -485,19 +469,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="90" selection-start="7187" selection-end="7187" vertical-scroll-proportion="0.47957373" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="47" selection-start="2707" selection-end="2707" vertical-scroll-proportion="0.1474245" />
+        <state line="149" column="43" selection-start="0" selection-end="10021" vertical-scroll-proportion="0.7868561">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="47" selection-start="7335" selection-end="7372" vertical-scroll-proportion="0.36177474">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="84" selection-start="5574" selection-end="5574" vertical-scroll-proportion="-1.0733788">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matched.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="73" selection-start="744" selection-end="757" vertical-scroll-proportion="0.52587646">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/matched.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="36" selection-start="4941" selection-end="4941" vertical-scroll-proportion="-0.25222024">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/currSale.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="63" selection-start="2229" selection-end="2229" vertical-scroll-proportion="0.014209592" />
+        <state line="208" column="0" selection-start="12502" selection-end="12502" vertical-scroll-proportion="0.77264655">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/current.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="39" selection-start="1569" selection-end="1569" vertical-scroll-proportion="0.25041735">
+        <state line="14" column="18" selection-start="262" selection-end="319" vertical-scroll-proportion="0.3505843">
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
@@ -513,26 +547,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/matched.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="36" selection-start="4941" selection-end="4941" vertical-scroll-proportion="0.6902655">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="90" selection-start="7187" selection-end="7187" vertical-scroll-proportion="0.47957373">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/profile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="18" selection-start="5238" selection-end="5238" vertical-scroll-proportion="0.25208682">
+        <state line="170" column="0" selection-start="7138" selection-end="7692" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="26" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="21" selection-start="697" selection-end="697" vertical-scroll-proportion="0.34891486">
+          <folding />
         </state>
       </provider>
     </entry>
