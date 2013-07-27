@@ -24,12 +24,17 @@ handlers:
 - url: /(advsearch|about_us|contact_us)
   script: login.app
 
+- url: /updateStatus
+  script: cron.app
+  login: admin
+
 - url: /profile/?(.*?)
   script: profile.app
   login: required
 
 - url: /sell/image/?(.*?)
   script: sell.app
+  login: required
 
 - url: /sell/?(.*?)
   script: sell.app
