@@ -95,3 +95,11 @@ body {
 .fb-like iframe {
   left: 0 !important;
 }
+
+.dropdown-menu {
+  min-width: 80px;
+}
+
+.offset0 {
+  margin-left: 30px;
+}

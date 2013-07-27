@@ -93,26 +93,28 @@
                                     {% if post.status == "Pre-Completed" %}
                                         {% if post.seller == None %}
                                             <a href="/profile/user/{{ post.matched_request.user.key().name()}}" class="btn btn-small btn-success span1">Reply</a>
-                                            <div class="btn-group">
-                                                <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                            <br><br>
+                                            <div class="btn-group offset0">
+                                                <a class="btn dropdown-toggle span1 " data-toggle="dropdown">
                                                     Status
                                                     <span class="caret"></span>
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     <li><a data-toggle="dropdown" href="#">Completed</a></li>
-                                                    <li><a data-toggle="dropdown" href="#">Deal Cancelled</a></li>
+                                                    <li><a data-toggle="dropdown" href="#">Cancelled</a></li>
                                                 </ul>
                                             </div>
                                         {% else %}
                                             <a href="/profile/user/{{ post.seller.key().name()}}" class="btn btn-small btn-success span1">Reply</a>
-                                            <div class="btn-group">
-                                                <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                            <br><br>
+                                            <div class="btn-group offset0">
+                                                <a class="btn dropdown-toggle span1" data-toggle="dropdown">
                                                     Status
                                                     <span class="caret"></span>
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     <li><a data-toggle="dropdown" href="#">Completed</a></li>
-                                                    <li><a data-toggle="dropdown" href="#">Deal Cancelled</a></li>
+                                                    <li><a data-toggle="dropdown" href="#">Cancelled</a></li>
                                                 </ul>
                                             </div>
                                         {% endif %}
