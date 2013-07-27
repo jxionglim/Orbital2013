@@ -60,7 +60,7 @@
         </a>
         <div id="collapseOne" class="accordion-body collapse in">
             {% if currSales.__len__() == 0 %}
-                <strong>There are no books on sale.</strong>
+                <strong>There are no books on sale.</strong><br><br>
             {% else %}
                 {% for posts in currSales %}
                     <h4><strong>Module Code: {{ posts }}</strong></h4>
@@ -114,7 +114,7 @@
         </a>
         <div id="collapseTwo" class="accordion-body collapse">
             {% if currRequests.__len__() == 0 %}
-                <strong>There are no books on request.</strong>
+                <strong>There are no books on request.</strong><br><br>
             {% else %}
                 {% for requests in currRequests %}
                     <h4><strong>Module Code: {{ requests }}</strong></h4>
@@ -163,18 +163,19 @@
                 {% endfor %}
             {% endif %}
         </div>
+
         {% if pending.__len__() != 0 %}
-            <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
-                <legend><strong>Pending</strong> <small>(click to expand/collapse)</small></legend>
-            </a>
-            <div id="collapseTwo" class="accordion-body collapse">
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
+            <legend><strong>Pending</strong> <small>(click to expand/collapse)</small></legend>
+        </a>
+        <div id="collapseThree" class="accordion-body collapse">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th class="span1"><p>#</p></th>
                     <th class="span1"><p>Sale Records</p></th>
                     <th class="span3"><p></p></th>
-                    <th class="span5"><p></p>Details</p></th>
+                    <th class="span5"><p>Details</p></th>
                     <th class="span2"><p class="text-center">Actions</p></th>
                 </tr>
                 </thead>
@@ -202,26 +203,28 @@
                 {% endfor %}
                 </tbody>
             </table>
-        {% endif %}
         </div>
+    {% endif %}
+    </div>
 
-        <hr>
+    <hr>
 
-        <footer>
-            <p>&copy; Piata</p>
-        </footer>
-    </div> <!-- /container -->
+    <footer>
+        <p>&copy; Piata</p>
+    </footer>
+</div>
+</div>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/bootstrap/js/jquery.js"></script>
-    <script src="/bootstrap/js/bootstrap.js"></script>
-    <script src="/bootstrap/js/bootstrap-dropdown.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.dropdown-toggle').dropdown();
-        });
-    </script>
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/bootstrap/js/jquery.js"></script>
+<script src="/bootstrap/js/bootstrap.js"></script>
+<script src="/bootstrap/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
 </body>
 </html>
