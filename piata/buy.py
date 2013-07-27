@@ -7,6 +7,7 @@ import re
 
 from google.appengine.api import users
 from google.appengine.ext import db
+from google.appengine.api import mail
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -164,7 +165,7 @@ def checkStatus(currRequest):
     posts = models.Post.all()
 
     for post in posts:
-        if currRequest.module.module_code == post.module.module_code and currRequest.book.title == post.book.title and currRequest.book.author == post.book.author and currRequest.book.publisher == post.book.publisher and currRequest.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper and post.status != "Matched" and post.user.key() != currUser.key() and post.seller == '':
+        if currRequest.module.module_code == post.module.module_code and currRequest.book.title == post.book.title and currRequest.book.author == post.book.author and currRequest.book.publisher == post.book.publisher and currRequest.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper and post.status != "Matched" and post.user.key() != currUser.key() and post.seller is None:
             post.status = "Matched"
             post.matched_request = currRequest
             post.put()
@@ -196,6 +197,24 @@ class RequestingNow(webapp2.RequestHandler):
         currPost.status = "Pre-Completed"
         currPost.seller = currUser
         currPost.put()
+
+        message = mail.EmailMessage()
+        message.sender = "teamlupus.13@gmail.com"
+        message.to = str(currPost.user.key().name())
+        message.subject = "A buyer is interested in " + str(currPost.book.title.title())
+        message.body = """
+        A buyer is interested to purchase your book.
+
+        Please click the following link below to contact him for more details.
+
+        %s
+
+        With regards,
+
+        Team Lupus
+                """ % "http://piata-sg.appspot.com/current"
+
+        message.send()
 
         time.sleep(0.5)
         self.redirect('/current')

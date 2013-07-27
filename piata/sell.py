@@ -193,6 +193,10 @@ def checkStatus(currPost):
             Please click the following link below to access it.
 
             %s
+
+            With Regards,
+
+            Team Lupus
                     """ % url
 
             message.send()
