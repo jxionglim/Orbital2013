@@ -93,8 +93,28 @@
                                     {% if post.status == "Pre-Completed" %}
                                         {% if post.seller == None %}
                                             <a href="/profile/user/{{ post.matched_request.user.key().name()}}" class="btn btn-small btn-success span1">Reply</a>
+                                            <div class="btn-group">
+                                                <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                                    Status
+                                                    <span class="caret"></span>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a data-toggle="dropdown" href="#">Completed</a></li>
+                                                    <li><a data-toggle="dropdown" href="#">Deal Cancelled</a></li>
+                                                </ul>
+                                            </div>
                                         {% else %}
                                             <a href="/profile/user/{{ post.seller.key().name()}}" class="btn btn-small btn-success span1">Reply</a>
+                                            <div class="btn-group">
+                                                <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                                    Status
+                                                    <span class="caret"></span>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a data-toggle="dropdown" href="#">Completed</a></li>
+                                                    <li><a data-toggle="dropdown" href="#">Deal Cancelled</a></li>
+                                                </ul>
+                                            </div>
                                         {% endif %}
                                     {% else %}
                                         <a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info span1">Edit</a><br><br>
@@ -165,46 +185,46 @@
         </div>
 
         {% if pending.__len__() != 0 %}
-        <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
-            <legend><strong>Pending</strong> <small>(click to expand/collapse)</small></legend>
-        </a>
-        <div id="collapseThree" class="accordion-body collapse">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th class="span1"><p>#</p></th>
-                    <th class="span1"><p>Sale Records</p></th>
-                    <th class="span3"><p></p></th>
-                    <th class="span5"><p>Details</p></th>
-                    <th class="span2"><p class="text-center">Actions</p></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% set count = 1 %}
-                {% for post in pending %}
+            <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
+                <legend><strong>Pending</strong> <small>(click to expand/collapse)</small></legend>
+            </a>
+            <div id="collapseThree" class="accordion-body collapse">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>{{ count }}{% set count = count + 1 %}</td>
-                        <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
-                        <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
-                        {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
-                        {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
-                        {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
-                        <td>
-                            <strong>Module Code:</strong> {{ post.module.module_code|e }}<br>
-                            <strong>Seller:</strong><a href='/profile/user/{{ post.user.key().name()}}'> {{ post.user.key().name()|e }}</a><br>
-                            <strong>Cost:</strong> ${{ post.cost|e }} <a href="/stats/{{ post.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
-                            <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
-                            <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
-                        </td>
-                        <td>
-                            <a class="btn btn-small btn-danger disabled span1">On Hold</a>
-                        </td>
+                        <th class="span1"><p>#</p></th>
+                        <th class="span1"><p>Sale Records</p></th>
+                        <th class="span3"><p></p></th>
+                        <th class="span5"><p>Details</p></th>
+                        <th class="span2"><p class="text-center">Actions</p></th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% endif %}
+                    </thead>
+                    <tbody>
+                    {% set count = 1 %}
+                    {% for post in pending %}
+                        <tr>
+                            <td>{{ count }}{% set count = count + 1 %}</td>
+                            <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
+                            <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                            {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
+                            {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
+                            {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
+                            <td>
+                                <strong>Module Code:</strong> {{ post.module.module_code|e }}<br>
+                                <strong>Seller:</strong><a href='/profile/user/{{ post.user.key().name()}}'> {{ post.user.key().name()|e }}</a><br>
+                                <strong>Cost:</strong> ${{ post.cost|e }} <a href="/stats/{{ post.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
+                                <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
+                                <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
+                            </td>
+                            <td>
+                                <a class="btn btn-small btn-danger disabled span1">On Hold</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
     </div>
 
     <hr>
@@ -212,7 +232,6 @@
     <footer>
         <p>&copy; Piata</p>
     </footer>
-</div>
 </div>
 
 <!-- Le javascript

@@ -6,6 +6,7 @@ import time
 
 from google.appengine.api import users
 from google.appengine.ext import db
+from google.appengine.api import mail
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -55,6 +56,24 @@ class RequestingNow(webapp2.RequestHandler):
         currRequest = models.Request.get_by_id(int(currPost.matched_request.key().id()))
         currRequest.status = "Pre-Completed"
         currRequest.put()
+
+        message = mail.EmailMessage()
+        message.sender = "teamlupus.13@gmail.com"
+        message.to = str(currPost.user.key().name())
+        message.subject = "A buyer is interested in " + str(currPost.book.title.title())
+        message.body = """
+        A buyer is interested to purchase your book.
+
+        Please click the following link below to contact him for more details.
+
+        %s
+
+        With regards,
+
+        Team Lupus
+                """ % "http://piata-sg.appspot.com/current"
+
+        message.send()
 
         time.sleep(0.5)
         self.redirect('/matched/' + str(currPost.matched_request.key().id()))
