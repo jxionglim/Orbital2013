@@ -18,6 +18,7 @@ class ProcessLogin(webapp2.RequestHandler):
             currUser = db.get(db.Key.from_path('User', user.email()))
             if currUser:
                 currUser.last_active = datetime.datetime.now()
+                currUser.put()
                 if currUser.required_complete:
                     template_values = {
                         'reminder': currUser.prof_complete,

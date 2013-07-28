@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Piata Current</title>
+    <title>Completed Sales & Purchases</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Le styles -->
@@ -36,8 +36,8 @@
                 </ul>
                 <form class="navbar-form pull-right">
                     <ul class="nav">
-                        <li class="active"><a href="/current">Post & Request</a></li>
-                        <li><a href="/completed">Sales & Purchase History</a></li>
+                        <li><a href="/current">Post & Request</a></li>
+                        <li class="active"><a href="/completed">Sales & Purchase History</a></li>
                         <li><a href="/profile">Profile</a></li>
                         <li><a href=/about>About Us</a></li>
                         <li><a href="/contact">Contact Us</a></li>
@@ -50,18 +50,13 @@
 </div>
 
 <div class="container">
-    {% if status == True %}
-        <div class="alert alert-info">
-            The Seller has been informed. In the mean time, you can contact him by visiting his profile page.
-        </div>
-    {% endif %}
     <div class="hero-unit1">
         <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-            <legend><strong>Current Post</strong> <small>(click to expand/collapse)</small></legend>
+            <legend><strong>Completed Sales</strong> <small>(click to expand/collapse)</small></legend>
         </a>
         <div id="collapseOne" class="accordion-body collapse in">
             {% if currSales.__len__() == 0 %}
-                <strong>There are no books on sale.</strong><br><br>
+                <strong>You have not made any sales yet</strong><br><br>
             {% else %}
                 {% for posts in currSales %}
                     <h4><strong>Module Code: {{ posts }}</strong></h4>
@@ -135,11 +130,11 @@
         </div>
 
         <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
-            <legend><strong>Current Request</strong> <small>(click to expand/collapse)</small></legend>
+            <legend><strong>Completed Purchases</strong> <small>(click to expand/collapse)</small></legend>
         </a>
         <div id="collapseTwo" class="accordion-body collapse in">
             {% if currRequests.__len__() == 0 %}
-                <strong>There are no books on request.</strong><br><br>
+                <strong>You have not made any purchases yet</strong><br><br>
             {% else %}
                 {% for requests in currRequests %}
                     <h4><strong>Module Code: {{ requests }}</strong></h4>
@@ -192,46 +187,6 @@
                 {% endfor %}
             {% endif %}
         </div>
-
-        {% if pending.__len__() != 0 %}
-            <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
-                <legend><strong>Pending</strong> <small>(click to expand/collapse)</small></legend>
-            </a>
-            <div id="collapseThree" class="accordion-body collapse in">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th class="span1"><p>#</p></th>
-                        <th class="span1"><p>Book</p></th>
-                        <th class="span3"><p></p></th>
-                        <th class="span5"><p>Details</p></th>
-                        <th class="span2"><p class="text-center">Actions</p></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% set count = 1 %}
-                    {% for post in pending %}
-                        <tr>
-                            <td>{{ count }}{% set count = count + 1 %}</td>
-                            <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
-                            <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{{ post.book.publisher.title()|e }}</small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
-                            {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
-                            {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
-                            {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
-                            <td>
-                                <strong>Module Code:</strong> {{ post.module.module_code|e }}<br>
-                                <strong>Seller:</strong><a href='/profile/user/{{ post.user.key().name()}}'> {{ post.user.key().name()|e }}</a><br>
-                                <strong>Cost:</strong> ${{ post.cost|e }} <a href="/stats/{{ post.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
-                                <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
-                                <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
-                            </td>
-                            <td><a class="btn btn-small btn-danger disabled span1">On Hold</a></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endif %}
     </div>
 
     <hr>
