@@ -6,6 +6,7 @@ import time
 
 from google.appengine.api import users
 from google.appengine.ext import db
+from google.appengine.api import mail
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/templates"))
@@ -102,9 +103,26 @@ class CompletedSales(webapp2.RequestHandler):
             currSalesRecond.put()
         else:
             if currPost.seller is not None:
+                seller = currPost.seller
+                booktitle = currPost.book.title.title()
                 currPost.seller = None
                 currPost.status = "Pending"
                 currPost.put()
+
+                message = mail.EmailMessage()
+                message.sender = "teamlupus.13@gmail.com"
+                message.to = str(seller.key().name())
+                message.subject = "The sales of  " + str(booktitle) + "has been cancelled by the seller"
+                message.body = """
+The book that you have requested has been cancelled by the seller.
+
+You can login to our website http://piata-sg.appspot.com to find a new seller or post a book request in the meantime.
+
+With Regards,
+
+Team Lupus
+                        """
+                message.send()
             else:
                 matched_request = currPost.matched_request
                 matched_request.matched_posts.remove(currPost.key())

@@ -188,15 +188,15 @@ def checkStatus(currPost):
             message.to = str(currRequest.user.key().name())
             message.subject = "A match has been found for " + str(currRequest.book.title.title())
             message.body = """
-            A match has been found for the book that you have requested.
+A match has been found for the book that you have requested.
 
-            Please click the following link below to access it.
+Please click the following link below to access it.
 
-            %s
+%s
 
-            With Regards,
+With Regards,
 
-            Team Lupus
+Team Lupus
                     """ % url
 
             message.send()

@@ -203,15 +203,15 @@ class RequestingNow(webapp2.RequestHandler):
         message.to = str(currPost.user.key().name())
         message.subject = "A buyer is interested in " + str(currPost.book.title.title())
         message.body = """
-        A buyer is interested to purchase your book.
+A buyer is interested to purchase your book.
 
-        Please click the following link below to contact him for more details.
+Please click the following link below to contact him for more details.
 
-        %s
+%s
 
-        With regards,
+With regards,
 
-        Team Lupus
+Team Lupus
                 """ % "http://piata-sg.appspot.com/current"
 
         message.send()
