@@ -56,6 +56,10 @@ handlers:
   script: current.app
   login: required
 
+- url: /completed
+  script: completed.app
+  login: required
+
 - url: /(login|main|adv_search|about|contact)
   script: home.app
   login: required
