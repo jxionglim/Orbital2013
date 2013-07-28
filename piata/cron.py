@@ -19,7 +19,7 @@ class UpdateStatus(webapp2.RequestHandler):
                 cost_upper = cost.__getitem__(1)
 
             for post in posts:
-                if request.module.module_code == post.module.module_code and request.book.title == post.book.title and request.book.author == post.book.author and request.book.publisher == post.book.publisher and request.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper and post.status != "Matched" and post.status != "Pre-Completed" and post.user.key() != request.user.key() and post.seller is None:
+                if request.module.module_code == post.module.module_code and request.book.title == post.book.title and request.book.author == post.book.author and request.book.publisher == post.book.publisher and request.book.edition == post.book.edition and cost_lower <= post.cost <= cost_upper and post.status != "Matched" and post.status != "Pre-Completed" and post.status != "Completed" and post.user.key() != request.user.key() and post.seller is None:
                     post.status = "Matched"
                     post.matched_request = request
                     post.put()
@@ -27,7 +27,7 @@ class UpdateStatus(webapp2.RequestHandler):
                         request.matched_posts.append(post.key())
 
             if request.matched_posts.__len__() != 0:
-                if request.status != "Pre-Completed":
+                if request.status != "Pre-Completed" and request.status != "Completed":
                     request.status = "Matched"
                     request.put()
 

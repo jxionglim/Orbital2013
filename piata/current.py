@@ -27,16 +27,18 @@ class Display(webapp2.RequestHandler):
         currRequests = {}
 
         for post in posts:
-            if post.module.module_code.upper() in currSales:
-                currSales[post.module.module_code.upper()].append(post)
-            else:
-                currSales[post.module.module_code.upper()] = [post]
+            if post.status != "Completed":
+                if post.module.module_code.upper() in currSales:
+                    currSales[post.module.module_code.upper()].append(post)
+                else:
+                    currSales[post.module.module_code.upper()] = [post]
 
         for request in requests:
-            if request.module.module_code.upper() in currRequests:
-                currRequests[request.module.module_code.upper()].append(request)
-            else:
-                currRequests[request.module.module_code.upper()] = [request]
+            if request.status != "Completed":
+                if request.module.module_code.upper() in currRequests:
+                    currRequests[request.module.module_code.upper()].append(request)
+                else:
+                    currRequests[request.module.module_code.upper()] = [request]
 
         posts_all = models.Post.all()
         pending = []

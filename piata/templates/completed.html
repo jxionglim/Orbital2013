@@ -55,10 +55,10 @@
             <legend><strong>Completed Sales</strong> <small>(click to expand/collapse)</small></legend>
         </a>
         <div id="collapseOne" class="accordion-body collapse in">
-            {% if currSales.__len__() == 0 %}
+            {% if completedSales.__len__() == 0 %}
                 <strong>You have not made any sales yet</strong><br><br>
             {% else %}
-                {% for posts in currSales %}
+                {% for posts in completedSales %}
                     <h4><strong>Module Code: {{ posts }}</strong></h4>
                     <table class="table table-striped">
                         <thead>
@@ -72,7 +72,7 @@
                         </thead>
                         <tbody>
                         {% set count = 1 %}
-                        {% for post in currSales[posts] %}
+                        {% for post in completedSales[posts] %}
                             <tr>
                                 <td>{{ count }}{% set count = count + 1 %}</td>
                                 <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
@@ -86,40 +86,7 @@
                                     <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
                                 </td>
                                 <td>
-                                    {% if post.status == "Pre-Completed" %}
-                                        {% if post.seller == None %}
-                                            <a href="/profile/user/{{ post.matched_request.user.key().name()}}" class="btn btn-small btn-success span1">Reply</a>
-                                            <br><br>
-                                            <div class="btn-group offset0">
-                                                <a class="btn dropdown-toggle span1 " data-toggle="dropdown">
-                                                    Status
-                                                    <span class="caret"></span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="/current/completed/isCompleted/{{ post.key().id() }}">Completed</a></li>
-                                                    <li><a href="/current/completed/notCompleted/{{ post.key().id() }}">Cancelled</a></li>
-                                                </ul>
-                                            </div>
-                                        {% else %}
-                                            <a href="/profile/user/{{ post.seller.key().name()}}" class="btn btn-small btn-success span1">Reply</a>
-                                            <br><br>
-                                            <div class="btn-group offset0">
-                                                <a class="btn dropdown-toggle span1" data-toggle="dropdown">
-                                                    Status
-                                                    <span class="caret"></span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="/current/completed/isCompleted/{{ post.key().id() }}">Completed</a></li>
-                                                    <li><a href="/current/completed/notCompleted/{{ post.key().id() }}">Cancelled</a></li>
-                                                </ul>
-                                            </div>
-                                        {% endif %}
-                                    {% elif post.status == "Completed" %}
-                                        <a class="btn btn-small btn-info disabled span1">Completed</a>
-                                    {% else %}
-                                        <a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info span1">Edit</a><br><br>
-                                        <a href="/current/delete/{{ post.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
-                                    {% endif %}
+                                    <a class="btn btn-small btn-info disabled span1">Completed</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -130,13 +97,13 @@
         </div>
 
         <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
-            <legend><strong>Completed Purchases</strong> <small>(click to expand/collapse)</small></legend>
+            <legend><strong>Completed Requests</strong> <small>(click to expand/collapse)</small></legend>
         </a>
         <div id="collapseTwo" class="accordion-body collapse in">
-            {% if currRequests.__len__() == 0 %}
-                <strong>You have not made any purchases yet</strong><br><br>
+            {% if completedRequestsPurchased.__len__() == 0 %}
+                <strong>You have not made any request purchases yet</strong><br><br>
             {% else %}
-                {% for requests in currRequests %}
+                {% for requests in completedRequestsPurchased %}
                     <h4><strong>Module Code: {{ requests }}</strong></h4>
                     <table class="table table-striped">
                         <thead>
@@ -154,7 +121,7 @@
                         </thead>
                         <tbody>
                         {% set count = 1 %}
-                        {% for request in currRequests[requests] %}
+                        {% for request in completedRequestsPurchased[requests] %}
                             <tr>
                                 <td>{{ count }}{% set count = count + 1 %}</td>
                                 <td><strong>{{ request.book.title.title()|e }}</strong></td>
@@ -168,17 +135,52 @@
                                 <td>{% if not request.condition %} Nil {% else %}{% for condition in request.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ request.condition[-1] }}</u>{% endif %}<br></td>
                                 <td>{{ request.status|e }}</td>
                                 <td>
-                                    {% if request.status|e == 'Matched' or request.status|e == 'Pre-Completed' %}
-                                        <a href="/matched/{{ request.key().id() }}" class="btn btn-small btn-success span1">Deal</a>
-                                    {% elif request.status|e == 'Completed' %}
-                                        <a class="btn btn-small btn-info disabled span1">Completed</a>
-                                    {% else %}
-                                        <a href="/buy/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
-                                    {% endif %}
-                                    <br><br>
-                                    {% if request.status|e != "Pre-Completed" and request.status|e != "Completed" %}
-                                        <a href="/current/delete/{{ request.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
-                                    {% endif %}
+                                    <a class="btn btn-small btn-info disabled span1">Completed</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
+            <legend><strong>Completed Purchases</strong> <small>(click to expand/collapse)</small></legend>
+        </a>
+        <div id="collapseThree" class="accordion-body collapse in">
+            {% if completedPurchased.__len__() == 0 %}
+                <strong>You have not made any purchases yet</strong><br><br>
+            {% else %}
+                {% for posts in completedPurchased %}
+                    <h4><strong>Module Code: {{ posts }}</strong></h4>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="span1"><p>#</p></th>
+                            <th class="span1"><p>Book</p></th>
+                            <th class="span3"><p></p></th>
+                            <th class="span5"><p></p>Details</p></th>
+                            <th class="span2"><p class="text-center">Actions</p></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% set count = 1 %}
+                        {% for post in completedPurchased[posts] %}
+                            <tr>
+                                <td>{{ count }}{% set count = count + 1 %}</td>
+                                <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
+                                <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{{ post.book.publisher.title()|e }}</small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                                {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
+                                {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
+                                {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
+                                <td>
+                                    <strong>Cost:</strong> ${{ post.cost|e }} <a href="/stats/{{ post.book.key() }}"><img class="image" src="/images/stats.png"></a><br>
+                                    <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
+                                    <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
+                                </td>
+                                <td>
+                                    <a class="btn btn-small btn-info disabled span1">Completed</a>
                                 </td>
                             </tr>
                         {% endfor %}
