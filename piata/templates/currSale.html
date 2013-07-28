@@ -80,7 +80,7 @@
                             <tr>
                                 <td>{{ count }}{% set count = count + 1 %}</td>
                                 <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
-                                <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                                <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{{ post.book.publisher.title()|e }}</small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
                                 {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
                                 {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
                                 {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
@@ -100,8 +100,8 @@
                                                     <span class="caret"></span>
                                                 </a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a data-toggle="dropdown" href="#">Completed</a></li>
-                                                    <li><a data-toggle="dropdown" href="#">Cancelled</a></li>
+                                                    <li><a href="/current/completed/isCompleted/{{ post.key().id() }}">Completed</a></li>
+                                                    <li><a href="/current/completed/notCompleted/{{ post.key().id() }}">Cancelled</a></li>
                                                 </ul>
                                             </div>
                                         {% else %}
@@ -113,11 +113,13 @@
                                                     <span class="caret"></span>
                                                 </a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a data-toggle="dropdown" href="#">Completed</a></li>
-                                                    <li><a data-toggle="dropdown" href="#">Cancelled</a></li>
+                                                    <li><a href="/current/completed/isCompleted/{{ post.key().id() }}">Completed</a></li>
+                                                    <li><a href="/current/completed/notCompleted/{{ post.key().id() }}">Cancelled</a></li>
                                                 </ul>
                                             </div>
                                         {% endif %}
+                                    {% elif post.status == "Completed" %}
+                                        <a class="btn btn-small btn-info disabled span1">Completed</a>
                                     {% else %}
                                         <a href="/sell/edit/{{ post.key().id() }}" class="btn btn-small btn-info span1">Edit</a><br><br>
                                         <a href="/current/delete/{{ post.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
@@ -146,6 +148,7 @@
                             <th class="span1"><p>#</p></th>
                             <th class="span4"><p>Title of Book</p></th>
                             <th class="span3"><p>Author</p></th>
+                            <th class="span3"><p>Publisher</p></th>
                             <th class="span2"><p>Edition</p></th>
                             <th class="span2"><p>Cost Range</p></th>
                             <th class="span4"><p>Condition</p></th>
@@ -160,6 +163,7 @@
                                 <td>{{ count }}{% set count = count + 1 %}</td>
                                 <td><strong>{{ request.book.title.title()|e }}</strong></td>
                                 <td><small><i>{{ request.book.author.title()|e }}</i></small></td>
+                                <td><small>{{ request.book.publisher.title()|e }}</small></td>
                                 <td><small>{% if request.book.edition|e == '1' %} {{ request.book.edition|e }}<sup>st</sup> Edition
                                 {% elif request.book.edition|e == '2' %} {{ request.book.edition|e }}<sup>nd</sup> Edition
                                 {% elif request.book.edition|e == '3' %} {{ request.book.edition|e }}<sup>rd</sup> Edition
@@ -170,11 +174,13 @@
                                 <td>
                                     {% if request.status|e == 'Matched' or request.status|e == 'Pre-Completed' %}
                                         <a href="/matched/{{ request.key().id() }}" class="btn btn-small btn-success span1">Deal</a>
+                                    {% elif request.status|e == 'Completed' %}
+                                        <a class="btn btn-small btn-info disabled span1">Completed</a>
                                     {% else %}
                                         <a href="/buy/edit/{{ request.key().id() }}" class="btn btn-small btn-info span1">Edit</a>
                                     {% endif %}
                                     <br><br>
-                                    {% if request.status|e != "Pre-Completed" %}
+                                    {% if request.status|e != "Pre-Completed" and request.status|e != "Completed" %}
                                         <a href="/current/delete/{{ request.key().id() }}" class="btn btn-small btn-info span1">Delete</a>
                                     {% endif %}
                                 </td>
@@ -207,7 +213,7 @@
                         <tr>
                             <td>{{ count }}{% set count = count + 1 %}</td>
                             <td>{% if post.book_pic == None %}<img class="img-search" src="/images/nopic.png">{% else %}<img class="img-search" src="/sell/image/{{ post.key().id() }}">{% endif %}</td>
-                            <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
+                            <td><strong>{{ post.book.title.title()|e }}</strong><br><small><i>{{ post.book.author.title()|e }}</i></small><br><small>{{ post.book.publisher.title()|e }}</small><br><small>{% if post.book.edition|e == '1' %} {{ post.book.edition|e }}<sup>st</sup> Edition
                             {% elif post.book.edition|e == '2' %} {{ post.book.edition|e }}<sup>nd</sup> Edition
                             {% elif post.book.edition|e == '3' %} {{ post.book.edition|e }}<sup>rd</sup> Edition
                             {% else %} {{ post.book.edition|e }}<sup>th</sup> Edition {% endif %}</small></td>
@@ -218,9 +224,7 @@
                                 <strong>Condition of book:</strong> {% if not post.condition %} Nil {% else %}{% for condition in post.condition[:-1] %}<u>{{ condition }}</u>, {% endfor %}<u>{{ post.condition[-1] }}</u>{% endif %}<br>
                                 <strong>Comment:</strong> {% if post.comment != "" %}{{ post.comment|e }}{% else %} Nil {% endif %}
                             </td>
-                            <td>
-                                <a class="btn btn-small btn-danger disabled span1">On Hold</a>
-                            </td>
+                            <td><a class="btn btn-small btn-danger disabled span1">On Hold</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -241,11 +245,5 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/bootstrap/js/jquery.js"></script>
 <script src="/bootstrap/js/bootstrap.js"></script>
-<script src="/bootstrap/js/bootstrap-dropdown.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.dropdown-toggle').dropdown();
-    });
-</script>
 </body>
 </html>

@@ -81,10 +81,47 @@ class Delete(webapp2.RequestHandler):
                     post.put()
             currRequest.delete()
 
+
+        time.sleep(0.5)
+        self.redirect('/current')
+
+
+class CompletedSales(webapp2.RequestHandler):
+    def get(self):
+        url = self.request.url
+        currPost = models.Post.get_by_id(int(url.split('/')[-1]))
+        if "isCompleted" in url:
+            currPost.status = "Completed"
+            currPost.put()
+            if currPost.matched_request:
+                currPost.matched_request.status = "Completed"
+                currPost.matched_request.put()
+            currSalesRecond = models.SaleRecord()
+            currSalesRecond.book = currPost.book
+            currSalesRecond.cost = currPost.cost
+            currSalesRecond.put()
+        else:
+            if currPost.seller is not None:
+                currPost.seller = None
+                currPost.status = "Pending"
+                currPost.put()
+            else:
+                matched_request = currPost.matched_request
+                matched_request.matched_posts.remove(currPost.key())
+                if matched_request.matched_posts.__len__() == 0:
+                    matched_request.status = "Pending"
+                else:
+                    matched_request.status = "Matched"
+                matched_request.put()
+                currPost.status = "Pending"
+                currPost.matched_request = None
+                currPost.put()
+
         time.sleep(0.5)
         self.redirect('/current')
 
 
 app = webapp2.WSGIApplication([('/current', Display),
-                               ('/current/delete/.*?', Delete)],
+                               ('/current/delete/.*?', Delete),
+                               ('/current/completed/.*?', CompletedSales)],
                               debug=True)
