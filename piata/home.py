@@ -68,7 +68,7 @@ class MainPage(webapp2.RequestHandler):
                         if search_field.upper() in module.module_code:
                             tempResult.append(module)
                     for records in tempResult:
-                        allRecords = models.Post.all().filter('module', records).filter('status !=', 'Pre-Completed')
+                        allRecords = models.Post.all().filter('module', records).filter('status !=', 'Pre-Completed').filter('status !=', 'Completed')
                         for entry in allRecords:
                             results.append(entry)
                 else:
@@ -77,7 +77,7 @@ class MainPage(webapp2.RequestHandler):
                         if search_field.lower() in getattr(book, search_cat):
                             tempResult.append(book)
                     for records in tempResult:
-                        allRecords = models.Post.all().filter('book', records).filter('status !=', 'Pre-Completed')
+                        allRecords = models.Post.all().filter('book', records).filter('status !=', 'Pre-Completed').filter('status !=', 'Completed')
                         for entry in allRecords:
                             results.append(entry)
 
@@ -158,7 +158,7 @@ class AdvanceSearchPage(webapp2.RequestHandler):
                     else:
                         containDict['publisher'] = publisher
 
-                prePostList = models.Post.all().filter('status !=', 'Pre-Completed')
+                prePostList = models.Post.all().filter('status !=', 'Pre-Completed').filter('status !=', 'Completed')
                 for post in prePostList:
                     postList.append(post)
 

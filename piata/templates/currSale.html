@@ -36,7 +36,7 @@
                 </ul>
                 <form class="navbar-form pull-right">
                     <ul class="nav">
-                        <li class="active"><a href="/current">Request & Sales</a></li>
+                        <li><a class="active" href="/current">Post & Request</a></li>
                         <li><a href="/profile">Profile</a></li>
                         <li><a href=/about>About Us</a></li>
                         <li><a href="/contact">Contact Us</a></li>
@@ -51,12 +51,12 @@
 <div class="container">
     {% if status == True %}
         <div class="alert alert-info">
-            The Seller has been informed. In the mean time, you can also contact him via his User Profile Page.
+            The Seller has been informed. In the mean time, you can contact him by visiting his profile page.
         </div>
     {% endif %}
     <div class="hero-unit1">
         <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-            <legend><strong>Current Sales</strong> <small>(click to expand/collapse)</small></legend>
+            <legend><strong>Current Post</strong> <small>(click to expand/collapse)</small></legend>
         </a>
         <div id="collapseOne" class="accordion-body collapse in">
             {% if currSales.__len__() == 0 %}
@@ -68,7 +68,7 @@
                         <thead>
                         <tr>
                             <th class="span1"><p>#</p></th>
-                            <th class="span1"><p>Sale Records</p></th>
+                            <th class="span1"><p>Book</p></th>
                             <th class="span3"><p></p></th>
                             <th class="span5"><p></p>Details</p></th>
                             <th class="span2"><p class="text-center">Actions</p></th>
@@ -136,7 +136,7 @@
         <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
             <legend><strong>Current Request</strong> <small>(click to expand/collapse)</small></legend>
         </a>
-        <div id="collapseTwo" class="accordion-body collapse">
+        <div id="collapseTwo" class="accordion-body collapse in">
             {% if currRequests.__len__() == 0 %}
                 <strong>There are no books on request.</strong><br><br>
             {% else %}
@@ -196,12 +196,12 @@
             <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
                 <legend><strong>Pending</strong> <small>(click to expand/collapse)</small></legend>
             </a>
-            <div id="collapseThree" class="accordion-body collapse">
+            <div id="collapseThree" class="accordion-body collapse in">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th class="span1"><p>#</p></th>
-                        <th class="span1"><p>Sale Records</p></th>
+                        <th class="span1"><p>Book</p></th>
                         <th class="span3"><p></p></th>
                         <th class="span5"><p>Details</p></th>
                         <th class="span2"><p class="text-center">Actions</p></th>
