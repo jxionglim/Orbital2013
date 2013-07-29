@@ -114,9 +114,9 @@ class CompletedSales(webapp2.RequestHandler):
                 message = mail.EmailMessage()
                 message.sender = "teamlupus.13@gmail.com"
                 message.to = str(seller.key().name())
-                message.subject = "The sales of  " + str(booktitle) + "has been cancelled by the seller"
+                message.subject = "The purchase of  " + str(booktitle) + " has been cancelled by the seller"
                 message.body = """
-The book that you have requested has been cancelled by the seller.
+The book that you wanted to purchase has been cancelled by the seller.
 
 You can login to our website http://piata-sg.appspot.com to find a new seller or post a book request in the meantime.
 
