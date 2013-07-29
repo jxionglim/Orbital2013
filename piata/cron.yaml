@@ -1,4 +1,4 @@
 cron:
 - description: Updating Post/Req Status
   url: /updateStatus
-  schedule: every 1 minutes
+  schedule: every 6 hours
