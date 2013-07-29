@@ -71,7 +71,7 @@
                             <th class="span1"><p>#</p></th>
                             <th class="span1"><p>Book</p></th>
                             <th class="span3"><p></p></th>
-                            <th class="span5"><p></p>Details</p></th>
+                            <th class="span5"><p>Details</p></th>
                             <th class="span2"><p class="text-center">Actions</p></th>
                         </tr>
                         </thead>
@@ -93,7 +93,7 @@
                                 <td>
                                     {% if post.status == "Pre-Completed" %}
                                         {% if post.seller == None %}
-                                            <a href="/profile/user/{{ post.matched_request.user.key().name()}}" class="btn btn-small btn-success span1">Reply</a>
+                                            <a href="/profile/user/{{ post.matched_request.user.key().name()}}" class="btn btn-small btn-success span1">View Buyer</a>
                                             <br><br>
                                             <div class="btn-group offset0">
                                                 <a class="btn dropdown-toggle span1 " data-toggle="dropdown">
@@ -106,7 +106,7 @@
                                                 </ul>
                                             </div>
                                         {% else %}
-                                            <a href="/profile/user/{{ post.seller.key().name()}}" class="btn btn-small btn-success span1">Reply</a>
+                                            <a href="/profile/user/{{ post.seller.key().name()}}" class="btn btn-small btn-success span1">View Buyer</a>
                                             <br><br>
                                             <div class="btn-group offset0">
                                                 <a class="btn dropdown-toggle span1" data-toggle="dropdown">
@@ -174,7 +174,7 @@
                                 <td>{{ request.status|e }}</td>
                                 <td>
                                     {% if request.status|e == 'Matched' or request.status|e == 'Pre-Completed' %}
-                                        <a href="/matched/{{ request.key().id() }}" class="btn btn-small btn-success span1">Deal</a>
+                                        <a href="/matched/{{ request.key().id() }}" class="btn btn-small btn-success span1">Deal!</a>
                                     {% elif request.status|e == 'Completed' %}
                                         <a class="btn btn-small btn-info disabled span1">Completed</a>
                                     {% else %}
