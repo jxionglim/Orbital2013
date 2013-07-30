@@ -2,6 +2,8 @@ import webapp2
 import models
 import re
 
+from google.appengine.api import mail
+
 
 class UpdateStatus(webapp2.RequestHandler):
     def get(self):
@@ -31,6 +33,24 @@ class UpdateStatus(webapp2.RequestHandler):
                     request.status = "Matched"
                     request.put()
 
+                    url = "http://piata-sg.appspot.com/matched/" + str(request.key().id())
+                    message = mail.EmailMessage()
+                    message.sender = "teamlupus.13@gmail.com"
+                    message.to = str(request.user.key().name())
+                    message.subject = "A match has been found for " + str(request.book.title.title())
+                    message.body = """
+A match has been found for the book that you have requested.
+
+Please click the following link below to access it.
+
+%s
+
+With Regards,
+
+Team Lupus
+                    """ % url
+
+                    message.send()
 
 app = webapp2.WSGIApplication([('/updateStatus', UpdateStatus)],
                       debug=True)
